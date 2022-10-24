@@ -1,0 +1,16 @@
+.logo,.logo-text{
+  font-size: 45px;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-left: 15px;
+  
+}
+
+.logo-img{
+  margin-top: -12px;
+}
+.navbar{
+  margin-right: -12px;
+  margin-left: -12px;
+  background-color: #333333;
+}

@@ -1,0 +1,17 @@
+.container{
+    padding-left: -20px !important;
+    padding-right: -20px !important;
+  
+    background-color: whitesmoke;
+}
+
+.content{
+    margin-top: 15px;
+    padding: 15px;
+}
+.welcome{
+    text-align: center;
+}
+.vagy{
+    margin: 30px;
+}
