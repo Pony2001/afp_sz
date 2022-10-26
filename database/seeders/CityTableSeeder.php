@@ -17,11 +17,12 @@ class CityTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $cities = new City;
-        //$cities->Foreign('county_id')->references('county_id')->on('counties');
-        $cities->county_id = County::inRandomOrder()->first()->id;
-        $cities->city = fake()->unique()->text(15);
-        $cities->save();
+        foreach (range(1, 10) as $index) {
+            $cities = new City;
+            //$cities->Foreign('county_id')->references('county_id')->on('counties');
+            $cities->county_id = County::inRandomOrder()->first()->id;
+            $cities->city = fake()->unique()->text(15);
+            $cities->save();
+        }
     }
 }
