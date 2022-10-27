@@ -77,7 +77,20 @@ class MainController extends Controller
     {
 
         $results = DB::table('employees')
-            ->select('employees.id', 'cities.county_id', 'counties.county', 'cities.id AS city_id', 'cities.city', 'employees.city_id', 'employees.name', 'field__employees.field_id', 'fields.field', 'employees.phone', 'employees.email', 'employees.description')
+            ->select(
+                'employees.id',
+                'cities.county_id',
+                'counties.county',
+                'cities.id AS city_id',
+                'cities.city',
+                'employees.city_id',
+                'employees.name',
+                'field__employees.field_id',
+                'fields.field',
+                'employees.phone',
+                'employees.email',
+                'employees.description'
+            )
             ->join('cities', 'employees.city_id', '=', 'cities.id')
             ->join('counties', 'cities.county_id', '=', 'counties.id')
             ->leftJoin('field__employees', 'employees.id', '=', 'field__employees.employee_id')
