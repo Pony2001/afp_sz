@@ -120,7 +120,7 @@ use Illuminate\Support\Facades\DB;
                                 @endif
 
                                 @foreach ($selects as $value)
-                                    <option value="{{ $value->county_id }}">{{ $value->county }}
+                                    <option value="{{ $value->id }}">{{ $value->county }}
                                     </option>
                                 @endforeach
 

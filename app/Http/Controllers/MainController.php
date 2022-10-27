@@ -75,27 +75,28 @@ class MainController extends Controller
 
     public function getSelects()
     {
+        $results = DB::table('counties')->select('id', 'county')->get();
 
-        $results = DB::table('employees')
-            ->select(
-                'employees.id',
-                'cities.county_id',
-                'counties.county',
-                'cities.id AS city_id',
-                'cities.city',
-                'employees.city_id',
-                'employees.name',
-                'field__employees.field_id',
-                'fields.field',
-                'employees.phone',
-                'employees.email',
-                'employees.description'
-            )
-            ->join('cities', 'employees.city_id', '=', 'cities.id')
-            ->join('counties', 'cities.county_id', '=', 'counties.id')
-            ->leftJoin('field__employees', 'employees.id', '=', 'field__employees.employee_id')
-            ->leftJoin('fields', 'field__employees.field_id', '=', 'fields.id')
-            ->get();
+        // $results = DB::table('employees')
+        //     ->select(
+        //         'employees.id',
+        //         'cities.county_id',
+        //         'counties.county',
+        //         'cities.id AS city_id',
+        //         'cities.city',
+        //         'employees.city_id',
+        //         'employees.name',
+        //         'field__employees.field_id',
+        //         'fields.field',
+        //         'employees.phone',
+        //         'employees.email',
+        //         'employees.description'
+        //     )
+        //     ->join('cities', 'employees.city_id', '=', 'cities.id')
+        //     ->join('counties', 'cities.county_id', '=', 'counties.id')
+        //     ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
+        //     ->join('fields', 'field__employees.field_id', '=', 'fields.id')
+        //     ->get();
         return view('home', ['selects' => $results]);
     }
 

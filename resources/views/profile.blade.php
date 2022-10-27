@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 ?>
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 
             <div>
-                <form action="#">
-                    <button class="btn btn-warning m-2" type="submit">Vissza</button>
-                </form>
+                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
             </div>
 
             <div>
