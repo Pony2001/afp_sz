@@ -1,5 +1,5 @@
 <?php
-
+use App\Providers;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 ?>
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
                 <form action="/profile/{{ $result->id }}" class="profile">
                     <table>
                         <tr>
-                            <td rowspan="4"><img src="/images/unknown.png" alt="" width="125"
+                            <td rowspan="4"><img src='https://www.gravatar.com/avatar?{{md5($result->email)}}&d=retro' alt="" width="125"
                                     class="shadow bg-white profile-picture">
                             </td>
                         </tr>
