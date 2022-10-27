@@ -22,13 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Field_EmployeeTable::class);
         $this->call(ImageTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        \App\Models\User::County()->create();
-        \App\Models\User::City()->create();
-        \App\Models\User::Field()->create();
-        \App\Models\User::Employee()->create();
-        \App\Models\User::Field_Employee()->create();
-        \App\Models\User::Image()->create();
-        \App\Models\User::User()->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
