@@ -30,3 +30,7 @@ Route::post('getCities', [Controllers\CityController::class, 'getCities'])->name
 Route::get('/results', [Controllers\PaginationController::class, 'search']);
 
 Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_function']);
+
+
+Route::get('/admin', [Controllers\AdminController::class, 'admin']);
+Route::get('/login', [Controllers\LoginController::class, 'login']);

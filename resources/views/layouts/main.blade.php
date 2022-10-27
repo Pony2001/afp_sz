@@ -22,6 +22,9 @@
                         <img src="/images/logo.png" alt="" width="75" class="logo-img"> SzakiMaki
                     </a>
                 </div>
+                <div class="login"><a href = "login"><button type="button" class="btn btn-secondary">Belépés</button></a></div>
+                
+               
             </nav>
         </header>
         <content>
@@ -36,7 +39,8 @@
                 <li class="nav-item nav-link px-2 text-muted">Tápi Dániel</li>
                 <li class="nav-item nav-link px-2 text-muted">Csikós Zsolt Csaba</li>
             </ul>
-            <p class="text-center text-muted"><a href="#" class="nav-link px-2 text-muted">Discord</a></p>
+            <p class="text-center text-muted"><a href="#" class="nav-link px-2 text-muted">Discord          Github</a></p>
+           
         </footer>
     </div>
 </body>
