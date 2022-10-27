@@ -3,6 +3,7 @@
     <li class="nav-item nav-link px-2 text-muted">Bata Krisztián</li>
     <li class="nav-item nav-link px-2 text-muted">Tápi Dániel</li>
     <li class="nav-item nav-link px-2 text-muted">Csikós Zsolt Csaba</li>
+    <li class="nav-item nav-link px-2 text-muted">Molnár Péter</li>
 </ul>
 <p class="text-center text-muted"><a href="#" class="nav-link px-2 text-muted">Discord          Github</a></p>   
 
