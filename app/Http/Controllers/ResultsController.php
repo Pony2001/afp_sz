@@ -24,19 +24,13 @@ class ResultsController extends Controller
             name like '%" . request('search') . "%' OR
             email like '%" . request('search') . "%' OR
             phone like '%" . request('search') . "%'
-            
-            
-            
-            
             ";
         } else if (!request('search')) {
             //City
             $city = "city_id LIKE '" . request('city') . "'";
         }
 
-
         //Lekérdezés
-
         $link = mysqli_connect('localhost', 'root', '', 'szakimaki');
 
         $sql = "SELECT * FROM employees WHERE " . $field . "" . $city . " " . $search . "";
@@ -50,8 +44,6 @@ class ResultsController extends Controller
                 }
             }
         }
-
-
         return $ret;
     }
 

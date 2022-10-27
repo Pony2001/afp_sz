@@ -12,10 +12,10 @@ class PaginationController extends Controller
     public function search(Request $request)
     {
 
-        if (isset($_GET['city']) && isset($_GET['county'])) {
+        if (request('city') && request('county')) {
 
 
-            $search_city = $_GET['city'];
+            $search_city = request('city');
 
             $city = DB::table('cities')->where('id', 'LIKE', '' . $search_city . '')->get('city');
 
