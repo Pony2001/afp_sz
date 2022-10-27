@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 <div class="row">
 <div class="col-md-4"></div>
 <div class="col-md-4" >
-<form method="get" class="form-validation" action="admin">
+<form method="get" class="form-validation" action="{{route('admin')}}">
     <div>
         <label for="" class="form-validation mt-3">Felhasználónév:</label>
         <input type="text" name="username" id="username"  minlength="3"
