@@ -101,7 +101,7 @@ use Illuminate\Support\Facades\DB;
                                 // @endforeach
                                 ?>
 
-                                
+
                             </select>
                         </div>
                     </div>
@@ -119,8 +119,9 @@ use Illuminate\Support\Facades\DB;
                                     <option value="{{ old('county') }}">{{ old('county') }}</option>
                                 @endif
 
-                                @foreach (App\Models\County::orderBy('county')->get() as $key => $value)
-                                    <option value="{{ $value->id }}">{{ $value->county }}</option>
+                                @foreach ($selects as $value)
+                                    <option value="{{ $value->county_id }}">{{ $value->county }}
+                                    </option>
                                 @endforeach
 
                             </select>

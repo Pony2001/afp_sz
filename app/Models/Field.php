@@ -9,5 +9,6 @@ class Field extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'field',
+        'field'
+    ];
 }
