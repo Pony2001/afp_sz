@@ -30,9 +30,11 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     @php
                         //<p>{{ $employee[0]->field }}</p>
-                    @endphp
+                   
+                  /* <h6>Szakma: </h6>
+                    <p>{{ $employee[0]->field }}</p>*/ @endphp
                     <h6>Város: </h6>
-                    <p>{{ $employee[0]->city_id }}</p>
+                    <p>{{ $employee[0]->city }}</p>
                     <h6>Telefonszám: </h6>
                     <p>{{ $employee[0]->phone }}</p>
                     <h6>E-mail: </h6>
