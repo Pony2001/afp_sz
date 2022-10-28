@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
                 <hr />
                 <div>
 
-                    <h3><img src="/images/unknown.png" alt="" width="100" class="shadow bg-white rounded-5">
+                    <h3><img src="https://www.gravatar.com/avatar?{{md5($employee[0]->email)}}&d=retro" alt="" width="100" class="shadow bg-white rounded-5">
                         {{ $employee[0]->name }}</h3>
                 </div>
                 <hr />
@@ -30,9 +30,11 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     @php
                         //<p>{{ $employee[0]->field }}</p>
-                    @endphp
+                   
+                  /* <h6>Szakma: </h6>
+                    <p>{{ $employee[0]->field }}</p>*/ @endphp
                     <h6>Város: </h6>
-                    <p>{{ $employee[0]->city_id }}</p>
+                    <p>{{ $employee[0]->city }}</p>
                     <h6>Telefonszám: </h6>
                     <p>{{ $employee[0]->phone }}</p>
                     <h6>E-mail: </h6>

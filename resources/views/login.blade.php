@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 <div class="col-md-4"></div>
 <div class="col-md-4" >
 <form method="post" class="form-validation" action="admin">
+    @csrf
     <div>
         <label for="" class="form-validation mt-3">Felhasználónév:</label>
         <input type="text" name="username" id="username"  minlength="3"
