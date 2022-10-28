@@ -1,6 +1,8 @@
 <?php
 use App\Providers;
 use App\Models\Field_Employee;
+use App\Models\Field;
+use App\Models\City;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 ?>
@@ -12,28 +14,30 @@ use Illuminate\Support\Facades\DB;
 
 
     <div class="row">
-        @foreach ($results as $result)
-            <div class="col-md-3">
+        @foreach ($results as $employee)
+            <div class="col-md-2">
             </div>
-            <div class="col-md-6 shadow bg-white rounded-5 listss">
-                <form action="/profile/{{ $result->id }}" class="profile">
+            <div class="col-md-8 shadow bg-white rounded-5 listss">
+                <form action="/profile/{{ $employee->id }}" class="profile">
                     <table>
                         <tr>
-                            <td rowspan="4"><img src='https://www.gravatar.com/avatar?{{ md5($result->email) }}&d=retro'
+                            <td rowspan="4"><img src='https://www.gravatar.com/avatar?{{ md5($employee->email) }}&d=retro'
                                     alt="" width="125" class="shadow bg-white profile-picture">
                             </td>
                         </tr>
                         <div class="shadow bg-white rounded-5 profile">
                             <tr>
                                 <th class="results-nev mt-2">
-                                    <h3>{{ $result->name }}</h3>
+                                    <h3>{{ $employee->name }}</h3>
                                 </th>
 
-
-
-
-
-                                <td class="results-szakma mt-3">{{ $result->city }}</td>
+                                <td class="results-szakma mt-3">
+                                    
+                                    @foreach (\App\Models\City::where('id', '=', '' . $employee->city_id)->get() as $cities)
+                                        {{ $cities->city }}
+                                    @endforeach 
+                                
+                                </td>
                                 <td rowspan="4"><button class="btn btn-warning rounded-5"
                                         type="submit">Megtekint</button>
                                 </td>
@@ -41,16 +45,19 @@ use Illuminate\Support\Facades\DB;
                             <tr>
 
                                 <td class="p-2">
-                                    <p> field_id:
-                                        @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $result->id)->get() as $resu)
-                                            {{ $resu->field_id }},
+                                    <p> Szakma:
+                                        @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $employee->id)->get() as $fieldsId)
+                                            
+                                            @foreach (\App\Models\Field::where('id', '=', '' . $fieldsId->field_id)->get() as $fields)
+                                                {{ $fields->field }},
+                                            @endforeach
                                         @endforeach
                                     </p>
                                 </td>
 
                             </tr>
                             <tr>
-                                <td class="results-overflow m-2">{{ $result->description }}</td>
+                                <td class="results-overflow m-2">{{ $employee->description }}</td>
                             </tr>
                         </div>
                     </table>
@@ -58,7 +65,7 @@ use Illuminate\Support\Facades\DB;
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
             </div>
             <div class="col-md-12">
                 <br><br>
@@ -69,7 +76,7 @@ use Illuminate\Support\Facades\DB;
 
             {{ $results->links('layouts.paginationlinks') }}
         </div>
-        <div class="col-md-5"></div>
+        <div class="col-md-5"></div> 
 
 
         <style>
