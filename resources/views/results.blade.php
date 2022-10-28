@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Field_Employee;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 ?>
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 @section('content')
     <h2>Eredmények</h2>
+
 
     <div class="row">
         @foreach ($results as $result)
@@ -30,19 +32,20 @@ use Illuminate\Support\Facades\DB;
 
 
 
-                                @foreach ($cities as $resul)
-                                    <td class="results-szakma mt-3">{{ $resul->city }}</td>
-                                    <td rowspan="4"><button class="btn btn-warning rounded-5"
-                                            type="submit">Megtekint</button>
-                                    </td>
-                                @endforeach
+
+                                <td class="results-szakma mt-3">{{ $result->city }}</td>
+                                <td rowspan="4"><button class="btn btn-warning rounded-5"
+                                        type="submit">Megtekint</button>
+                                </td>
                             </tr>
                             <tr>
 
                                 <td class="p-2">
-                                    @foreach (\App\Models\Field_Employee::where('employee_id', 'like', '=', '' . $result->id) as $resu)
-                                        <p> szakma: {{ $resu->field_id }},</p>
-                                    @endforeach
+                                    <p> field_id:
+                                        @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $result->id)->get() as $resu)
+                                            {{ $resu->field_id }},
+                                        @endforeach
+                                    </p>
                                 </td>
 
                             </tr>

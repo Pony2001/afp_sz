@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 
             <div>
-                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                <a href="{{ url()->previous() }}" class="btn btn-warning">Vissza</a>
             </div>
 
             <div>

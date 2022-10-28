@@ -51,32 +51,72 @@ class MainController extends Controller
     //     return $return;
     // }
 
+    // public function getCitiess()
+    // {
+
+    //     $link = mysqli_connect('localhost', 'root', '', 'szakimaki');
+
+
+    //     $sql = "SELECT DISTINCT city FROM cities ORDER BY city ASC";
+
+    //     $return = [];
+    //     if ($result = mysqli_query($link, $sql)) {
+    //         if (mysqli_num_rows($result) > 0) {
+
+    //             while ($row = mysqli_fetch_array($result)) {
+    //                 $return[] = $row;
+    //             }
+    //         }
+    //     }
+
+    //     return $return;
+    // }
+
+
     public function getCities()
     {
 
-        $link = mysqli_connect('localhost', 'root', '', 'szakimaki');
+        $city = DB::table('employees')
+            ->select(
+                'employees.id',
+                'cities.county_id',
+                'counties.county',
+                'cities.id AS city_id',
+                'cities.city',
+                'employees.city_id',
+                'employees.name',
+                'field__employees.field_id',
+                'fields.field',
+                'employees.phone',
+                'employees.email',
+                'employees.description'
+            )
+            ->join('cities', 'employees.city_id', '=', 'cities.id')
+            ->join('counties', 'cities.county_id', '=', 'counties.id')
+            ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
+            ->join('fields', 'field__employees.field_id', '=', 'fields.id')
+            //->groupBy('cities.id')
+            //->groupBy('employees.id') //phpMyAdmin-ban az SQL lekérdezés működik ami itt "hibás"  ¯\_(ツ)_/¯
+            ->get();
 
+        //dd($city);
 
-        $sql = "SELECT DISTINCT city FROM cities";
-
-        $return = [];
-        if ($result = mysqli_query($link, $sql)) {
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($row = mysqli_fetch_array($result)) {
-                    $return[] = $row;
-                }
-            }
-        }
-
-        return $return;
+        return $city;
     }
 
 
-    public function getSelects()
-    {
-        $results = DB::table('counties')->select('id', 'county')->get();
 
+
+    public function getCounties()
+    {
+        $results = DB::table('counties')->select('id', 'county')->orderBy('county')->get();
+
+
+        return $results;
+    }
+
+    public function getFields()
+    {
         // $results = DB::table('employees')
         //     ->select(
         //         'employees.id',
@@ -97,22 +137,26 @@ class MainController extends Controller
         //     ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
         //     ->join('fields', 'field__employees.field_id', '=', 'fields.id')
         //     ->get();
-        return view('home', ['selects' => $results]);
+
+        $results = DB::table('fields')->select('id', 'field')->distinct()->orderBy('field')->get();
+
+        return $results;
     }
 
 
 
-    // public function main()
-    // {
-    //     return view(
-    //         'home',
-    //         [
-    //             //'fields' => $this->getFields(),
-    //             'cities' => $this->getCities(),
-    //             'counties' => $this->getCounties(),
-    //             'selects' => $this->getSelects()
 
-    //         ]
-    //     );
-    // }
+    public function main()
+    {
+        return view(
+            'home',
+            [
+                //'fields' => $this->getFields(),
+                'cities' => $this->getCities(),
+                'counties' => $this->getCounties(),
+                'fields' => $this->getFields()
+
+            ]
+        );
+    }
 }

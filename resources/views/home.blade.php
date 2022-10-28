@@ -86,20 +86,17 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <select name="field" id="field" class="form-control">
 
-                                <?php
-                                
-                                // @if (!old('field'))
-                                //     <option value="">Válasszon szakmát</option>
-                                // @else
-                                //     <option value="{{ old('field') }}">{{ old('field') }}</option>
-                                // @endif
-                                
-                                // @foreach ($fields as $item)
-                                //     <option value="{{ $item['field'] }}">
-                                //         {{ $item['field'] }}
-                                //     </option>
-                                // @endforeach
-                                ?>
+                                @if (!old('field'))
+                                    <option value="">Válasszon szakmát</option>
+                                @else
+                                    <option value="{{ old('field') }}">{{ old('field') }}</option>
+                                @endif
+
+                                @foreach ($fields as $value)
+                                    <option value="{{ $value->id }}">
+                                        {{ $value->field }}
+                                    </option>
+                                @endforeach
 
 
                             </select>
@@ -119,8 +116,8 @@ use Illuminate\Support\Facades\DB;
                                     <option value="{{ old('county') }}">{{ old('county') }}</option>
                                 @endif
 
-                                @foreach ($selects as $value)
-                                    <option value="{{ $value->id }}">{{ $value->county }}
+                                @foreach ($counties as $value)
+                                    <option value="{{ $value->id }}">{{ $value->county }} ({{ $value->id }})
                                     </option>
                                 @endforeach
 

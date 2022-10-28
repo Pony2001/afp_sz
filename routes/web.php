@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/', [Controllers\MainController::class, 'getSelects']);
+Route::get('/', [Controllers\MainController::class, 'main']);
 Route::post('getCities', [Controllers\CityController::class, 'getCities'])->name('getCities');
 
 
