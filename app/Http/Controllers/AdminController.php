@@ -8,22 +8,22 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function selectEmployee(){
-        $employee = DB::table('employees')->select('*')->orderBy('name')->get();
+        $employee = DB::table('employees')->select('*')->orderBy('id')->get();
       return $employee;
     }
     public function selectField(){
-        $field = DB::table('fields')->select('*')->orderBy('field')->get();
+        $field = DB::table('fields')->select('*')->orderBy('id')->get();
 
         return $field;
     }
     public function selectCounty(){
-        $county = DB::table('counties')->select('*')->orderBy('county')->get();
+        $county = DB::table('counties')->select('*')->orderBy('id')->get();
 
 
         return $county;
     }
     public function selectCity(){
-        $city = DB::table('cities')->select('*')->orderBy('city')->get();
+        $city = DB::table('cities')->select('*')->orderBy('id')->get();
         return $city;
     }
     public function selectField_Employee(){
