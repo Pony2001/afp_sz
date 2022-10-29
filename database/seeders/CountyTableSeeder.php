@@ -15,8 +15,10 @@ class CountyTableSeeder extends Seeder
      */
     public function run()
     {
-        $counties = new county;
-        $counties->county = fake()->text(5);
-        $counties->save();
+        foreach (range(1, 3) as $index) {
+            $counties = new county;
+            $counties->county = fake()->text(5);
+            $counties->save();
+        }
     }
 }

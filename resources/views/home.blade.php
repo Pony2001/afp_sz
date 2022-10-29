@@ -49,8 +49,8 @@ use Illuminate\Support\Facades\DB;
                         <label for="search" class="form-validation">
                             Kereső
                         </label>
-                        <input type="text" name="search" id="search" value="{{ old('search') }}" minlength="3"
-                            class="form-control" placeholder="Pl.: Fal festés">
+                        <input type="text" name="search" id="search" onchange="disabler()"
+                            value="{{ old('search') }}" minlength="3" class="form-control" placeholder="Pl.: Fal festés">
 
 
                         @error('search')
@@ -84,7 +84,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation">Szakmaválasztó</label>
                         </div>
                         <div>
-                            <select name="field" id="field" class="form-control">
+                            <select name="field" id="field" onchange="disabler()" class="form-control">
 
                                 @if (!old('field'))
                                     <option value="">Válasszon szakmát</option>
@@ -108,7 +108,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Megye</label>
                         </div>
                         <div>
-                            <select name="county" id="county" class="form-control">
+                            <select name="county" id="county" onchange="cityState()" class="form-control">
 
                                 @if (!old('county'))
                                     <option value="">Válasszon megyét</option>
@@ -130,7 +130,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Város</label>
                         </div>
                         <div>
-                            <select name="city" id="city" class="form-control" disabled>
+                            <select name="city" id="city" onchange="cityState()" class="form-control">
                                 <option value="">Válassz várost</option>
                             </select>
                         </div>
@@ -151,6 +151,50 @@ use Illuminate\Support\Facades\DB;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript">
+        const inputSearch = document.querySelector("#search");
+        const inputField = document.querySelector("#field");
+        const inputCounty = document.querySelector("#county");
+        const inputCity = document.querySelector("#city");
+
+
+        // the default state is 'disaity
+        document.getElementById('city').disabled = true;
+        // alternative is to use "change" - explained below
+        inputSearch.addEventListener("keyup", inputState);
+
+
+        function inputState() {
+            if (document.querySelector("#search").value === "") {
+                inputField.disabled = false; // enable the inputs once the inputSearch field has not content
+                inputCounty.disabled = false;
+                inputCity.disabled = false;
+            } else {
+                inputField.disabled = true;
+                inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
+                inputCity.disabled = true;
+            }
+
+
+
+        }
+
+        function cityState() {
+
+            const x = document.getElementById('county').value;
+            const y = document.getElementById('city').value;
+
+
+            if (x != '') {
+                document.getElementById('city').disabled = false;
+            } else {
+                document.getElementById('city').disabled = true;
+            }
+
+
+        }
+    </script>
+
+    <script type="text/javascript">
         $('#county').on('change', function() {
             get_city_by_county();
         });
@@ -163,7 +207,7 @@ use Illuminate\Support\Facades\DB;
             }, function(data) {
                 $('#city').html(null);
                 $('#city').append($('<option value="">Válassz várost</option>', {}));
-                $('#city').attr("disabled", false);
+                //$('#city').attr("disabled", true);
                 for (var i = 0; i < data.length; i++) {
                     $('#city').append($('<option>', {
                         value: data[i].id,
