@@ -17,7 +17,7 @@
     <title>SzakiMaki</title>
 </head>
 
-<body>
+<body style="background-color: gray">
     <div class='container'>
         <header>
             @include('layouts.header')
