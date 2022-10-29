@@ -35,3 +35,4 @@ Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_functio
 Route::post('/admin', [Controllers\AdminController::class, 'admin']);
 Route::get('/admin', [Controllers\AdminController::class, 'admin']);
 Route::get('/login', [Controllers\LoginController::class, 'login']);
+Route::get('/insert/{id}', [Controllers\InsertController::class, 'edit_function']);
