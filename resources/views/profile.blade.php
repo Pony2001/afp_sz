@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
                 <hr />
                 <div>
 
-                    <h3><img src="https://www.gravatar.com/avatar?{{md5($employee[0]->email)}}&d=retro" alt="" width="100" class="shadow bg-white rounded-5">
+                    <h3><img src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG" alt="" width="100" class="shadow bg-white rounded-5">
                         {{ $employee[0]->name }}</h3>
                 </div>
                 <hr />
