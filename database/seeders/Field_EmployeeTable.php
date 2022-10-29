@@ -30,7 +30,7 @@ class Field_EmployeeTable extends Seeder
             $employee = $employees->pop();
             $fields_employees = new Field_Employee;
             $fields_employees->field_id = Field::inRandomOrder()->first()->id;
-            $fields_employees->employee_id = Employee::inRandomOrder()->first()->id; //minden employee kap egy field_id -t
+            $fields_employees->employee_id = Employee::inRandomOrder()->first()->id; //valamely employee kap még egy field_id -t
             $fields_employees->save();
         }
     }
