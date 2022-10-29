@@ -131,7 +131,7 @@ use Illuminate\Support\Facades\DB;
                         </div>
                         <div>
                             <select name="city" id="city" onchange="cityState()" class="form-control">
-                                <option value="">Válassz várost</option>
+                                <option value="">Előbb válassz megyét</option>
                             </select>
                         </div>
                     </div>
@@ -173,21 +173,18 @@ use Illuminate\Support\Facades\DB;
                 inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
                 inputCity.disabled = true;
             }
-
-
-
         }
 
         function cityState() {
 
-            const x = document.getElementById('county').value;
-            const y = document.getElementById('city').value;
+            const countyId = document.getElementById('county').value;
+            const cityId = document.getElementById('city');
 
 
-            if (x != '') {
-                document.getElementById('city').disabled = false;
+            if (countyId != '') {
+                cityId.disabled = false;
             } else {
-                document.getElementById('city').disabled = true;
+                cityId.disabled = true;
             }
 
 

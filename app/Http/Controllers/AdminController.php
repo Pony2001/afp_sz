@@ -1,40 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function selectEmployee(){
+    public function selectEmployee()
+    {
         $employee = DB::table('employees')->select('*')->orderBy('id')->get();
-      return $employee;
+        return $employee;
     }
-    public function selectField(){
+    public function selectField()
+    {
         $field = DB::table('fields')->select('*')->orderBy('id')->get();
 
         return $field;
     }
-    public function selectCounty(){
+    public function selectCounty()
+    {
         $county = DB::table('counties')->select('*')->orderBy('id')->get();
 
 
         return $county;
     }
-    public function selectCity(){
+    public function selectCity()
+    {
         $city = DB::table('cities')->select('*')->orderBy('id')->get();
         return $city;
     }
-    public function selectField_Employee(){
+    public function selectField_Employee()
+    {
         $field_employee = DB::table('Field__Employees')->select('*')->orderBy('id')->get();
 
         return $field_employee;
     }
 
     public function newView()
-{
-  $results = DB::table('employees')
+    {
+        $results = DB::table('employees')
             ->select(
                 'employees.id',
                 'cities.county_id',
@@ -53,21 +59,21 @@ class AdminController extends Controller
             ->join('counties', 'cities.county_id', '=', 'counties.id')
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
-        //  ->orderBy('employees.id')
+            ->groupBy('employees.id')
             ->get();
 
-              return($results);
-            }
-
-    public function admin (){
-        return view ('admin',[
-        'employee' =>  $this->selectEmployee(),
-        'field'=> $this->selectField(),
-        'county'=> $this->selectCounty(),
-        'city'=> $this->selectCity(),
-        'field_employee'=> $this->selectField_Employee(),
-        'newview' => $this -> newView()
-    ]);
+        return ($results);
     }
-    
+
+    public function admin()
+    {
+        return view('admin', [
+            'employee' =>  $this->selectEmployee(),
+            'field' => $this->selectField(),
+            'county' => $this->selectCounty(),
+            'city' => $this->selectCity(),
+            'field_employee' => $this->selectField_Employee(),
+            'newview' => $this->newView()
+        ]);
+    }
 }
