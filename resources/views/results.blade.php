@@ -32,37 +32,33 @@ use Illuminate\Support\Facades\DB;
                                 </th>
 
                                 <td class="results-szakma mt-3">
-                                    
+
                                     @foreach (\App\Models\City::where('id', '=', '' . $employee->city_id)->get() as $cities)
                                         {{ $cities->city }}
-                                    @endforeach 
-                                
+                                    @endforeach
+
                                 </td>
                                 <td rowspan="4"><button class="btn btn-warning rounded-5"
                                         type="submit">Megtekint</button>
                                 </td>
                             </tr>
                             <tr>
-
-                                <td class="p-2">
+                                <td class="ps-2">
                                     <p> Szakma:
                                         @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $employee->id)->get() as $fieldsId)
-                                            
                                             @foreach (\App\Models\Field::where('id', '=', '' . $fieldsId->field_id)->get() as $fields)
                                                 {{ $fields->field }},
                                             @endforeach
                                         @endforeach
                                     </p>
                                 </td>
-
                             </tr>
                             <tr>
-                                <td class="results-overflow m-2">{{ $employee->description }}</td>
+                                <td class="results-overflow ms-2">{{ $employee->description }}</td>
                             </tr>
                         </div>
                     </table>
                 </form>
-
             </div>
 
             <div class="col-md-2">
@@ -71,17 +67,17 @@ use Illuminate\Support\Facades\DB;
                 <br><br>
             </div>
         @endforeach
-        <div class="col-md-5"></div>
-        <div class="col-md-2 center">
-
-            {{ $results->links('layouts.paginationlinks') }}
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{ $results->links('layouts.paginationlinks') }}
+            </div>
         </div>
-        <div class="col-md-5"></div> 
 
 
         <style>
             .w-5 {
                 display: none;
+                /* eltünteti a nagy nyilakat a lap aljáról amik bugosan jelennek meg */
             }
         </style>
     </div>

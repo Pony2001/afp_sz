@@ -18,11 +18,19 @@ class Field_EmployeeTable extends Seeder
     public function run()
     {
         $employees = Employee::inRandomOrder()->get();
-        foreach (range(1, 10) as $index) {
+
+        foreach (range(1, 30) as $index) {
             $employee = $employees->pop();
             $fields_employees = new Field_Employee;
             $fields_employees->field_id = Field::inRandomOrder()->first()->id;
-            $fields_employees->employee_id = $employee->id; //minden employee-nak kéne legalább egy field_id
+            $fields_employees->employee_id = $employee->id; //minden employee kap egy field_id -t
+            $fields_employees->save();
+        }
+        foreach (range(1, 15) as $index) {
+            $employee = $employees->pop();
+            $fields_employees = new Field_Employee;
+            $fields_employees->field_id = Field::inRandomOrder()->first()->id;
+            $fields_employees->employee_id = Employee::inRandomOrder()->first()->id; //minden employee kap egy field_id -t
             $fields_employees->save();
         }
     }

@@ -15,7 +15,7 @@ class FieldTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 30) as $index) {
             $fields = new Field;
             $fields->field = fake()->text(10);
             $fields->save();

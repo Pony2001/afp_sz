@@ -28,8 +28,34 @@ class PaginationController extends Controller
             $result->appends($request->all());
 
 
-            
 
+
+            return view(
+                'results',
+                [
+                    'results' => $result
+                ]
+            );
+        } else if (request('county') && !request('city')) {
+
+            $search_county = request('county');
+
+            $result = DB::table('employees')
+                ->select(
+                    'employees.id',
+                    'employees.name',
+                    'employees.city_id',
+                    'cities.county_id',
+                    'employees.phone',
+                    'employees.email',
+                    'employees.description'
+                )
+                ->join('cities', 'employees.city_id', '=', 'cities.id')
+                //->distinct()
+                ->where('cities.county_id', 'LIKE', '' . $search_county . '')
+                ->paginate(3);
+
+            $result->appends($request->all());
             return view(
                 'results',
                 [
