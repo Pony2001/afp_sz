@@ -25,6 +25,7 @@ class CreateController extends Controller
                 'email' => request('email'),
                 'description' => request('description')
             ]);
+            
        
         return redirect('admin')->with('alert', 'Új szaki hozzádva!');
     }
