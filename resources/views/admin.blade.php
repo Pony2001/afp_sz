@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 @section('content')
     <hr>
-    <h2 align="center">Szakik</h2>
+   <div><h2 align="center">Szakik</h2></div> 
+   <div align="right"><a href="create"><button class="btn btn-warning">Új szaki hozzáadása</button></a></div>
     <div style="display: block; margin:0 auto">
         <table class="table table-striped table-dark ">
             <tr>
@@ -34,7 +35,7 @@ use Illuminate\Support\Facades\DB;
                                 class="fa fa-eye"></span></a>
                         <a href="/insert/{{ $item->id }}" class="mr-3" title="Módosít" data-toggle="tooltip"><span
                                 class="fa fa-pencil"></span></a>
-                        <a href="#" title="Törlés" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
+                        <a href="{{ route('employee.delete', $item->id) }}" title="Törlés" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
                     </td>
                 </tr>
             @endforeach
@@ -165,4 +166,11 @@ use Illuminate\Support\Facades\DB;
             @endforeach
         </table>
     </div>
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+          alert(msg);
+        }
+      </script>
 @endsection

@@ -168,10 +168,12 @@ use Illuminate\Support\Facades\DB;
                 inputField.disabled = false; // enable the inputs once the inputSearch field has not content
                 inputCounty.disabled = false;
                 inputCity.disabled = false;
+               
             } else {
                 inputField.disabled = true;
                 inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
                 inputCity.disabled = true;
+                
             }
         }
 

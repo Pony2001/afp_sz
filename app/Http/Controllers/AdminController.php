@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -76,4 +76,10 @@ class AdminController extends Controller
             'newview' => $this->newView()
         ]);
     }
+
+   public function delete($id){
+       $deleted = DB::table('employees')->where('employees.id','=',$id)->delete();
+       return redirect()->back()->with('alert', 'Törölve!');
+    }
+ 
 }
