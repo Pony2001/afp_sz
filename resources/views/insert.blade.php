@@ -21,17 +21,24 @@ use Illuminate\Support\Facades\DB;
                 <hr />
                 
                 <div>
-
+                    <form action="{{route('employee.update',$employee[0]->id-1)}}" method="POST">
+                        @csrf
+                   
                     <h3><img src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG" alt="" width="100" class="shadow bg-white rounded-5">
                         <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"></h3>
                 </div>
                 <hr />
                 <div>
-                    <form action="" method="POST">
-                        @csrf
+                  
+                       
                     <br>
+
                     <h6>Város: </h6>
-                   <p> <input type="text" value="{{ $employee[0]->city }}" id="city" name="city"></p>
+                   <p> <select name="city" id="city">
+                    @foreach (\App\Models\City::select('*')->get() as $cities)
+                         <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                       @endforeach  
+                   </select></p>
                     <h6>Telefonszám: </h6>
                    <p> <input type="text" value="{{ $employee[0]->phone }}" id="phone" name="phone"></p>
                     <h6>E-mail: </h6>

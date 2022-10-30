@@ -21,24 +21,25 @@ class InsertController extends Controller
  
         return view('insert', ['employee' => $employee]);
     }
-    public function update_button($id,$name,$city,$phone,$email,$description)
+    public function update_button($id)
     {
        // $employee = DB::select('select * from employees where id = ?', [$id]);
        // $employee = DB::table('employees')->update('name','cities.city','phone','email','description')
        // ->join('cities','employees.city_id', '=', 'cities.id')
        // ->where('employees.id','=',$id);
 
-        $update = DB::table('employee')
+        $update = DB::table('employees')
               ->where('employees.id','=',$id)
-              ->join('cities','employees.city_id', '=', 'cities.id')
-              ->update(['name' => $name,
-                        'cities.city' => $city,
-                        'phone' => $phone,
-                        'email' => $email,
-                        'desctiption' => $description
+              ->update(['name' => request('name'),
+                        'updated_at' => date(now()),
+                        'city_id' => request('city'),
+                        'phone' => request('phone'),
+                        'email' => request('email'),
+                        'description' => request('description')
+            
             ]);
      
- 
+      
             return redirect('admin')->with('alert', 'Frissítve!');
             
     }

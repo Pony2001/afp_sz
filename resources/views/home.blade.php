@@ -171,8 +171,13 @@ use Illuminate\Support\Facades\DB;
                
             } else {
                 inputField.disabled = true;
-                inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
+                 inputField.value="";
+                 inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
+                 inputCounty.value="";
                 inputCity.disabled = true;
+                inputCity.value="";
+                
+               
                 
             }
         }

@@ -8,19 +8,24 @@ use Illuminate\Http\Request;
 
 class CreateController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         return view('create');
     }
 
-    public function created(){
-        $created = DB::table('employee')
-        ->join('cities','employees.city_id', '=', 'cities.id')
-        ->insert(['name' => $name,
-                  'cities.city' => $city,
-                  'phone' => $phone,
-                  'email' => $email,
-                  'desctiption' => $description
-      ]);
-        return redirect()->back()->with('alert', 'Új szaki hozzádva!');
-     }
+    public function created()
+    {
+        $created = DB::table('employees')
+            ->insert([
+                'name' => request('name'),
+                'created_at' => date(now()),
+                'updated_at' => date(now()),
+                'city_id' => request('city'),
+                'phone' => request('phone'),
+                'email' => request('email'),
+                'description' => request('description')
+            ]);
+       
+        return redirect('admin')->with('alert', 'Új szaki hozzádva!');
+    }
 }

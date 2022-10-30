@@ -20,16 +20,22 @@ use Illuminate\Http\Request;
                 <hr />
                 <div><h2>Új szaki hozzáadása</h2></div>
                 <div>
+                    <form action="{{route('employee.create')}}" method="POST">
+                        @csrf
                     <h6>Név: </h6>
                     <h6> <input type="text" id="name" name="name"></h6>
                 </div>
             
                 <div>
-                    <form action="" method="POST">
-                        @csrf
+                   
                     <br>
                     <h6>Város: </h6>
-                   <p> <input type="text"  id="city" name="city"></p>
+                   <p><select name="city" id="city">
+                    @foreach (\App\Models\City::select('*')->get() as $cities)
+                         <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                       @endforeach  
+                   </select>
+                       </p>
                     <h6>Telefonszám: </h6>
                    <p> <input type="text"  id="phone" name="phone"></p>
                     <h6>E-mail: </h6>
