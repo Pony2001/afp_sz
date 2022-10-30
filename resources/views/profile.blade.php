@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\DB;
                     <h6>Telefonszám: </h6>
                     <p>{{ $employee[0]->phone }}</p>
                     <h6>E-mail: </h6>
-                    <p>{{ $employee[0]->email }}</p>
+                    <p><a href="mailto:{{$employee[0]->email}}">{{$employee[0]->email}}</a></p>
                 </div>
 
 

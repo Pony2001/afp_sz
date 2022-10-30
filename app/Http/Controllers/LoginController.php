@@ -25,7 +25,7 @@ class LoginController extends Controller
        
 }
     public function login (){
-        return redirect ('login');
+        return view ('login');
     }
 
 }
