@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\DB;
                     <h6>Telefonszám: </h6>
                     <p><a href="tel:{{$employee[0]->phone}}">{{ $employee[0]->phone }}</a></p>
                     <h6>E-mail: </h6>
-                    <p><a href="mailto:{{$employee[0]->email}}">{{$employee[0]->email}}</a></p>
+                    <p><a href="mailto:{{ $employee[0]->email }}">{{ $employee[0]->email }}</a></p>
                 </div>
 
 
@@ -52,39 +52,41 @@ use Illuminate\Support\Facades\DB;
                 <div>
                     <form action="{{ route('comment.create') }}" method="POST">
                         @csrf
-                     <input type="text" value="{{$emp_id}}" id="id" name="id" hidden>
-                    <h3>Vélemények</h3> 
+                        <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
+                        <h3>Vélemények</h3>
                         <h6>Értékelés: </h6>
-                            <input type="radio" id="value" name="value" value="&#11088;"> 
-                            <label for="value">&#11088;</label>
-                            <input type="radio" id="value" name="value" value="&#11088;&#11088;"> 
-                            <label for="value">&#11088;&#11088;</label>
-                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;"> 
-                            <label for="value">&#11088;&#11088;&#11088;</label>
-                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;&#11088;"> 
-                            <label for="value">&#11088;&#11088;&#11088;&#11088;</label>
-                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"> 
-                            <label for="value">&#11088;&#11088;&#11088;&#11088;&#11088;</label>
-                    <div>
-                        <h6>Vélemény: </h6>
-                        <p>
-                            <textarea rows="4" cols="75%" id="comment" name="comment"></textarea>
-                        </p>
-                    </div>
-                <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
-                </form>
+                        <input type="radio" id="value1" name="value" value="&#11088;" hidden>
+                        <label for="value1">&#11088;</label>
+                        <input type="radio" id="value2" name="value" value="&#11088;&#11088;" hidden>
+                        <label for="value2">&#11088;</label>
+                        <input type="radio" id="value3" name="value" value="&#11088;&#11088;&#11088;" hidden>
+                        <label for="value3">&#11088</label>
+                        <input type="radio" id="value4" name="value" value="&#11088;&#11088;&#11088;&#11088;" hidden>
+                        <label for="value4">&#11088;</label>
+                        <input type="radio" id="value5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"
+                            hidden>
+                        <label for="value5">&#11088;</label>
+                        <div>
+                            <h6>Vélemény: </h6>
+                            <p>
+                                <textarea rows="4" cols="75%" id="comment" name="comment"></textarea>
+                            </p>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
+                    </form>
                 </div>
                 <hr>
-            
-                <div class="col-md-3">
-                    @foreach ($comment as $item )
-                        <p>Értékelés: {{$item-> value}}</p>
-                        <p>Vélemény: {{$item -> comment}}</p>
-                        <hr />
-                    @endforeach
 
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach ($comment as $item)
+                            <p>Értékelés: {{ $item->value }}</p>
+                            <p>Vélemény: {{ $item->comment }}</p>
+                            <hr />
+                        @endforeach
+
+                    </div>
                 </div>
-              
             </div>
         </div>
         <div class="col-md-3"></div>
