@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/', [Controllers\MainController::class, 'main']);
 Route::get('getCities', [Controllers\CityController::class, 'getCities'])->name('getCities');
-Route::get('getCities', [Controllers\CityController::class, 'getCitiesByCountyId']);
+Route::post('getCities', [Controllers\CityController::class, 'getCitiesByCountyId']);
 
 //Route::get('/results', [Controllers\ResultsController::class, 'results']);
 //Route::get('/results', [Controllers\ResultsController::class,  'store', 'search']);

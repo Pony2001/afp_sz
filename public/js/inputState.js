@@ -113,20 +113,3 @@
             });
         }
     });
-
-    // async function getCitiesByCounty(parameters) {
-
-    //     const dataToSend=JSON.stringify(parameters)
-    //       const response = await fetch(
-    //         'http://localhost:8000/getCities',
-    //         {
-    //           method: "GET",
-    //           credentials: "include",
-    //           body: dataToSend,
-    //         }
-    //       );
-    //       if (!response.ok) {
-    //         throw new Error(response.statusText);
-    //       }
-    //       return (await response.json());
-    // }
