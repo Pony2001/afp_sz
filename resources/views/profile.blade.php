@@ -14,25 +14,21 @@ use Illuminate\Support\Facades\DB;
 
 
             <div>
-                <a href="{{ url()->previous() }}" class="btn btn-warning">Vissza</a>
+                <a href="{{ url()->previous() }}" class="btn btn-warning">&laquo; Vissza</a>
             </div>
 
             <div>
                 <hr />
                 <div>
 
-                    <h3><img src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG" alt="" width="100" class="shadow bg-white rounded-5">
+                    <h3><img src="https://www.gravatar.com/avatar/{{ md5($employee[0]->email) }}?s=32&d=identicon&r=PG"
+                            alt="" width="100" class="shadow bg-white rounded-5">
                         {{ $employee[0]->name }}</h3>
                 </div>
                 <hr />
                 <div>
 
                     <br>
-                    @php
-                        //<p>{{ $employee[0]->field }}</p>
-                   
-                  /* <h6>Szakma: </h6>
-                    <p>{{ $employee[0]->field }}</p>*/ @endphp
                     <h6>Város: </h6>
                     <p>{{ $employee[0]->city }}</p>
                     <h6>Telefonszám: </h6>

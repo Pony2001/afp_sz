@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class MainController extends Controller
 {
 
@@ -96,15 +97,15 @@ class MainController extends Controller
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
             //->groupBy('cities.id')
-            //->groupBy('employees.id') //phpMyAdmin-ban az SQL lekérdezés működik ami itt "hibás"  ¯\_(ツ)_/¯
+            //->groupBy('employees.id') 
             ->get();
 
         //dd($city);
 
+        //dd(response()->json($city));
+        //return response()->json($city);
         return $city;
     }
-
-
 
 
     public function getCounties()
@@ -151,11 +152,8 @@ class MainController extends Controller
         return view(
             'home',
             [
-                //'fields' => $this->getFields(),
-                'cities' => $this->getCities(),
                 'counties' => $this->getCounties(),
                 'fields' => $this->getFields()
-
             ]
         );
     }

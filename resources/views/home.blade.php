@@ -4,7 +4,6 @@ use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 ?>
 @extends('layouts.main')
-
 @section('content')
     <div class="content">
 
@@ -41,8 +40,8 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <div class="col-md-3">
-                <form action="results" method="get" class="form-validation">
-                    @csrf
+                <form action="results" method="post" class="form-validation">
+                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
 
 
                     <div>
@@ -55,7 +54,8 @@ use Illuminate\Support\Facades\DB;
 
                         @error('search')
                             @if ($message = 'The search must not be greater than 255 characters.')
-                                <p class="text-red-500 text-xs mt-1" style="color: red">A keresett szöveg nem lehet több mint
+                                <p class="text-red-500 text-xs mt-1" style="color: red">A keresett szöveg nem lehet több
+                                    mint
                                     255 karakter.</p>
                             @else
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
@@ -84,7 +84,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation">Szakmaválasztó</label>
                         </div>
                         <div>
-                            <select name="field" id="field" onchange="disabler()" class="form-control">
+                            <select name="field" id="field" class="form-control">
 
                                 @if (!old('field'))
                                     <option value="">Válasszon szakmát</option>
@@ -108,7 +108,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Megye</label>
                         </div>
                         <div>
-                            <select name="county" id="county" onchange="cityState()" class="form-control">
+                            <select name="county" id="county" class="form-control">
 
                                 @if (!old('county'))
                                     <option value="">Válasszon megyét</option>
@@ -130,7 +130,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Város</label>
                         </div>
                         <div>
-                            <select name="city" id="city" onchange="cityState()" class="form-control">
+                            <select name="city" id="city" class="form-control">
                                 <option value="">Előbb válassz megyét</option>
                             </select>
                         </div>
@@ -146,72 +146,6 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        const inputSearch = document.querySelector("#search");
-        const inputField = document.querySelector("#field");
-        const inputCounty = document.querySelector("#county");
-        const inputCity = document.querySelector("#city");
-
-
-        // the default state is 'disaity
-        document.getElementById('city').disabled = true;
-        // alternative is to use "change" - explained below
-        inputSearch.addEventListener("keyup", inputState);
-
-
-        function inputState() {
-            if (document.querySelector("#search").value === "") {
-                inputField.disabled = false; // enable the inputs once the inputSearch field has not content
-                inputCounty.disabled = false;
-                inputCity.disabled = false;
-            } else {
-                inputField.disabled = true;
-                inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
-                inputCity.disabled = true;
-            }
-        }
-
-        function cityState() {
-
-            const countyId = document.getElementById('county').value;
-            const cityId = document.getElementById('city');
-
-
-            if (countyId != '') {
-                cityId.disabled = false;
-            } else {
-                cityId.disabled = true;
-            }
-
-
-        }
-    </script>
-
-    <script type="text/javascript">
-        $('#county').on('change', function() {
-            get_city_by_county();
-        });
-
-        function get_city_by_county() {
-            var county_id = $('#county').val();
-            $.post('{{ route('getCities') }}', {
-                _token: '{{ csrf_token() }}',
-                county_id: county_id
-            }, function(data) {
-                $('#city').html(null);
-                $('#city').append($('<option value="">Válassz várost</option>', {}));
-                //$('#city').attr("disabled", true);
-                for (var i = 0; i < data.length; i++) {
-                    $('#city').append($('<option>', {
-                        value: data[i].id,
-                        text: data[i].city
-                    }));
-                }
-            });
-        }
-    </script>
+    <script type="text/javascript"></script>
 @endsection

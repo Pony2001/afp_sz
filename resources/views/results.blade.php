@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\DB;
                 <form action="/profile/{{ $employee->id }}" class="profile">
                     <table>
                         <tr>
-                            <td rowspan="4"><img src='https://www.gravatar.com/avatar/{{md5($employee -> email)}}?s=32&d=identicon&r=PG'
+                            <td rowspan="4"><img
+                                    src='https://www.gravatar.com/avatar/{{ md5($employee->email) }}?s=32&d=identicon&r=PG'
                                     alt="" width="125" class="shadow bg-white profile-picture">
                             </td>
                         </tr>

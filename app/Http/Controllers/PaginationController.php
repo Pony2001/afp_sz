@@ -177,7 +177,7 @@ class PaginationController extends Controller
                 );
             }
         } else {
-            return view('home');
+            return redirect('home');
         }
     }
 }

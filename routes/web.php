@@ -21,13 +21,12 @@ Route::get('/', function () {
 
 
 Route::get('/', [Controllers\MainController::class, 'main']);
-Route::post('getCities', [Controllers\CityController::class, 'getCities'])->name('getCities');
-
-
+Route::get('getCities', [Controllers\CityController::class, 'getCities'])->name('getCities');
+Route::post('getCities', [Controllers\CityController::class, 'getCitiesByCountyId']);
 
 //Route::get('/results', [Controllers\ResultsController::class, 'results']);
 //Route::get('/results', [Controllers\ResultsController::class,  'store', 'search']);
-Route::get('/results', [Controllers\PaginationController::class, 'search']);
+Route::post('/results', [Controllers\PaginationController::class, 'search']);
 
 Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_function']);
 
