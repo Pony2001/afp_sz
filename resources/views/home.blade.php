@@ -48,8 +48,8 @@ use Illuminate\Support\Facades\DB;
                         <label for="search" class="form-validation">
                             Kereső
                         </label>
-                        <input type="text" name="search" id="search" onchange="disabler()"
-                            value="{{ old('search') }}" minlength="3" class="form-control" placeholder="Pl.: Fal festés">
+                        <input type="text" name="search" id="search" value="{{ old('search') }}" minlength="3"
+                            class="form-control" placeholder="Pl.: Fal festés">
 
 
                         @error('search')
@@ -137,7 +137,7 @@ use Illuminate\Support\Facades\DB;
                     </div>
                     <br>
                     <div align="center">
-                        <button type="submit" class="btn btn-warning">Keresés</button>
+                        <button type="submit" name="submit" id="submit" class="btn btn-warning">Keresés</button>
                     </div>
                 </form>
             </div>
@@ -147,5 +147,36 @@ use Illuminate\Support\Facades\DB;
     </div>
 
 
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        // document.addEventListener('readystatechange', (event) => {
+        //     if (event.target.readyState === 'complete') {
+        //         loadListeners();
+        //     }
+        // })
+
+        // function loadListeners() {
+        //     const submitbtn = document.getElementById("submit")
+        //     console.log(submitbtn)
+        //     submitbtn.addEventListener("click", () => checkscript(event))
+        // }
+
+
+
+        // function checkscript(event) {
+        //     //event.preventDefault()
+        //     //const checkbox_array = document.querySelectorAll('input[type="checkbox"]').filter(node=>node.checked)
+        //     const checkbox_array = document.querySelectorAll('input[type="text"]')
+        //     const checked = Array.from(checkbox_array).filter(node => node.checked)
+        //     console.log({
+        //         checkbox_array,
+        //         checked
+        //     })
+        //     if (checked.length < 1) {
+        //         event.preventDefault()
+        //         alert("A tovább lépéshez, kérem töltsön ki legalább egy mezőt!")
+        //         return
+        //     }
+
+        // }
+    </script>
 @endsection

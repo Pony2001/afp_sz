@@ -1,5 +1,7 @@
     $(document).ready(function() {
 
+
+        // return disable the field,county,city inputs/slecets whenever search input not empty, and inverted
         const inputSearch = document.querySelector("#search");
         const inputField = document.querySelector("#field");
         const inputCounty = document.querySelector("#county");
@@ -14,20 +16,60 @@
         function inputState() {
             if (document.querySelector("#search").value === "") {
                 inputField.disabled = false; // enable the inputs once the inputSearch field has not content
+                
                 inputCounty.disabled = false;
-                inputCity.disabled = false;
-            } else {
-                inputField.disabled = true;
-                inputCounty.disabled = true; // return disabled as true whenever the input field is not empty
                 inputCity.disabled = true;
+            } else {
+                inputField.disabled = true; // return disabled as true whenever the input field is not empty
+                inputField.value = "";      // return value as empty whenever the input field is not empty
+                inputCounty.disabled = true; 
+                inputCounty.value = "";
+                inputCity.disabled = true;
+                inputCity.value = "";
             }
         }
 
-        function cityState() {
+        
 
+        // if all inputs value = empty then disable the submit button 
+        const btnSubmit = document.getElementById('submit');
+
+        // set the default state for submit button is dasbled
+        btnSubmit.disabled = true;
+        
+        inputSearch.addEventListener("keyup", inputEmpty);
+        inputSearch.addEventListener("change", inputEmpty);
+        inputField.addEventListener("change", inputEmpty);
+        inputCounty.addEventListener("change", inputEmpty);
+        inputCity.addEventListener("change", inputEmpty);
+
+        function inputEmpty() {
+            const valueSearch = document.querySelector("#search").value;
+            const valueField = document.querySelector("#field").value;
+            const valueCounty = document.querySelector("#county").value;
+            const valueCity = document.querySelector('#city').value;
+
+            console.log({
+                valueSearch,
+                valueField,
+                valueCounty,
+                valueCity
+            });
+            if (valueSearch !== ''|| valueField !== '' || valueCounty !== '' || valueCity !== '') {
+                btnSubmit.disabled = false;
+            } else {
+                btnSubmit.disabled = true;
+            }
+        }
+
+
+        // if county input not empty call the getCities function from CityController.php
+        
+        function cityState() {
 
             const countyId = document.getElementById('county').value;
             const cityId = document.getElementById('city');
+            //console.log({countyId});
 
 
             if (countyId !== '') {
@@ -36,7 +78,7 @@
                 cityId.disabled = true;
             }
         }
-
+        
         $('#county').on('change', function() {
             get_city_by_county();
             cityState();
@@ -70,7 +112,4 @@
                 }
             });
         }
-
-
-
     });
