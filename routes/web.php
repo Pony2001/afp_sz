@@ -29,6 +29,7 @@ Route::post('getCities', [Controllers\CityController::class, 'getCitiesByCountyI
 Route::get('/results', [Controllers\PaginationController::class, 'search']);
 
 Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_function']);
+Route::post('/profile/success', [Controllers\ProfileController::class, 'create_comment'])->name('comment.create');
 
 
 Route::post('/admin', [Controllers\AdminController::class, 'admin']);
@@ -44,3 +45,4 @@ Route::post('/insert/{id}/edit', [Controllers\InsertController::class, 'update_b
 Route::get('/create', [Controllers\CreateController::class, 'create']);
 Route::post('/create', [Controllers\CreateController::class, 'create']);
 Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');
+

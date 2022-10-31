@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Employee;
+use App\Models\Field;
 use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,7 @@ class EmployeeTableSeeder extends Seeder
             $employees = new employee;
             $employees->name = fake()->name(2);
             // $employees ->Foreign('city_id')->references('id')->on('cities')->nullable();
+            $employees->field_id = Field::inRandomOrder()->first()->id;
             $employees->city_id = City::inRandomOrder()->first()->id;
             $employees->email = fake()->safeEmail();
             $employees->phone = '06' . $szolgaltato[$rnd2] . $rnd3;

@@ -20,20 +20,23 @@ class CreateController extends Controller
                 'name' => request('name'),
                 'created_at' => date(now()),
                 'updated_at' => date(now()),
+                'field_id' =>request('field'),
                 'city_id' => request('city'),
                 'phone' => request('phone'),
                 'email' => request('email'),
                 'description' => request('description')
             ]);
-        // $created2 = DB::table('field__employees')
-        //     ->insert([
-
-        //         'created_at' => date(now()),
-        //         'updated_at' => date(now()),
-        //         'field_id' => request('field')
-        //     ]);
-
-
+            $ddd= DB::table('employees')
+            ->select('id')
+            ->where('phone' ,'=', request('phone'))->limit(1)->get();
+           // dd($ddd[0]);
+           // $created2 = DB::table('field__employees')
+           // ->insert([
+           //     'employee_id' => $ddd[0],
+           //     'created_at' => date(now()),
+           //     'updated_at' => date(now()),
+           //     'field_id' => request('field') ]);
+      
         return redirect('admin')->with('alert', 'Új szaki hozzádva!');
     }
 }

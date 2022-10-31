@@ -48,8 +48,52 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     <p>kepek</p>
                 </div>
+                <hr />
+                <div>
+                    <form action="{{ route('comment.create') }}" method="POST">
+                        @csrf
+                     <input type="text" value="{{$emp_id}}" id="id" name="id" hidden>
+                    <h3>Vélemények</h3> 
+                        <h6>Értékelés: </h6>
+                            <input type="radio" id="value" name="value" value="&#11088;"> 
+                            <label for="value">&#11088;</label>
+                            <input type="radio" id="value" name="value" value="&#11088;&#11088;"> 
+                            <label for="value">&#11088;&#11088;</label>
+                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;"> 
+                            <label for="value">&#11088;&#11088;&#11088;</label>
+                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;&#11088;"> 
+                            <label for="value">&#11088;&#11088;&#11088;&#11088;</label>
+                            <input type="radio" id="value" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"> 
+                            <label for="value">&#11088;&#11088;&#11088;&#11088;&#11088;</label>
+                    <div>
+                        <h6>Vélemény: </h6>
+                        <p>
+                            <textarea rows="4" cols="75%" id="comment" name="comment"></textarea>
+                        </p>
+                    </div>
+                <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
+                </form>
+                </div>
+                <hr>
+            
+                <div class="col-md-3">
+                    @foreach ($comment as $item )
+                        <p>Értékelés: {{$item-> value}}</p>
+                        <p>Vélemény: {{$item -> comment}}</p>
+                        <hr />
+                    @endforeach
+
+                </div>
+              
             </div>
         </div>
         <div class="col-md-3"></div>
     </div>
+    <script>
+        var msg = '{{ Session::get('alert') }}';
+        var exist = '{{ Session::has('alert') }}';
+        if (exist) {
+            alert(msg);
+        }
+    </script>
 @endsection
