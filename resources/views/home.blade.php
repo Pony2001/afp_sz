@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <div class="col-md-3">
-                <form action="results" method="post" class="form-validation">
+                <form action="results" method="get" class="form-validation">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
 
 
