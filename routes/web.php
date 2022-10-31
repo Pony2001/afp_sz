@@ -33,5 +33,14 @@ Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_functio
 
 Route::post('/admin', [Controllers\AdminController::class, 'admin']);
 Route::get('/admin', [Controllers\AdminController::class, 'admin']);
+Route::get('/admin/{id}', [Controllers\AdminController::class, 'delete'])->name('employee.delete');
+
 Route::get('/login', [Controllers\LoginController::class, 'login']);
+
 Route::get('/insert/{id}', [Controllers\InsertController::class, 'edit_function']);
+Route::post('/insert/{id}/edit', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
+//Route::post('/insert/{id}', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
+
+Route::get('/create', [Controllers\CreateController::class, 'create']);
+Route::post('/create', [Controllers\CreateController::class, 'create']);
+Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');

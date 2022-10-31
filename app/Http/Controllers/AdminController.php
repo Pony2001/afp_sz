@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -59,7 +59,8 @@ class AdminController extends Controller
             ->join('counties', 'cities.county_id', '=', 'counties.id')
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
-            ->groupBy('employees.id')
+           // ->groupBy('employees.id')
+           ->orderBy('employees.id')
             ->get();
 
         return ($results);
@@ -76,4 +77,11 @@ class AdminController extends Controller
             'newview' => $this->newView()
         ]);
     }
+
+   public function delete($id){
+       $deleted = DB::table('employees')->where('id','=',$id)->delete();
+       $deleted2 = DB::table('field__employees')->where('employee_id','=',$id)->delete();
+       return redirect()->back()->with('alert', 'Törölve!');
+    }
+ 
 }

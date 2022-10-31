@@ -1,8 +1,7 @@
 <?php
-
-use Illuminate\Http\Request;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 ?>
 
 @extends('layouts.main')
@@ -19,44 +18,37 @@ use Illuminate\Support\Facades\DB;
 
             <div>
                 <hr />
-                
+                <div><h2>Új szaki hozzáadása</h2></div>
                 <div>
-                    <form action="{{route('employee.update',$employee[0]->id-1)}}" method="POST">
+                    <form action="{{route('employee.create')}}" method="POST">
                         @csrf
-                   
-                    <h3><img src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG" alt="" width="100" class="shadow bg-white rounded-5">
-                        <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"></h3>
+                    <h6>Név: </h6>
+                    <h6> <input type="text" id="name" name="name"></h6>
                 </div>
-                <hr />
+            
                 <div>
-                  
-                       
+                   
                     <br>
-
                     <h6>Város: </h6>
-                   <p> <select name="city" id="city">
+                   <p><select name="city" id="city">
                     @foreach (\App\Models\City::select('*')->get() as $cities)
                          <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                        @endforeach  
-                   </select></p>
+                   </select>
+                       </p>
                     <h6>Telefonszám: </h6>
-                   <p> <input type="text" value="{{ $employee[0]->phone }}" id="phone" name="phone"></p>
+                   <p> <input type="text"  id="phone" name="phone"></p>
                     <h6>E-mail: </h6>
-                    <p><input type="text" value="{{ $employee[0]->email }}" id="email" name="email"></p>
+                    <p><input type="text" id="email" name="email"></p>
                 </div>
 
 
                 <div>
                     <h6>Leírás: </h6>
-                    <p><textarea rows="7" cols="75%" id="description" name="description" >{{ $employee[0]->description }}</textarea></p>
+                    <p><textarea rows="7" cols="75%" id="description" name="description" ></textarea></p>
                 </div>
                 <hr />
-                <div>
-                    <h2>referencia</h2>
-                    <br>
-                    <p>kepek</p>
-                </div>
-                <button type="submit" class="btn btn-warning">Módosít</button>
+                <button type="submit" class="btn btn-warning">Létrehozás</button>
             </form>
             </div>
         </div>
