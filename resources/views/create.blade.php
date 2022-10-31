@@ -18,26 +18,35 @@ use Illuminate\Http\Request;
 
             <div>
                 <hr />
-                <div><h2>Új szaki hozzáadása</h2></div>
                 <div>
-                    <form action="{{route('employee.create')}}" method="POST">
-                        @csrf
-                    <h6>Név: </h6>
-                    <h6> <input type="text" id="name" name="name"></h6>
+                    <h2>Új szaki hozzáadása</h2>
                 </div>
-            
                 <div>
-                   
+                    <form action="{{ route('employee.create') }}" method="POST">
+                        @csrf
+                        <h6>Név: </h6>
+                        <h6> <input type="text" id="name" name="name"></h6>
+                </div>
+
+                <div>
+
                     <br>
+                    <h6>Szakma: </h6>
+                    <p><select name="field" id="fieldcreate">
+                            @foreach (\App\Models\Field::select('*')->get() as $fields)
+                                <option value="{{ $fields->id }}">{{ $fields->field }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <h6>Város: </h6>
-                   <p><select name="city" id="city">
-                    @foreach (\App\Models\City::select('*')->get() as $cities)
-                         <option value="{{ $cities->id }}">{{ $cities->city }}</option>
-                       @endforeach  
-                   </select>
-                       </p>
+                    <p><select name="city" id="city2">
+                            @foreach (\App\Models\City::select('*')->get() as $cities)
+                                <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <h6>Telefonszám: </h6>
-                   <p> <input type="text"  id="phone" name="phone"></p>
+                    <p> <input type="text" id="phone" name="phone"></p>
                     <h6>E-mail: </h6>
                     <p><input type="text" id="email" name="email"></p>
                 </div>
@@ -45,20 +54,22 @@ use Illuminate\Http\Request;
 
                 <div>
                     <h6>Leírás: </h6>
-                    <p><textarea rows="7" cols="75%" id="description" name="description" ></textarea></p>
+                    <p>
+                        <textarea rows="7" cols="75%" id="description" name="description"></textarea>
+                    </p>
                 </div>
                 <hr />
                 <button type="submit" class="btn btn-warning">Létrehozás</button>
-            </form>
+                </form>
             </div>
         </div>
         <div class="col-md-3"></div>
     </div>
     <script>
-        var msg = '{{Session::get('alert')}}';
-        var exist = '{{Session::has('alert')}}';
-        if(exist){
-          alert(msg);
+        var msg = '{{ Session::get('alert') }}';
+        var exist = '{{ Session::has('alert') }}';
+        if (exist) {
+            alert(msg);
         }
-      </script>
+    </script>
 @endsection

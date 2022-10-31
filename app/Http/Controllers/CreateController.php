@@ -25,8 +25,15 @@ class CreateController extends Controller
                 'email' => request('email'),
                 'description' => request('description')
             ]);
-            
-       
+        // $created2 = DB::table('field__employees')
+        //     ->insert([
+
+        //         'created_at' => date(now()),
+        //         'updated_at' => date(now()),
+        //         'field_id' => request('field')
+        //     ]);
+
+
         return redirect('admin')->with('alert', 'Új szaki hozzádva!');
     }
 }
