@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\DB;
                     <h6>Város: </h6>
                     <p>{{ $employee[0]->city }}</p>
                     <h6>Telefonszám: </h6>
-                    <p>{{ $employee[0]->phone }}</p>
+                    <p><a href="tel:{{$employee[0]->phone}}">{{ $employee[0]->phone }}</a></p>
                     <h6>E-mail: </h6>
                     <p><a href="mailto:{{$employee[0]->email}}">{{$employee[0]->email}}</a></p>
                 </div>
