@@ -30,9 +30,11 @@ use Illuminate\Support\Facades\DB;
 
                     <br>
                     <h6>Város: </h6>
-                    <p>{{ $employee[0]->city }}</p>
+                    <p><a
+                            href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
+                    </p>
                     <h6>Telefonszám: </h6>
-                    <p><a href="tel:{{$employee[0]->phone}}">{{ $employee[0]->phone }}</a></p>
+                    <p><a href="tel:{{ $employee[0]->phone }}">{{ $employee[0]->phone }}</a></p>
                     <h6>E-mail: </h6>
                     <p><a href="mailto:{{ $employee[0]->email }}">{{ $employee[0]->email }}</a></p>
                 </div>
