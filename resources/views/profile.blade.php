@@ -33,6 +33,11 @@ use Illuminate\Support\Facades\DB;
                     <p><a
                             href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
                     </p>
+                    <h6>Szakma: </h6>
+                    @foreach ($employee as $employees)
+                        {{ $employees->field }},
+                    @endforeach
+                    <p></p>
                     <h6>Telefonszám: </h6>
                     <p><a href="tel:{{ $employee[0]->phone }}">{{ $employee[0]->phone }}</a></p>
                     <h6>E-mail: </h6>

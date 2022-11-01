@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
                 <hr />
 
                 <div>
-                    <form action="{{ route('employee.update', $employee[0]->id - 1) }}" method="POST">
+                    <form action="{{ $employee[0]->field_id }}/edit" method="get">
                         @csrf
 
                         <h3><img src="https://www.gravatar.com/avatar/{{ md5($employee[0]->email) }}?s=32&d=identicon&r=PG"

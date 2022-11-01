@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->ForeignId('field_id');
             $table->timestamps();
             $table->string('name');
+            //$table->ForeignId('field_id');
             $table->ForeignId('city_id');
             $table->string('email');
             $table->string('phone');
