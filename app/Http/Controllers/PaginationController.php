@@ -72,7 +72,7 @@ class PaginationController extends Controller
                         'employees.id',
                         'employees.name',
                         'employees.city_id',
-                        'cities.county_id',
+                        'cities.county',
                         'employees.phone',
                         'employees.email',
                         'employees.description'
@@ -99,14 +99,14 @@ class PaginationController extends Controller
                         'employees.id',
                         'employees.name',
                         'employees.city_id',
-                        'cities.county_id',
+                        'cities.county',
                         'employees.phone',
                         'employees.email',
                         'employees.description'
                     )
                     ->join('cities', 'employees.city_id', '=', 'cities.id')
                     //->distinct()
-                    ->where('cities.county_id', 'LIKE', '' . $search_county . '')
+                    ->where('cities.county', 'LIKE', '' . $search_county . '')
                     ->paginate(3);
 
                 $result->appends($request->all());
@@ -126,7 +126,7 @@ class PaginationController extends Controller
                         'employees.id',
                         'employees.name',
                         'employees.city_id',
-                        'cities.county_id',
+                        'cities.county',
                         'employees.phone',
                         'employees.email',
                         'employees.description'
@@ -135,7 +135,7 @@ class PaginationController extends Controller
                     ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
                     //->distinct()
                     ->where('city_id', 'LIKE', '' . $search_city . '')
-                    ->where('cities.county_id', 'LIKE', '' . $search_county . '')
+                    ->where('cities.county', 'LIKE', '' . $search_county . '')
                     ->where('field__employees.field_id', 'LIKE', '' . $search_field . '')
                     ->paginate(3);
 
@@ -155,7 +155,7 @@ class PaginationController extends Controller
                         'employees.id',
                         'employees.name',
                         'employees.city_id',
-                        'cities.county_id',
+                        'cities.county',
                         'employees.phone',
                         'employees.email',
                         'employees.description'
@@ -163,7 +163,7 @@ class PaginationController extends Controller
                     ->join('cities', 'employees.city_id', '=', 'cities.id')
                     ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
                     //->distinct()
-                    ->where('cities.county_id', 'LIKE', '' . $search_county . '')
+                    ->where('cities.county', 'LIKE', '' . $search_county . '')
                     ->where('field__employees.field_id', 'LIKE', '' . $search_field . '')
                     ->paginate(3);
 

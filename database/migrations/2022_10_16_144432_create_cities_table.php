@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->ForeignId('county_id');
+            $table->string('county');
             //  $table->foreign('county_id')->references('county_id')->on('counties');
-            $table->string('city')->unique();
+            $table->string('city')/*->unique()*/;
         });
     }
 

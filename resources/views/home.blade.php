@@ -117,8 +117,7 @@ use Illuminate\Support\Facades\DB;
                                 @endif
 
                                 @foreach ($counties as $value)
-                                    <option value="{{ $value->id }}">{{ $value->county }} ({{ $value->id }})
-                                    </option>
+                                    <option value="{{ $value->county }}">{{ $value->county }}</option>
                                 @endforeach
 
                             </select>

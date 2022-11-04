@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
                 <a href="{{ url()->previous() }}" class="btn btn-warning">&laquo; Vissza</a>
             </div>
 
-            <div>
+            <div class="col-md-12 shadow bg-white rounded-5 listss">
                 <hr />
                 <div>
 
@@ -29,10 +29,11 @@ use Illuminate\Support\Facades\DB;
                 <div>
 
                     <br>
-                    <h6>Város: </h6>
-                    <p><a
+                    <h6>Város: 
+                    <a
                             href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
-                    </p>
+                    </h6>
+                    
                     <h6>Szakma: </h6>
                     @foreach ($employee as $employees)
                         {{ $employees->field }},
@@ -49,13 +50,17 @@ use Illuminate\Support\Facades\DB;
                     <h6>Leírás: </h6>
                     <p>{{ $employee[0]->description }}</p>
                 </div>
+            
                 <hr />
                 <div>
                     <h2>referencia</h2>
                     <br>
                     <p>kepek</p>
                 </div>
+                
                 <hr />
+            </div>
+            <div class="col-md-12 shadow bg-white rounded-5 listss">
                 <div>
                     <form action="{{ route('comment.create') }}" method="POST">
                         @csrf
@@ -76,14 +81,13 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <h6>Vélemény: </h6>
                             <p>
-                                <textarea rows="4" cols="75%" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
                             </p>
                         </div>
                         <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
                 <hr>
-
                 <div class="row">
                     <div class="col-md-12">
                         @foreach ($comment as $item)

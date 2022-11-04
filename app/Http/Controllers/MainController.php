@@ -77,25 +77,9 @@ class MainController extends Controller
     public function getCities()
     {
 
-        $city = DB::table('employees')
-            ->select(
-                'employees.id',
-                'cities.county_id',
-                'counties.county',
-                'cities.id AS city_id',
-                'cities.city',
-                'employees.city_id',
-                'employees.name',
-                'field__employees.field_id',
-                'fields.field',
-                'employees.phone',
-                'employees.email',
-                'employees.description'
-            )
+        $city = DB::table('employees')->select('employees.city_id','cities.county','cities.city')
             ->join('cities', 'employees.city_id', '=', 'cities.id')
-            ->join('counties', 'cities.county_id', '=', 'counties.id')
-            ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
-            ->join('fields', 'field__employees.field_id', '=', 'fields.id')
+            
             //->groupBy('cities.id')
             //->groupBy('employees.id') 
             ->get();
@@ -110,8 +94,10 @@ class MainController extends Controller
 
     public function getCounties()
     {
-        $results = DB::table('counties')->select('id', 'county')->orderBy('county')->get();
-
+        $results = DB::table('employees')
+        ->select('cities.county')->distinct()
+        ->join('cities','employees.city_id','=','cities.id')
+        ->get();
 
         return $results;
     }

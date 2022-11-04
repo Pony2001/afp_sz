@@ -20,8 +20,7 @@ class ProfileController extends Controller
         $employee = DB::table('employees')
             ->select(
                 'employees.id',
-                'cities.county_id',
-                'counties.county',
+                'cities.county',
                 'cities.id AS city_id',
                 'cities.city',
                 'employees.name',
@@ -32,7 +31,6 @@ class ProfileController extends Controller
                 'employees.description'
             )
             ->join('cities', 'employees.city_id', '=', 'cities.id')
-            ->join('counties', 'cities.county_id', '=', 'counties.id')
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
             //->groupBy('employees.id')
