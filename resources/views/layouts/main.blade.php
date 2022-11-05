@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/results.css">
     <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/star.css">
+    <link rel="stylesheet" href="/css/star.css" >
+   
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">

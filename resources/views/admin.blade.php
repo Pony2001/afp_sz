@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 @section('content')
     <hr>
+    {{-- 
     <div>
         <h2 align="center">Szakik</h2>
     </div>
@@ -136,6 +137,7 @@ use Illuminate\Support\Facades\DB;
 
 
     <hr>
+    --}}
     <div style="display: block; margin:0 auto">
         <h2 align="center">Zsoltinak speciálba</h2>
         <table class="table table-striped table-dark ">
@@ -143,7 +145,6 @@ use Illuminate\Support\Facades\DB;
                 <th>id</th>
 
                 <th>name</th>
-                <th>county_id</th>
                 <th>county</th>
                 <th>city_id</th>
                 <th>city</th>
@@ -157,7 +158,6 @@ use Illuminate\Support\Facades\DB;
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->county_id }}</td>
                     <td>{{ $item->county }}</td>
                     <td>{{ $item->city_id }}</td>
                     <td>{{ $item->city }}</td>

@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
     public function selectCounty()
     {
-        $county = DB::table('counties')->select('*')->orderBy('id')->get();
+        $county = DB::table('cities')->select('*')->orderBy('id')->get();
 
 
         return $county;
@@ -43,8 +43,7 @@ class AdminController extends Controller
         $results = DB::table('employees')
             ->select(
                 'employees.id',
-                'cities.county_id',
-                'counties.county',
+                'cities.county',
                 'cities.id AS city_id',
                 'cities.city',
                 'employees.city_id',
@@ -56,7 +55,6 @@ class AdminController extends Controller
                 'employees.description'
             )
             ->join('cities', 'employees.city_id', '=', 'cities.id')
-            ->join('counties', 'cities.county_id', '=', 'counties.id')
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
            // ->groupBy('employees.id')

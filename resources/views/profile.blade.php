@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
                 <a href="{{ url()->previous() }}" class="btn btn-warning">&laquo; Vissza</a>
             </div>
 
-            <div>
+            <div class="col-md-12 shadow bg-white rounded-5 listss">
                 <hr />
                 <div>
 
@@ -29,10 +29,11 @@ use Illuminate\Support\Facades\DB;
                 <div>
 
                     <br>
-                    <h6>Város: </h6>
-                    <p><a
+                    <h6>Város: 
+                    <a
                             href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
-                    </p>
+                    </h6>
+                    
                     <h6>Szakma: </h6>
                     @foreach ($employee as $employees)
                         {{ $employees->field }},
@@ -49,13 +50,17 @@ use Illuminate\Support\Facades\DB;
                     <h6>Leírás: </h6>
                     <p>{{ $employee[0]->description }}</p>
                 </div>
+            
                 <hr />
                 <div>
                     <h2>referencia</h2>
                     <br>
                     <p>kepek</p>
                 </div>
+                
                 <hr />
+            </div>
+            <div class="col-md-12 shadow bg-white rounded-5 listss">
                 <div>
                     
                     <form action="{{ route('comment.create') }}" method="POST">
@@ -63,14 +68,14 @@ use Illuminate\Support\Facades\DB;
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
                         <h3>Vélemények</h3>
                         <h6>Értékelés: </h6>
-                        <div class="star_rating">
+                      <!--  <div class="star_rating">
                             <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
                             <button type="submit" class="star" name="value" value="&#9733;&#9733;">&#9734;</button>
                             <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;">&#9734;</button>
                             <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
                             <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
                         </div>
-                       <!-- <input type="radio" id="value1" name="value" value="&#11088;" hidden>
+                      <input type="radio" id="value1" name="value" value="&#11088;" hidden>
                         <label for="value1">&#11088;</label>
                         <input type="radio" id="value2" name="value" value="&#11088;&#11088;" hidden>
                         <label for="value2">&#11088;</label>
@@ -81,13 +86,27 @@ use Illuminate\Support\Facades\DB;
                         <input type="radio" id="value5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"
                             hidden>
                         <label for="value5">&#11088;</label> -->
-                        
-                        <div>
-                            <h6>Vélemény: </h6>
+                     
+                            
+                             <div class="rating">
+                               
+                       <input type="radio" id="star5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"/><label for="star5" class="full" title="Awesome"></label>
+                         <input type="radio" id="star4" name="value" value="&#11088;&#11088;&#11088;&#11088;"/><label for="star4" class="full"></label>
+                        <input type="radio" id="star3" name="value" value="&#11088;&#11088;&#11088;"/><label for="star3" class="full"></label>
+                         <input type="radio" id="star2" name="value" value="&#11088;&#11088;"/><label for="star2" class="full"></label>
+                        <input type="radio" id="star1" name="value" value="&#11088;"/><label for="star1" class="full"></label>
+                     
+                         </div>
+                         <br>
+                         <br>
+                         <div> <hr></div>
+                            <div><h6 >Vélemény: </h6>
                             <p>
-                                <textarea rows="4" cols="75%" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
                             </p>
-                        </div>
+                        </div>      
+                            
+                       
                         <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
