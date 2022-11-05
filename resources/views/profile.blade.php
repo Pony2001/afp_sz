@@ -69,24 +69,25 @@ use Illuminate\Support\Facades\DB;
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
                         <h3>Vélemények</h3>
                         <h6>Értékelés: </h6>
-                        <!--  <div class="star_rating">
-                                    <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
-                                    <button type="submit" class="star" name="value" value="&#9733;&#9733;">&#9734;</button>
-                                    <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;">&#9734;</button>
-                                    <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
-                                    <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
-                                </div>
-                              <input type="radio" id="value1" name="value" value="&#11088;" hidden>
-                                <label for="value1">&#11088;</label>
-                                <input type="radio" id="value2" name="value" value="&#11088;&#11088;" hidden>
-                                <label for="value2">&#11088;</label>
-                                <input type="radio" id="value3" name="value" value="&#11088;&#11088;&#11088;" hidden>
-                                <label for="value3">&#11088</label>
-                                <input type="radio" id="value4" name="value" value="&#11088;&#11088;&#11088;&#11088;" hidden>
-                                <label for="value4">&#11088;</label>
-                                <input type="radio" id="value5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"
-                                    hidden>
-                                <label for="value5">&#11088;</label> -->
+                        {{--  <div class="star_rating">
+                                                                        <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
+                                                                        <button type="submit" class="star" name="value" value="&#9733;&#9733;">&#9734;</button>
+                                                                        <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;">&#9734;</button>
+                                                                        <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
+                                                                        <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
+                                                                    </div>
+                                                                  <input type="radio" id="value1" name="value" value="&#11088;" hidden>
+                                                                    <label for="value1">&#11088;</label>
+                                                                    <input type="radio" id="value2" name="value" value="&#11088;&#11088;" hidden>
+                                                                    <label for="value2">&#11088;</label>
+                                                                    <input type="radio" id="value3" name="value" value="&#11088;&#11088;&#11088;" hidden>
+                                                                    <label for="value3">&#11088</label>
+                                                                    <input type="radio" id="value4" name="value" value="&#11088;&#11088;&#11088;&#11088;" hidden>
+                                                                    <label for="value4">&#11088;</label>
+                                                                    <input type="radio" id="value5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"
+                                                                        hidden>
+                                                                    <label for="value5">&#11088;</label>
+                                                                    --}}
 
 
                         <div class="rating">
@@ -120,20 +121,21 @@ use Illuminate\Support\Facades\DB;
                         <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        @foreach ($comment as $item)
-                            <p>Értékelés: {{ $item->value }}</p>
-                            <p>Vélemény: {{ $item->comment }}</p>
-                            <hr />
-                        @endforeach
-
-                    </div>
-                </div>
-                @endforeach
-
             </div>
+
+            <hr>
+
+
+            @foreach ($comment as $item)
+                <div class="col-md-12 shadow bg-white rounded-5 mt-3 mb-3 pt-3 pb-3 listss">
+                    <p>Értékelés: {{ $item->value }}</p>
+                    <p>Vélemény: {{ $item->comment }}</p>
+                </div>
+            @endforeach
+
+
+
+
 
             <div class="col-md-3"></div>
         </div>

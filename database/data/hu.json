@@ -148,7 +148,7 @@
     "lng": "16.5833", 
     "country": "Hungary", 
     "iso2": "HU", 
-    "admin_name": "Sopron", 
+    "admin_name": "Győr-Moson-Sopron", 
     "capital": "admin", 
     "population": "62454", 
     "population_proper": "62454"
@@ -214,7 +214,7 @@
     "lng": "16.9975", 
     "country": "Hungary", 
     "iso2": "HU", 
-    "admin_name": "Nagykanizsa", 
+    "admin_name": "Zala", 
     "capital": "admin", 
     "population": "46866", 
     "population_proper": "46866"
@@ -225,7 +225,7 @@
     "lng": "18.9167", 
     "country": "Hungary", 
     "iso2": "HU", 
-    "admin_name": "Dunaújváros", 
+    "admin_name": "Fejér", 
     "capital": "admin", 
     "population": "44200", 
     "population_proper": "44200"
@@ -247,7 +247,7 @@
     "lng": "20.3189", 
     "country": "Hungary", 
     "iso2": "HU", 
-    "admin_name": "Hódmezővásárhely", 
+    "admin_name": "Csongrád", 
     "capital": "admin", 
     "population": "43311", 
     "population_proper": "43311"

@@ -12,8 +12,6 @@ class PaginationController extends Controller
     public function search(Request $request)
     {
 
-
-
         if (request('search') && !request('county') && !request('city') && !request('field')) {
 
             $search = request('search');
@@ -37,25 +35,14 @@ class PaginationController extends Controller
             );
         } else if (!request('search')) {
 
-
-
             if (request('city') && request('county') && !request('field')) {
-
 
                 $search_city = request('city');
 
                 $result = DB::table('employees')
                     ->select('*')
-                    //->distinct()
                     ->where('city_id', 'LIKE', '' . $search_city . '')->paginate(3);
-
-                //dd($result);
-
-                //$result = DB::table('employees')->where('city_id', 'LIKE', '' . $search_city . '')->paginate(3);
                 $result->appends($request->all());
-
-
-
 
                 return view(
                     'results',
