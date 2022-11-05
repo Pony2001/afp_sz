@@ -19,14 +19,14 @@ class Field_EmployeeTable extends Seeder
     {
         $employees = Employee::inRandomOrder()->get();
 
-        foreach (range(1, 2000) as $index) {
+        foreach (range(1, 2133) as $index) {
             $employee = $employees->pop();
             $fields_employees = new Field_Employee;
             $fields_employees->field_id = Field::inRandomOrder()->first()->id;
             $fields_employees->employee_id = $employee->id; //minden employee kap egy field_id -t
             $fields_employees->save();
         }
-        foreach (range(1, 1000) as $index) {
+        foreach (range(1, 1231) as $index) {
             $employee = $employees->pop();
             $fields_employees = new Field_Employee;
             $fields_employees->field_id = Field::inRandomOrder()->first()->id;

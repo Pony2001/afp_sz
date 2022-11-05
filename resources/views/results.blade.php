@@ -46,7 +46,7 @@ use Illuminate\Support\Facades\DB;
                             <tr>
                                 <td class="ps-2">
                                     <p> Szakma:
-                                        @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $employee->id)->get() as $fieldsId)
+                                        @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $employee->id)->distinct()->get() as $fieldsId)
                                             @foreach (\App\Models\Field::where('id', '=', '' . $fieldsId->field_id)->get() as $fields)
                                                 {{ $fields->field }},
                                             @endforeach

@@ -29,11 +29,12 @@ use Illuminate\Support\Facades\DB;
                 <div>
 
                     <br>
-                    <h6>Város: 
-                    <a
+                    <h6>Város:</h6>
+                    <p><a
                             href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
-                    </h6>
-                    
+                    </p>
+
+
                     <h6>Szakma: </h6>
                     @foreach ($employee as $employees)
                         {{ $employees->field }},
@@ -50,17 +51,17 @@ use Illuminate\Support\Facades\DB;
                     <h6>Leírás: </h6>
                     <p>{{ $employee[0]->description }}</p>
                 </div>
-            
+
                 <hr />
                 <div>
                     <h2>referencia</h2>
                     <br>
                     <p>kepek</p>
                 </div>
-                
+
                 <hr />
             </div>
-            <div class="col-md-12 shadow bg-white rounded-5 listss">
+            <div class="col-md-12 shadow bg-white rounded-5 pt-3 pb-3 listss">
                 <div>
                     <form action="{{ route('comment.create') }}" method="POST">
                         @csrf
@@ -87,19 +88,19 @@ use Illuminate\Support\Facades\DB;
                         <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        @foreach ($comment as $item)
-                            <p>Értékelés: {{ $item->value }}</p>
-                            <p>Vélemény: {{ $item->comment }}</p>
-                            <hr />
-                        @endforeach
-
-                    </div>
-                </div>
             </div>
+
+
+            <hr>
+            @foreach ($comment as $item)
+                <div class="col-md-12 shadow bg-white rounded-5 mt-2 mb-3 pt-3 pb-1 listss">
+                    <p>Értékelés: {{ $item->value }}</p>
+                    <p>Vélemény: {{ $item->comment }}</p>
+                </div>
+            @endforeach
+
         </div>
+
         <div class="col-md-3"></div>
     </div>
     <script>
