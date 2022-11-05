@@ -57,12 +57,20 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <hr />
                 <div>
+                    
                     <form action="{{ route('comment.create') }}" method="POST">
                         @csrf
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
                         <h3>Vélemények</h3>
                         <h6>Értékelés: </h6>
-                        <input type="radio" id="value1" name="value" value="&#11088;" hidden>
+                        <div class="star_rating">
+                            <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
+                            <button type="submit" class="star" name="value" value="&#9733;&#9733;">&#9734;</button>
+                            <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;">&#9734;</button>
+                            <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
+                            <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9734;</button>
+                        </div>
+                       <!-- <input type="radio" id="value1" name="value" value="&#11088;" hidden>
                         <label for="value1">&#11088;</label>
                         <input type="radio" id="value2" name="value" value="&#11088;&#11088;" hidden>
                         <label for="value2">&#11088;</label>
@@ -72,7 +80,8 @@ use Illuminate\Support\Facades\DB;
                         <label for="value4">&#11088;</label>
                         <input type="radio" id="value5" name="value" value="&#11088;&#11088;&#11088;&#11088;&#11088;"
                             hidden>
-                        <label for="value5">&#11088;</label>
+                        <label for="value5">&#11088;</label> -->
+                        
                         <div>
                             <h6>Vélemény: </h6>
                             <p>
@@ -83,7 +92,9 @@ use Illuminate\Support\Facades\DB;
                     </form>
                 </div>
                 <hr>
-
+                
+               
+                <hr>
                 <div class="row">
                     <div class="col-md-12">
                         @foreach ($comment as $item)

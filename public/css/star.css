@@ -1,0 +1,17 @@
+  *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .star_rating{
+        user-select: none;
+    }
+   .star{
+    font-size: 2rem;
+    color: yellow;
+    background-color: unset;
+    border: none;
+   }
+   .star:hoover{
+    cursor: pointer;
+   }
