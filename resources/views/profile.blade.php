@@ -30,8 +30,8 @@ use Illuminate\Support\Facades\DB;
 
                     <br>
                     <h6>Város:</h6>
-                    <p><a
-                            href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}">{{ $employee[0]->city }}</a>
+                    <p><a href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}"
+                            target="_blank">{{ $employee[0]->city }}</a>
                     </p>
 
 
