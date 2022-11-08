@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('employee_id');
             $table->string('profile');
-            $table->string('references');
+            $table->integer('ref1');
+            $table->integer('ref2');
+            $table->integer('ref3');
+            $table->integer('ref4');
         });
     }
 
