@@ -17,7 +17,7 @@ class FieldTableSeeder extends Seeder
     {
         foreach (range(1, 50) as $index) {
             $fields = new Field;
-            $fields->field = fake()->unique()->text(10);
+            $fields->field = fake()->unique()->word();
             $fields->save();
         }
     }
