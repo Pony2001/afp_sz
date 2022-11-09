@@ -54,9 +54,14 @@ use Illuminate\Support\Facades\DB;
 
                 <hr />
                 <div>
-                    <h2>referencia</h2>
+                    <h2>Referenciák</h2>
                     <br>
-                    <p>kepek</p>
+                    <p align="center">
+                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref1}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref2}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref3}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref4}}/200" alt="referencia">
+                    </p>
                 </div>
 
                 <hr />

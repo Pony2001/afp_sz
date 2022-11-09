@@ -38,13 +38,17 @@ class ProfileController extends Controller
             ->orderBy('employees.id')
             ->get();
 
+          $image = DB::table('images')->select('ref1','ref2','ref3','ref4')->get();   
+
 
         $comment = DB::table('comments')->select('value', 'comment')
             ->orderByDesc('value')
             ->where('employee_id', '=', $id)
             ->get();
         // $emp_id = DB::table('employees')->select('id')->where('id','=',$id)->get();
-        return view('profile', ['employee' => $employee, 'comment' => $comment, 'emp_id' => $id]);
+        return view('profile', ['employee' => $employee, 'comment' => $comment, 'emp_id' => $id, 'image' => $image]);
+
+     
     }
 
 

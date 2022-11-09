@@ -9,8 +9,12 @@ class Image extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'employee_id',
         'profile',
-        'references'
+        'ref1',
+        'ref2',
+        'ref3',
+        'ref4'
        
     ];
 }
