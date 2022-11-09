@@ -4,15 +4,15 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form method="post" class="form-validation" action="#">
+            <form method="post" class="form-validation" action="{{ route('login') }}">
                 @csrf
                 <div>
-                    <label for="email" class="form-validation mt-3">Email:</label>
+                    <label for="email" class="form-validation mt-3">Email: </label>
                     <input type="text" name="email" id="email" minlength="3" class="form-control"
                         placeholder="example@example.org">
                 </div>
                 <div>
-                    <label for="password" class="form-validation mt-3">Jelszó:</label>
+                    <label for="password" class="form-validation mt-3">Jelszó: </label>
                     <input type="password" name="password" id="password" minlength="3" class="form-control"
                         placeholder="password">
                 </div>
