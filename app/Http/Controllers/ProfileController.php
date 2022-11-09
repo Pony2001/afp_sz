@@ -38,7 +38,14 @@ class ProfileController extends Controller
             ->orderBy('employees.id')
             ->get();
 
-          $image = DB::table('images')->select('ref1','ref2','ref3','ref4')->get();   
+         $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();   
+          
+       
+            $ref = explode( ';', (string)$image);
+         
+
+               
+          //var_dump( explode( ',', $input1 ) ); splittelés
 
 
         $comment = DB::table('comments')->select('value', 'comment')
@@ -46,7 +53,7 @@ class ProfileController extends Controller
             ->where('employee_id', '=', $id)
             ->get();
         // $emp_id = DB::table('employees')->select('id')->where('id','=',$id)->get();
-        return view('profile', ['employee' => $employee, 'comment' => $comment, 'emp_id' => $id, 'image' => $image]);
+        return view('profile', ['employee' => $employee, 'comment' => $comment, 'emp_id' => $id, 'ref' => $ref]);
 
      
     }

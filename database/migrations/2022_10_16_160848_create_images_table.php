@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('employee_id');
             $table->string('profile');
-            $table->integer('ref1');
-            $table->integer('ref2');
-            $table->integer('ref3');
-            $table->integer('ref4');
+            $table->string('ref');
+           // $table->integer('ref2');
+          //  $table->integer('ref3');
+          //  $table->integer('ref4');
         });
     }
 

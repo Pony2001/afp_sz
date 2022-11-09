@@ -56,11 +56,12 @@ use Illuminate\Support\Facades\DB;
                 <div>
                     <h2>Referenciák</h2>
                     <br>
+                 
                     <p align="center">
-                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref1}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref2}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref3}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$image[0] -> ref4}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia">
+                        <img width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia">
                     </p>
                 </div>
 

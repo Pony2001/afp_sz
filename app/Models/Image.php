@@ -11,10 +11,7 @@ class Image extends Model
     protected $fillable = [
         'employee_id',
         'profile',
-        'ref1',
-        'ref2',
-        'ref3',
-        'ref4'
+        'ref'
        
     ];
 }
