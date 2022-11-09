@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
                     <table>
                         <tr>
                             <td rowspan="4"><img
-                                    src='https://www.gravatar.com/avatar/{{ md5($employee->email) }}?s=32&d=identicon&r=PG'
+                                    src='https://picsum.photos/id/{{$employee->id}}/200'
                                     alt="" width="125" class="shadow bg-white profile-picture">
                             </td>
                         </tr>

@@ -23,7 +23,7 @@ class PaginationController extends Controller
                 ->orWhere('phone', 'LIKE', '%' . $search . '%')
                 ->orWhere('email', 'LIKE', '%' . $search . '%')
                 ->orWhere('description', 'LIKE', '%' . $search . '%')
-                ->paginate(3);
+                ->paginate(5);
 
             $result->appends($request->all());
 
@@ -94,7 +94,7 @@ class PaginationController extends Controller
                     ->join('cities', 'employees.city_id', '=', 'cities.id')
                     //->distinct()
                     ->where('cities.county', 'LIKE', '' . $search_county . '')
-                    ->paginate(3);
+                    ->paginate(5);
 
                 $result->appends($request->all());
                 return view(
@@ -124,7 +124,7 @@ class PaginationController extends Controller
                     ->where('city_id', 'LIKE', '' . $search_city . '')
                     ->where('cities.county', 'LIKE', '' . $search_county . '')
                     ->where('field__employees.field_id', 'LIKE', '' . $search_field . '')
-                    ->paginate(3);
+                    ->paginate(5);
 
                 $result->appends($request->all());
                 return view(
@@ -152,7 +152,7 @@ class PaginationController extends Controller
                     //->distinct()
                     ->where('cities.county', 'LIKE', '' . $search_county . '')
                     ->where('field__employees.field_id', 'LIKE', '' . $search_field . '')
-                    ->paginate(3);
+                    ->paginate(5);
 
 
                 $result->appends($request->all());

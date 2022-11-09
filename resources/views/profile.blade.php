@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
                 <hr />
                 <div>
 
-                    <h3><img src="https://www.gravatar.com/avatar/{{ md5($employee[0]->email) }}?s=32&d=identicon&r=PG"
+                    <h3><img class="profileview profile-picture shadow bg-white" src="https://picsum.photos/id/{{$employee[0]->id}}/200"
                             alt="" width="100" class="shadow bg-white rounded-5">
                         {{ $employee[0]->name }}</h3>
                 </div>
@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\DB;
 
                     <br>
                     <h6>Város:</h6>
-                    <p><a href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}"
+                    <p><a  href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}"
                             target="_blank">{{ $employee[0]->city }}</a>
                     </p>
 
@@ -58,10 +58,10 @@ use Illuminate\Support\Facades\DB;
                     <br>
                  
                     <p align="center">
-                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia" name="ref">
-                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia" name="ref">
-                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia" name="ref">
-                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia" name="ref">
+                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia" name="ref">
+                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia" name="ref">
+                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia" name="ref">
+                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia" name="ref">
                     </p>
                 </div>
 

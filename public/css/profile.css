@@ -2,5 +2,17 @@
     transition: .5s;
 }
 .view:hover{
-    transform: scale(2);
+    transform: scale(2.5);
+    margin: 45px;
+
+   
+}
+.profileview{
+    transition: .5s;
+}
+.profileview:hover{
+    transform: scale(1.5);
+    margin: 25px;
+    
+   
 }
