@@ -124,7 +124,7 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
 
-                        <button id="add" type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
+                        <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
             </div>
