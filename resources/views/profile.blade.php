@@ -58,10 +58,10 @@ use Illuminate\Support\Facades\DB;
                     <br>
                  
                     <p align="center">
-                        <img width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia">
-                        <img width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia">
+                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia" name="ref">
+                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia" name="ref">
+                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia" name="ref">
+                        <img class="view" width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia" name="ref">
                     </p>
                 </div>
 
