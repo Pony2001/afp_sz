@@ -98,16 +98,16 @@ use Illuminate\Support\Facades\DB;
 
                         <div class="rating">
 
-                            <input type="radio" id="star5" name="value"
+                            <input class="radio" type="radio" id="star5" name="value"
                                 value="&#11088;&#11088;&#11088;&#11088;&#11088;" /><label for="star5" class="full"
                                 title="Awesome"></label>
-                            <input type="radio" id="star4" name="value"
+                            <input class="radio" type="radio" id="star4" name="value"
                                 value="&#11088;&#11088;&#11088;&#11088;" /><label for="star4" class="full"></label>
-                            <input type="radio" id="star3" name="value" value="&#11088;&#11088;&#11088;" /><label
+                            <input class="radio" type="radio" id="star3" name="value" value="&#11088;&#11088;&#11088;" /><label
                                 for="star3" class="full"></label>
-                            <input type="radio" id="star2" name="value" value="&#11088;&#11088;" /><label
+                            <input class="radio" type="radio" id="star2" name="value" value="&#11088;&#11088;" /><label
                                 for="star2" class="full"></label>
-                            <input type="radio" id="star1" name="value" value="&#11088;" /><label for="star1"
+                            <input class="radio" type="radio" id="star1" name="value" value="&#11088;" /><label for="star1"
                                 class="full"></label>
 
                         </div>
@@ -119,12 +119,12 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <h6>Vélemény: </h6>
                             <p>
-                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment" ></textarea>
                             </p>
                         </div>
 
 
-                        <button type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
+                        <button id="add" type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
                     </form>
                 </div>
             </div>

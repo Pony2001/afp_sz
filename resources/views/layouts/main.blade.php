@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/star.css">
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/comment.css">
 
 
 
@@ -28,6 +29,7 @@
     <script src="/js/inputState.js"></script>
     <script src="/js/alert.js"></script>
     <script src="/js/star.js"></script>
+    <script src="/js/comment.js"></script>
     <title>SzakiMaki</title>
 </head>
 
