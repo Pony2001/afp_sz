@@ -10,7 +10,6 @@ $(document).ready(function() {
     
      // set the default state for submit button is dasbled
      btnSubmit2.disabled = true;
-     console.log("anyád") ;
      inputComment.addEventListener("keyup", inputEmpty2);
      inputRadio1.addEventListener("change", inputEmpty2);
      inputRadio2.addEventListener("change", inputEmpty2);
