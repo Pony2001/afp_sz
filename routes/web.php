@@ -40,7 +40,10 @@ Route::post('getCities', [Controllers\CityController::class, 'getCitiesByCountyI
 
 //Route::get('/results', [Controllers\ResultsController::class, 'results']);
 //Route::get('/results', [Controllers\ResultsController::class,  'store', 'search']);
+
+//Route::get('/results', [Controllers\PaginationController::class, 'store']);
 Route::get('/results', [Controllers\PaginationController::class, 'search']);
+
 Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_function']);
 Route::middleware('auth')->group(function () {
     Route::post('/profile/success', [Controllers\ProfileController::class, 'create_comment'])->name('comment.create');

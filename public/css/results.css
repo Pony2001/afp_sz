@@ -30,5 +30,29 @@
   border-radius: 50%;
 }
 
+.listss{
+  transition: .2s;
+}
+.listss:hover{
+  transform: scale(1.05);
+}
+
+.field{
+  background-color: white;
+  color: black;
+  margin: 1px;
+  margin-bottom: auto;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-right: 4px;
+  padding-left: 3px;
+  border: solid white 2px;
+  border-radius: 50px;
+}
+
+.description{
+  font-size: 14px;
+}
+
 
 

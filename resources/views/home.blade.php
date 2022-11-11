@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <div class="col-md-3">
-                <form action="results" method="get" class="form-validation">
+                <form action="results" method="GET" class="form-validation">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
 
 
@@ -48,18 +48,13 @@ use Illuminate\Support\Facades\DB;
                         <label for="search" class="form-validation">
                             Kereső
                         </label>
-                        <input type="text" name="search" id="search" value="{{ old('search') }}" minlength="3"
-                            class="form-control" placeholder="Pl.: Fal festés">
+                        <input type="text" name="search" id="search" value="{{ old('search') }}"
+                            class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}"
+                            placeholder="Pl.: Fal festés">
 
 
                         @error('search')
-                            @if ($message = 'The search must not be greater than 255 characters.')
-                                <p class="text-red-500 text-xs mt-1" style="color: red">A keresett szöveg nem lehet több
-                                    mint
-                                    255 karakter.</p>
-                            @else
-                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
-                            @endif
+                            <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -84,7 +79,8 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation">Szakmaválasztó</label>
                         </div>
                         <div>
-                            <select name="field" id="field" class="form-control">
+                            <select name="field" id="field"
+                                class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }}">
 
                                 @if (!old('field'))
                                     <option value="">Válasszon szakmát</option>
@@ -100,6 +96,9 @@ use Illuminate\Support\Facades\DB;
 
 
                             </select>
+                            @error('field')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -108,7 +107,8 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Megye</label>
                         </div>
                         <div>
-                            <select name="county" id="county" class="form-control">
+                            <select name="county" id="county"
+                                class="form-control{{ $errors->has('county') ? ' is-invalid' : '' }}">
 
                                 @if (!old('county'))
                                     <option value="">Válasszon megyét</option>
@@ -121,6 +121,9 @@ use Illuminate\Support\Facades\DB;
                                 @endforeach
 
                             </select>
+                            @error('county')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -129,9 +132,13 @@ use Illuminate\Support\Facades\DB;
                             <label for="" class="form-validation mt-3">Város</label>
                         </div>
                         <div>
-                            <select name="city" id="city" class="form-control">
+                            <select name="city" id="city"
+                                class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}">
                                 <option value="">Előbb válassz megyét</option>
                             </select>
+                            @error('city')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <br>
@@ -144,38 +151,4 @@ use Illuminate\Support\Facades\DB;
 
         </div>
     </div>
-
-
-    <script type="text/javascript">
-        // document.addEventListener('readystatechange', (event) => {
-        //     if (event.target.readyState === 'complete') {
-        //         loadListeners();
-        //     }
-        // })
-
-        // function loadListeners() {
-        //     const submitbtn = document.getElementById("submit")
-        //     console.log(submitbtn)
-        //     submitbtn.addEventListener("click", () => checkscript(event))
-        // }
-
-
-
-        // function checkscript(event) {
-        //     //event.preventDefault()
-        //     //const checkbox_array = document.querySelectorAll('input[type="checkbox"]').filter(node=>node.checked)
-        //     const checkbox_array = document.querySelectorAll('input[type="text"]')
-        //     const checked = Array.from(checkbox_array).filter(node => node.checked)
-        //     console.log({
-        //         checkbox_array,
-        //         checked
-        //     })
-        //     if (checked.length < 1) {
-        //         event.preventDefault()
-        //         alert("A tovább lépéshez, kérem töltsön ki legalább egy mezőt!")
-        //         return
-        //     }
-
-        // }
-    </script>
 @endsection

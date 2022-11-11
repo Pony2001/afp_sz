@@ -8,13 +8,20 @@
                 @csrf
                 <div>
                     <label for="email" class="form-validation mt-3">Email: </label>
-                    <input type="text" name="email" id="email" minlength="3" class="form-control"
+                    <input type="email" name="email" id="email"
+                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                         placeholder="example@example.org">
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="password" class="form-validation mt-3">Jelszó: </label>
-                    <input type="password" name="password" id="password" minlength="3" class="form-control"
-                        placeholder="password">
+                    <input type="password" name="password" id="password"
+                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="password">
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="ms-2 mt-3">
                     <div class="form-check">

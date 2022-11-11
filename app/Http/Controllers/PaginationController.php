@@ -5,12 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 
 class PaginationController extends Controller
 {
+
+
+    public function store(Request $request)
+    {
+    }
+
+
     public function search(Request $request)
     {
+        request()->validate([
+            'search' => ['string', 'nullable', 'min:3', 'max:100']
+        ]);
+
+
 
         if (request('search') && !request('county') && !request('city') && !request('field')) {
 
@@ -68,7 +81,7 @@ class PaginationController extends Controller
                     ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
                     //->distinct()
                     ->where('field__employees.field_id', 'LIKE', '' . $search_field . '')
-                    ->paginate(3);
+                    ->paginate(5);
 
                 $result->appends($request->all());
                 return view(

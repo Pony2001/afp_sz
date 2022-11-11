@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\DB;
                 <a href="{{ url()->previous() }}" class="btn btn-warning">&laquo; Vissza</a>
             </div>
 
-            <div class="col-md-12 shadow bg-white rounded-5 listss">
+            <div class="col-md-12 shadow bg-white rounded-5">
                 <hr />
                 <div>
 
-                    <h3><img class="profileview profile-picture shadow bg-white" src="https://picsum.photos/id/{{$employee[0]->id}}/200"
-                            alt="" width="100" class="shadow bg-white rounded-5">
+                    <h3><img class="profileview profile-picture shadow bg-white"
+                            src="https://picsum.photos/id/{{ $employee[0]->id }}/200" alt="" width="100"
+                            class="shadow bg-white rounded-5">
                         {{ $employee[0]->name }}</h3>
                 </div>
                 <hr />
@@ -30,7 +31,7 @@ use Illuminate\Support\Facades\DB;
 
                     <br>
                     <h6>Város:</h6>
-                    <p><a  href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}"
+                    <p><a href="{{ url('https://www.google.com/maps/place/' . $employee[0]->city) }}"
                             target="_blank">{{ $employee[0]->city }}</a>
                     </p>
 
@@ -56,18 +57,26 @@ use Illuminate\Support\Facades\DB;
                 <div>
                     <h2>Referenciák</h2>
                     <br>
-                 
+
                     <p align="center">
-                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[1]}}/200" alt="referencia" name="ref">
-                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[2]}}/200" alt="referencia" name="ref">
-                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[3]}}/200" alt="referencia" name="ref">
-                        <img class="view rounded-1 shadow bg-white" width="100" src="https://picsum.photos/id/{{$ref[4]}}/200" alt="referencia" name="ref">
+                        <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[2] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[3] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[4] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
                     </p>
                 </div>
 
                 <hr />
             </div>
-            <div class="col-md-12 shadow bg-white rounded-5 pt-3 pb-3 listss">
+            <div class="col-md-12 shadow bg-white rounded-5 pt-3 pb-3">
                 <div>
 
                     <form action="{{ route('comment.create') }}" method="POST">
@@ -103,12 +112,12 @@ use Illuminate\Support\Facades\DB;
                                 title="Awesome"></label>
                             <input class="radio" type="radio" id="star4" name="value"
                                 value="&#11088;&#11088;&#11088;&#11088;" /><label for="star4" class="full"></label>
-                            <input class="radio" type="radio" id="star3" name="value" value="&#11088;&#11088;&#11088;" /><label
-                                for="star3" class="full"></label>
-                            <input class="radio" type="radio" id="star2" name="value" value="&#11088;&#11088;" /><label
-                                for="star2" class="full"></label>
-                            <input class="radio" type="radio" id="star1" name="value" value="&#11088;" /><label for="star1"
-                                class="full"></label>
+                            <input class="radio" type="radio" id="star3" name="value"
+                                value="&#11088;&#11088;&#11088;" /><label for="star3" class="full"></label>
+                            <input class="radio" type="radio" id="star2" name="value"
+                                value="&#11088;&#11088;" /><label for="star2" class="full"></label>
+                            <input class="radio" type="radio" id="star1" name="value" value="&#11088;" /><label
+                                for="star1" class="full"></label>
 
                         </div>
                         <br>
@@ -119,12 +128,13 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <h6>Vélemény: </h6>
                             <p>
-                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment" ></textarea>
+                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
                             </p>
                         </div>
 
 
-                        <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény hozzáadása</button>
+                        <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény
+                            hozzáadása</button>
                     </form>
                 </div>
             </div>
@@ -133,7 +143,7 @@ use Illuminate\Support\Facades\DB;
 
 
             @foreach ($comment as $item)
-                <div class="col-md-12 shadow bg-white rounded-5 mt-3 mb-3 pt-3 pb-3 listss">
+                <div class="col-md-12 shadow bg-white rounded-5 mt-3 mb-3 pt-3 pb-3">
                     <p>Értékelés: {{ $item->value }}</p>
                     <p>Vélemény: {{ $item->comment }}</p>
                 </div>
