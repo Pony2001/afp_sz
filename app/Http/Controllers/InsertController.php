@@ -22,8 +22,12 @@ class InsertController extends Controller
             ->get();
 
         //dd($field_id);
+        $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();   
+          
+       
+        $ref = explode( ';', (string)$image);
 
-        return view('insert', ['employee' => $employee]);
+        return view('insert', ['employee' => $employee,'ref' => $ref]);
     }
     public function update_button($id, $field_id)
     {

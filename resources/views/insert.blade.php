@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
                     <form action="{{ $employee[0]->field_id }}/edit" method="get">
                         @csrf
 
-                        <h3><img src="https://www.gravatar.com/avatar/{{ md5($employee[0]->email) }}?s=32&d=identicon&r=PG"
+                        <h3><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200" class="profileview profile-picture shadow bg-white"
                                 alt="" width="100" class="shadow bg-white rounded-5">
                             <input type="text" value="{{ $employee[0]->name }}" id="name" name="name">
                         </h3>
@@ -62,11 +62,27 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <hr />
                 <div>
-                    <h2>referencia</h2>
+                    <h2>Referenciák</h2>
                     <br>
-                    <p>kepek</p>
+
+                    <p align="center">
+                        <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[2] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[3] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[4] }}/200"
+                            onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
+                            class="view rounded-1 shadow bg-white" name="ref" />
+                    </p>
                 </div>
-                <button type="submit" class="btn btn-warning">Módosít</button>
+                <br>
+                <br>
+               <p align="center"><button type="submit" class="btn btn-warning">Módosít</button></p>
                 </form>
             </div>
         </div>
