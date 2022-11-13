@@ -25,18 +25,18 @@ class CreateController extends Controller
                 'email' => request('email'),
                 'description' => request('description')
             ]);
-        $ddd = DB::table('employees')
-            ->select('id')
-            ->where('phone', '=', request('phone'))->limit(1)->get();
-        //dd($ddd[0]->id);
-        $created2 = DB::table('field__employees')
-            ->insert([
-                'created_at' => date(now()),
-                'updated_at' => date(now()),
-                'employee_id' => $ddd[0]->id,
-                'field_id' => request('field')
-            ]);
+        $employeeId = DB::table('employees')
+            ->select('*')
+            ->where('email', '=', request('email'))->limit(1)->get();
+        //dd($employeeId[0]->id);
+        // $created2 = DB::table('field__employees')
+        //     ->insert([
+        //         'created_at' => date(now()),
+        //         'updated_at' => date(now()),
+        //         'employee_id' => $employeeId[0]->id,
+        //         'field_id' => request('field')
+        //     ]);
 
-        return redirect('admin')->with('alert', 'Új szaki hozzádva!');
+        return redirect('create2/' . $employeeId[0]->id);
     }
 }

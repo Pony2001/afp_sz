@@ -52,13 +52,14 @@ class AdminController extends Controller
                 'fields.field',
                 'employees.phone',
                 'employees.email',
-                'employees.description'
+                'employees.description',
+                'field__employees.id AS other'
             )
             ->join('cities', 'employees.city_id', '=', 'cities.id')
             ->join('field__employees', 'employees.id', '=', 'field__employees.employee_id')
             ->join('fields', 'field__employees.field_id', '=', 'fields.id')
-           // ->groupBy('employees.id')
-           ->orderBy('employees.id')
+            // ->groupBy('employees.id')
+            ->orderBy('employees.id')
             ->get();
 
         return ($results);
@@ -76,10 +77,18 @@ class AdminController extends Controller
         ]);
     }
 
-   public function delete($id){
-       $deleted = DB::table('employees')->where('id','=',$id)->delete();
-       $deleted2 = DB::table('field__employees')->where('employee_id','=',$id)->delete();
-       return redirect()->back()->with('alert', 'Törölve!');
+    public function delete($id)
+    {
+        $deleted = DB::table('employees')->where('id', '=', $id)->delete();
+        $deleted2 = DB::table('field__employees')->where('employee_id', '=', $id)->delete();
+        return redirect()->back()->with('alert', 'Törölve!');
     }
- 
+    public function deleteRow($id, $other)
+    {
+        $deleted = DB::table('field__employees')->select('*', 'field__employees.id AS other')
+            ->where('field__employees.employee_id', '=', $id)
+            ->where('field__employees.id', '=', $other)
+            ->delete();
+        return redirect()->back()->with('alert', 'Sor törölve!');
+    }
 }

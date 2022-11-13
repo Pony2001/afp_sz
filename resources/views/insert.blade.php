@@ -21,11 +21,12 @@ use Illuminate\Support\Facades\DB;
                 <hr />
 
                 <div>
-                    <form action="{{ $employee[0]->field_id }}/edit" method="get">
+                    <form action="{{ $employee[0]->other }}/edit" method="POST">
                         @csrf
 
-                        <h3><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200" class="profileview profile-picture shadow bg-white"
-                                alt="" width="100" class="shadow bg-white rounded-5">
+                        <h3><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
+                                class="profileview profile-picture shadow bg-white" alt="" width="100"
+                                class="shadow bg-white rounded-5">
                             <input type="text" value="{{ $employee[0]->name }}" id="name" name="name">
                         </h3>
                 </div>
@@ -36,6 +37,7 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     <h6>Szakma: </h6>
                     <p><select name="field" id="fieldinsert">
+                            <option value="">{{ $employee[0]->field }}</option>
                             @foreach (\App\Models\Field::select('*')->get() as $fields)
                                 <option value="{{ $fields->id }}">{{ $fields->field }}</option>
                             @endforeach
@@ -43,6 +45,7 @@ use Illuminate\Support\Facades\DB;
                     </p>
                     <h6>Város: </h6>
                     <p> <select name="city" id="cityinsert">
+                            <option value="">{{ $employee[0]->city }}</option>
                             @foreach (\App\Models\City::select('*')->get() as $cities)
                                 <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                             @endforeach
@@ -82,7 +85,7 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <br>
                 <br>
-               <p align="center"><button type="submit" class="btn btn-warning">Módosít</button></p>
+                <p align="center"><button type="submit" class="btn btn-warning">Módosít</button></p>
                 </form>
             </div>
         </div>

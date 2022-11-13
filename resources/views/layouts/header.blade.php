@@ -6,7 +6,7 @@
     </div>
     <div>
         @auth
-            <form action="{{ route('admin') }}" method="POST" style="float: left">
+            <form action="{{ route('admin') }}" method="GET" style="float: left">
                 @csrf
                 <button type="submit" class="btn btn-outline-warning ms-2">
                     Irányítópult

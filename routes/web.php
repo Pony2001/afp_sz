@@ -47,20 +47,23 @@ Route::get('/results', [Controllers\PaginationController::class, 'search']);
 Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_function']);
 Route::middleware('auth')->group(function () {
     Route::post('/profile/success', [Controllers\ProfileController::class, 'create_comment'])->name('comment.create');
+
+    // for admin: 
+
+    Route::get('/admin', [Controllers\AdminController::class, 'admin'])->name('admin');
+    //Route::get('/admin', [Controllers\AdminController::class, 'admin']);
+    Route::get('/admin/{id}', [Controllers\AdminController::class, 'delete'])->name('employee.delete');
+    Route::get('/admin/{id}/{other}/delete', [Controllers\AdminController::class, 'deleteRow']);
+
+    //Route::get('login', [Controllers\LoginController::class, 'login'])->name('login');
+
+    Route::get('/insert/{id}/{other}', [Controllers\InsertController::class, 'edit_function']);
+    Route::post('/insert/{id}/{other}/edit', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
+    //Route::post('/insert/{id}', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
+
+    Route::get('/create', [Controllers\CreateController::class, 'create']);
+    Route::post('/create', [Controllers\CreateController::class, 'create']);
+    Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');
+
+    Route::get('/create2/{id}', [Controllers\Create2Controller::class, 'create2']);
 });
-
-
-
-Route::post('/admin', [Controllers\AdminController::class, 'admin'])->name('admin');
-//Route::get('/admin', [Controllers\AdminController::class, 'admin']);
-Route::get('/admin/{id}', [Controllers\AdminController::class, 'delete'])->name('employee.delete');
-
-//Route::get('login', [Controllers\LoginController::class, 'login'])->name('login');
-
-Route::get('/insert/{id}/{field_id}', [Controllers\InsertController::class, 'edit_function']);
-Route::get('/insert/{id}/{field_id}/edit', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
-//Route::post('/insert/{id}', [Controllers\InsertController::class, 'update_button'])->name('employee.update');
-
-Route::get('/create', [Controllers\CreateController::class, 'create']);
-Route::post('/create', [Controllers\CreateController::class, 'create']);
-Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');

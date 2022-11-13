@@ -20,47 +20,86 @@ use Illuminate\Http\Request;
                 <hr />
                 <div>
                     <h2>Új szaki hozzáadása</h2>
+                    <h1>1. lépés</h1>
                 </div>
                 <div>
-                    <form action="{{ route('employee.create') }}" method="POST">
+                    {{--
+                        Create:
+
+                        Ha a validate sikeres töltse fel az adatokat az adatbázisba,
+                        majd irányítsa át a szakma választó oldalra.
+
+                        Kérdezzük meg a felhasználótól hány szakmája van,
+                        majd ez alapján generáljunk annyi legürdülő menüt.
+                        (?maximum 3 szakmája lehet?)
+
+                        Végül töltse fel a kiválasztott szakmákat az adatbázisba,
+                        majd irányítsa át a főmenübe.
+                     --}}
+                    <form action="{{ route('employee.create') }}" method="POST" class="form-validation">
                         @csrf
-                        <h6>Név: </h6>
-                        <h6> <input type="text" id="name" name="name"></h6>
-                </div>
 
-                <div>
+                        {{-- Név --}}
+                        <div><br />
+                            <label for="name" class="form-validation">Név: </label>
+                            <input type="text" id="name" name="name"
+                                class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" />
+                            @error('name')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                    <br>
-                    <h6>Szakma: </h6>
-                    <p><select name="field" id="fieldcreate">
-                            @foreach (\App\Models\Field::select('*')->get() as $fields)
-                                <option value="{{ $fields->id }}">{{ $fields->field }}</option>
-                            @endforeach
-                        </select>
-                    </p>
-                    <h6>Város: </h6>
-                    <p><select name="city" id="city2">
+                        {{-- Város --}}
+                        <div><br />
+                            <label for="city2" class="form-validation">Város: </label>
+                            <select name="city" id="city2"
+                                class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" />
+                            <option value="">Válasszon várost</option>
                             @foreach (\App\Models\City::select('*')->get() as $cities)
                                 <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                             @endforeach
-                        </select>
-                    </p>
-                    <h6>Telefonszám: </h6>
-                    <p> <input type="text" id="phone" name="phone"></p>
-                    <h6>E-mail: </h6>
-                    <p><input type="text" id="email" name="email"></p>
-                </div>
+                            </select>
+                            @error('city')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Telefon --}}
+                        <div><br />
+                            <label for="phone" class="form-validation">Telefonszám: </label>
+                            <input type="text" id="phone" name="phone"
+                                class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" />
+                            @error('phone')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- E-mail --}}
+                        <div><br />
+                            <label for="email" class="form-validation">E-mail: </label>
+                            <input type="text" id="email" name="email"
+                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" />
+                            @error('email')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Leírás --}}
+                        <div><br />
+                            <label for="description" class="form-validation">Leírás: </label>
+                            <textarea rows="7" cols="75%" id="description" name="description"
+                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
+                            </textarea>
+                            @error('description')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
 
 
-                <div>
-                    <h6>Leírás: </h6>
-                    <p>
-                        <textarea rows="7" cols="75%" id="description" name="description"></textarea>
-                    </p>
+                        <br />
+                        <button type="submit" class="btn btn-warning">Tovább</button>
+                    </form>
                 </div>
-                <hr />
-                <button type="submit" class="btn btn-warning">Létrehozás</button>
-                </form>
             </div>
         </div>
         <div class="col-md-3"></div>
