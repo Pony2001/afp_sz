@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     <h6>Szakma: </h6>
                     <p><select name="field" id="fieldinsert">
-                            <option value="">{{ $employee[0]->field }}</option>
+                            <option value="{{ $employee[0]->field_id }}">{{ $employee[0]->field }}</option>
                             @foreach (\App\Models\Field::select('*')->get() as $fields)
                                 <option value="{{ $fields->id }}">{{ $fields->field }}</option>
                             @endforeach
@@ -45,7 +45,7 @@ use Illuminate\Support\Facades\DB;
                     </p>
                     <h6>Város: </h6>
                     <p> <select name="city" id="cityinsert">
-                            <option value="">{{ $employee[0]->city }}</option>
+                            <option value="{{ $employee[0]->city_id }}">{{ $employee[0]->city }}</option>
                             @foreach (\App\Models\City::select('*')->get() as $cities)
                                 <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                             @endforeach

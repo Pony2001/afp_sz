@@ -15,6 +15,18 @@ class CreateController extends Controller
 
     public function created(Request $request)
     {
+
+
+        request()->validate([
+            'name' => ['required'],
+            'city' => ['required'],
+            'phone' => ['required', 'unique:employees'],
+            'email' => ['required', 'unique:employees'],
+            'description' => ['required']
+        ]);
+
+
+
         $created = DB::table('employees')
             ->insert([
                 'name' => request('name'),
@@ -27,7 +39,25 @@ class CreateController extends Controller
             ]);
         $employeeId = DB::table('employees')
             ->select('*')
+
+
             ->where('email', '=', request('email'))->limit(1)->get();
+
+
+        $rnd1 = random_int(1, 1083);
+        $rnd2 = random_int(1, 1083);
+        $rnd3 = random_int(1, 1083);
+        $rnd4 = random_int(1, 1083);
+        $rnd5 = random_int(1, 1083);
+        $rnd6 = random_int(1, 1083);
+
+        $images =  DB::table('images')
+            ->insert([
+                'created_at' => date(now()),
+                'updated_at' => date(now()),
+                'employee_id' => $employeeId[0]->id,
+                'ref' => $rnd1 . ";" . $rnd2 . ";" . $rnd3 . ";" . $rnd4 . ";" . $rnd5 . ";" . $rnd6
+            ]);
         //dd($employeeId[0]->id);
         // $created2 = DB::table('field__employees')
         //     ->insert([

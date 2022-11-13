@@ -51,6 +51,8 @@ class InsertController extends Controller
         // ->join('cities','employees.city_id', '=', 'cities.id')
         // ->where('employees.id','=',$id);
 
+
+
         $update = DB::table('employees')
 
 
@@ -64,6 +66,7 @@ class InsertController extends Controller
                 'employees.description' => request('description')
 
             ]);
+        //dd($other, $id);
         $update2 = DB::table('field__employees')
             ->where('employee_id', '=', $id)
             ->where('id', '=', $other)

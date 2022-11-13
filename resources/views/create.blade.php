@@ -88,8 +88,7 @@ use Illuminate\Http\Request;
                         <div><br />
                             <label for="description" class="form-validation">Leírás: </label>
                             <textarea rows="7" cols="75%" id="description" name="description"
-                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
-                            </textarea>
+                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"></textarea>
                             @error('description')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                             @enderror

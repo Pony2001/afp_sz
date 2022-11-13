@@ -18,7 +18,7 @@ class EmployeeTableSeeder extends Seeder
     public function run()
     {
 
-        foreach (range(1, 1083) as $index) {
+        foreach (range(1, 1000) as $index) {
             $szolgaltato_array = array('20', '30', '70');
             $rnd2 = rand(0, 2);
             $szolgaltato = array_values($szolgaltato_array);
