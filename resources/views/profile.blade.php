@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\DB;
         <div class="col-md-6 mt-5">
 
 
-            <div>
-                <a href="{{ url()->previous() }}" class="btn btn-warning">&laquo; Vissza</a>
-            </div>
+           
 
             <div class="col-md-12 shadow bg-white rounded-5">
                 <hr />
@@ -84,6 +82,13 @@ use Illuminate\Support\Facades\DB;
                         @csrf
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
                         <h3>Vélemények</h3>
+                        @if(!(Auth::check()))
+                            <a href="{{url('login')}}"><p>A vélemény írásához jelentkezzen be !</p></a> 
+                        
+                        @endif
+                       
+                        @auth
+                       
                         <h6>Értékelés: </h6>
                         {{--  <div class="star_rating">
                                                                         <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
@@ -136,6 +141,7 @@ use Illuminate\Support\Facades\DB;
 
                         <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény
                             hozzáadása</button>
+                            @endauth
                     </form>
                 </div>
             </div>
