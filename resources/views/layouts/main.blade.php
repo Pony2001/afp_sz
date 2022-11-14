@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/star.css">
     <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/comment.css">
 
 
 
@@ -27,7 +26,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/inputState.js"></script>
-    <script src="/js/alert.js"></script>
     <script src="/js/star.js"></script>
     <script src="/js/comment.js"></script>
     <title>SzakiMaki</title>
