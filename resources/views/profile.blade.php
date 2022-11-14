@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 @extends('layouts.main')
 
 @section('content')
+    <script src="/js/star.js"></script>
+    <script src="/js/comment.js"></script>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 mt-5">
 
 
-           
+
 
             <div class="col-md-12 shadow bg-white rounded-5">
                 <hr />
@@ -82,15 +84,16 @@ use Illuminate\Support\Facades\DB;
                         @csrf
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
                         <h3>Vélemények</h3>
-                        @if(!(Auth::check()))
-                            <a href="{{url('login')}}"><p>A vélemény írásához jelentkezzen be !</p></a> 
-                        
+                        @if (!Auth::check())
+                            <a href="{{ url('login') }}">
+                                <p>A vélemény írásához jelentkezzen be !</p>
+                            </a>
                         @endif
-                       
+
                         @auth
-                       
-                        <h6>Értékelés: </h6>
-                        {{--  <div class="star_rating">
+
+                            <h6>Értékelés: </h6>
+                            {{--  <div class="star_rating">
                                                                         <button type="submit" class="star" name="value" value="&#9733;" >&#9734;</button>
                                                                         <button type="submit" class="star" name="value" value="&#9733;&#9733;">&#9734;</button>
                                                                         <button type="submit" class="star" name="value" value="&#9733;&#9733;&#9733;">&#9734;</button>
@@ -111,37 +114,37 @@ use Illuminate\Support\Facades\DB;
                                                                     --}}
 
 
-                        <div class="rating">
+                            <div class="rating">
 
-                            <input class="radio" type="radio" id="star5" name="value"
-                                value="&#11088;&#11088;&#11088;&#11088;&#11088;" /><label for="star5" class="full"
-                                title="Awesome"></label>
-                            <input class="radio" type="radio" id="star4" name="value"
-                                value="&#11088;&#11088;&#11088;&#11088;" /><label for="star4" class="full"></label>
-                            <input class="radio" type="radio" id="star3" name="value"
-                                value="&#11088;&#11088;&#11088;" /><label for="star3" class="full"></label>
-                            <input class="radio" type="radio" id="star2" name="value"
-                                value="&#11088;&#11088;" /><label for="star2" class="full"></label>
-                            <input class="radio" type="radio" id="star1" name="value" value="&#11088;" /><label
-                                for="star1" class="full"></label>
+                                <input class="radio" type="radio" id="star5" name="value"
+                                    value="&#11088;&#11088;&#11088;&#11088;&#11088;" /><label for="star5" class="full"
+                                    title="Awesome"></label>
+                                <input class="radio" type="radio" id="star4" name="value"
+                                    value="&#11088;&#11088;&#11088;&#11088;" /><label for="star4" class="full"></label>
+                                <input class="radio" type="radio" id="star3" name="value"
+                                    value="&#11088;&#11088;&#11088;" /><label for="star3" class="full"></label>
+                                <input class="radio" type="radio" id="star2" name="value"
+                                    value="&#11088;&#11088;" /><label for="star2" class="full"></label>
+                                <input class="radio" type="radio" id="star1" name="value" value="&#11088;" /><label
+                                    for="star1" class="full"></label>
 
-                        </div>
-                        <br>
-                        <br>
-                        <div>
-                            <hr>
-                        </div>
-                        <div>
-                            <h6>Vélemény: </h6>
-                            <p>
-                                <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
-                            </p>
-                        </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div>
+                                <hr>
+                            </div>
+                            <div>
+                                <h6>Vélemény: </h6>
+                                <p>
+                                    <textarea class="form-control" rows="4" cols="66.5%" id="comment" name="comment"></textarea>
+                                </p>
+                            </div>
 
 
-                        <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény
-                            hozzáadása</button>
-                            @endauth
+                            <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény
+                                hozzáadása</button>
+                        @endauth
                     </form>
                 </div>
             </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 ?>
 @extends('layouts.main')
 @section('content')
+    <script src="/js/inputState.js"></script>
     <div class="content">
 
 
