@@ -31,7 +31,7 @@
 
         
 
-        // if all inputs value = empty then disable the submit button 
+        // if all inputs value is empty then disable the submit button 
         const btnSubmit = document.getElementById('submit');
 
         // set the default state for submit button is dasbled
@@ -49,12 +49,12 @@
             const valueCounty = document.querySelector("#county").value;
             const valueCity = document.querySelector('#city').value;
 
-            console.log({
-                valueSearch,
-                valueField,
-                valueCounty,
-                valueCity
-            });
+            // console.log({
+            //     valueSearch,
+            //     valueField,
+            //     valueCounty,
+            //     valueCity
+            // });
             if (valueSearch !== ''|| valueField !== '' || valueCounty !== '' || valueCity !== '') {
                 btnSubmit.disabled = false;
             } else {

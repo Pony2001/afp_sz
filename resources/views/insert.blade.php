@@ -11,57 +11,89 @@ use Illuminate\Support\Facades\DB;
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 mt-5">
-
-
             <div>
-                <a href="{{ url()->previous() }}" class="btn btn-warning">Vissza</a>
-            </div>
-
-            <div>
-                <hr />
-
                 <div>
-                    <form action="{{ $employee[0]->other }}/edit" method="POST">
+                    <form action="{{ $employee[0]->other }}/edit" method="POST" class="form-validation">
                         @csrf
 
-                        <h3><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
-                                class="profileview profile-picture shadow bg-white" alt="" width="100"
-                                class="shadow bg-white rounded-5">
-                            <input type="text" value="{{ $employee[0]->name }}" id="name" name="name">
-                        </h3>
-                </div>
-                <hr />
-                <div>
+                        {{-- Név --}}
+                        <div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
+                                        class="profileview profile-picture shadow bg-white" alt="" width="100"
+                                        class="shadow bg-white rounded-5">
+                                </div>
+                                <div class="col-md-9 mt-4">
+                                    <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" />
+                                    @error('name')
+                                        <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
 
-                    <br>
-                    <h6>Szakma: </h6>
-                    <p><select name="field" id="fieldinsert">
-                            <option value="{{ $employee[0]->field_id }}">{{ $employee[0]->field }}</option>
-                            @foreach (\App\Models\Field::select('*')->get() as $fields)
-                                <option value="{{ $fields->id }}">{{ $fields->field }}</option>
-                            @endforeach
-                        </select>
-                    </p>
-                    <h6>Város: </h6>
-                    <p> <select name="city" id="cityinsert">
-                            <option value="{{ $employee[0]->city_id }}">{{ $employee[0]->city }}</option>
-                            @foreach (\App\Models\City::select('*')->get() as $cities)
-                                <option value="{{ $cities->id }}">{{ $cities->city }}</option>
-                            @endforeach
-                        </select></p>
-                    <h6>Telefonszám: </h6>
-                    <p> <input type="text" value="{{ $employee[0]->phone }}" id="phone" name="phone"></p>
-                    <h6>E-mail: </h6>
-                    <p><input type="text" value="{{ $employee[0]->email }}" id="email" name="email"></p>
-                </div>
+                        {{-- Szakma --}}
+                        <div><br />
+                            <label for="fieldinsert" class="form-validation">Szakma: </label>
+                            <select name="field" id="fieldinsert"
+                                class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }}">
+                                <option value="{{ $employee[0]->field_id }}">{{ $employee[0]->field }}</option>
+                                @foreach (\App\Models\Field::select('*')->get() as $fields)
+                                    <option value="{{ $fields->id }}">{{ $fields->field }}</option>
+                                @endforeach
+                            </select>
+                            @error('field')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
 
+                        {{-- Város --}}
+                        <div><br />
+                            <label for="cityinsert" class="form-validation">Város: </label>
+                            <select name="city" id="cityinsert"
+                                class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}">
+                                <option value="{{ $employee[0]->city_id }}">{{ $employee[0]->city }}</option>
+                                @foreach (\App\Models\City::select('*')->get() as $cities)
+                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                                @endforeach
+                            </select>
+                            @error('city')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                <div>
-                    <h6>Leírás: </h6>
-                    <p>
-                        <textarea rows="7" cols="75%" id="description" name="description">{{ $employee[0]->description }}</textarea>
-                    </p>
+                        {{-- Telefon --}}
+                        <div><br />
+                            <label for="phone" class="form-validation">Telefonszám: </label>
+                            <input type="number" value="{{ $employee[0]->phone }}" id="phone" name="phone"
+                                class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" />
+                            @error('phone')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- E-mail --}}
+                        <div><br />
+                            <label for="email" class="form-validation">E-mail: </label>
+                            <input type="text" value="{{ $employee[0]->email }}" id="email" name="email"
+                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" />
+                            @error('email')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Leírás --}}
+                        <div><br />
+                            <label for="description" class="form-validation">Leírás: </label>
+                            <textarea rows="7" cols="75%" id="description" name="description"
+                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">{{ $employee[0]->description }}</textarea>
+                            @error('description')
+                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
+                            @enderror
+                        </div>
                 </div>
                 <hr />
                 <div>

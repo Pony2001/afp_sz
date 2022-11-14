@@ -52,6 +52,15 @@ class InsertController extends Controller
         // ->where('employees.id','=',$id);
 
 
+        request()->validate([
+            'name' => ['required'],
+            'field' => ['required'],
+            'city' => ['required'],
+            'phone' => ['required', 'unique:employees'],
+            'email' => ['required', 'email', 'unique:employees'],
+            'description' => ['required']
+        ]);
+
 
         $update = DB::table('employees')
 
