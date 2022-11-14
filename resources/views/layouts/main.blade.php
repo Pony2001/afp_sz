@@ -34,7 +34,7 @@
 </head>
 
 <body style="background-color: gray">
-    <div class='container'>
+    <div class='container shadow'>
         <header>
             @include('layouts.header')
 

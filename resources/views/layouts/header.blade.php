@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar shadow">
     <div class="logo">
         <a id="home" href="/" style="text-decoration: none; color: #ffcc00;">
             <img src="/images/logo.png" alt="" width="75" class="logo-img"> SzakiMaki
