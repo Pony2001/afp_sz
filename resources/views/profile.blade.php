@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\DB;
 
                 <hr />
                 <div>
-                    <h2>Referenciák</h2>
+                    <h2 align="center">Referenciák</h2>
                     <br>
 
                     <p align="center">
@@ -83,11 +83,13 @@ use Illuminate\Support\Facades\DB;
                     <form action="{{ route('comment.create') }}" method="POST">
                         @csrf
                         <input type="text" value="{{ $emp_id }}" id="id" name="id" hidden>
-                        <h3>Vélemények</h3>
+                        <h3 align="center">Vélemények</h3>
                         @if (!Auth::check())
-                            <a href="{{ url('login') }}">
-                                <p>A vélemény írásához jelentkezzen be !</p>
-                            </a>
+                            <div align="center">
+                                <button id="toLogin" name="toLogin" type="submit" class="btn btn-info">
+                                    A vélemény írásához jelentkezzen be!
+                                </button>
+                            </div>
                         @endif
 
                         @auth
