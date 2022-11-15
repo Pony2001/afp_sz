@@ -7,6 +7,20 @@
         const inputCounty = document.querySelector("#county");
         const inputCity = document.querySelector("#city");
 
+
+        if(inputSearch.value !== ""){
+            inputField.disabled = true; // return disabled as true whenever the input field is not empty
+            inputField.value = "";      // return value as empty whenever the input field is not empty
+            inputCounty.disabled = true; 
+            inputCounty.value = "";
+            inputCity.disabled = true;
+            inputCity.value = "";
+        }else{
+            inputField.disabled = false;
+            inputCounty.disabled = false; 
+            inputCity.disabled = false;
+        }
+
         // the default state is disabled
         inputCity.disabled = true;
         // alternative is to use "change" - explained below
@@ -28,6 +42,26 @@
                 inputCity.value = "";
             }
         }
+
+
+
+        /*
+        inputField.addEventListener("change", clearSearch);
+        inputCounty.addEventListener("change", clearSearch);
+        inputCity.addEventListener("change", clearSearch);
+
+        function clearSearch(){
+            const clearSearch2 = document.querySelector("#search");
+            const valueField2 = document.querySelector("#field").value;
+            const valueCounty2 = document.querySelector("#county").value;
+            const valueCity2 = document.querySelector('#city').value;
+
+            if (valueField2 !== '' || valueCounty2 !== '' || valueCity2 !== '') {
+                clearSearch.value = "";
+                console.log({clearSearch});
+            }
+        }
+        */
 
         
 
