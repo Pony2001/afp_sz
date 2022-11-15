@@ -19,17 +19,22 @@ use Illuminate\Support\Facades\DB;
                 <h1 class="welcome">Üdvözöllek az oldalon!</h1>
                 <hr>
                 <p>
-                    Ez az oldal azért jött létre, hogy szakembereket tudj keresni, szűrők segítségével. Így a <strong>legjobb
-                    szakember</strong>t tudod kiválasztani saját <strong>igényeidhez megfelelően</strong>.
+                    Ez az oldal azért jött létre, hogy szakembereket tudj keresni, szűrők segítségével. Így a
+                    <strong>legjobb
+                        szakember</strong>t tudod kiválasztani saját <strong>igényeidhez megfelelően</strong>.
                 </p>
                 <hr>
                 <p>
-                    A kereső mezőbe írva szűrhet a szakemberek nevére, e-mail címére, telefonszámára illetve leírására, 
+                    A kereső mezőbe írva szűrhet a szakemberek nevére, e-mail címére, telefonszámára illetve leírására,
                     vagy
-                    használhatja <strong>előre beállított szűrő</strong>inket amely <strong>gyorsabb keresés</strong>t biztosít. 
-                    Mint például a szakmaválasztó,<strong> ahol csak olyan szakmák</strong> jelennek meg, amelyhez társul szakember az adatbázisunkban.
-                    Mind emellett Magyarország megyéi alapján is szűrhet, pontosabb szűréshez lehetősege van használni a <strong>megyék</strong>hez 
-                    hozzá rendelt <strong>városok</strong>at/<strong>faluk</strong>at, természetesen ebben az esetben is csak olyan megyék és városok <strong>jelennek meg</strong> 
+                    használhatja <strong>előre beállított szűrő</strong>inket amely <strong>gyorsabb keresés</strong>t
+                    biztosít.
+                    Mint például a szakmaválasztó,<strong> ahol csak olyan szakmák</strong> jelennek meg, amelyhez társul
+                    szakember az adatbázisunkban.
+                    Mind emellett Magyarország megyéi alapján is szűrhet, pontosabb szűréshez lehetősege van használni a
+                    <strong>megyék</strong>hez
+                    hozzá rendelt <strong>városok</strong>at/<strong>faluk</strong>at, természetesen ebben az esetben is
+                    csak olyan megyék és városok <strong>jelennek meg</strong>
                     Önnek, <strong>amelyhez társul szakember</strong> az adatbázisunkban.
                 </p>
                 <p>
@@ -56,7 +61,7 @@ use Illuminate\Support\Facades\DB;
                         <label for="search" class="form-validation">Kereső</label>
                         <input type="text" name="search" id="search" value="{{ old('search') }}"
                             class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}"
-                            placeholder="Pl.: Fal festés">
+                            placeholder="Szakembert keres?">
 
 
                         @error('search')
@@ -90,7 +95,7 @@ use Illuminate\Support\Facades\DB;
                             @if (!old('field'))
                                 <option value="">Válasszon szakmát</option>
                             @else
-                                <option value="{{ old('field') }}">{{ $oldFields[old('field')-1]->field }}</option>
+                                <option value="{{ old('field') }}">{{ $oldFields[old('field') - 1]->field }}</option>
                             @endif
 
                             @foreach ($fields as $value)
@@ -105,7 +110,7 @@ use Illuminate\Support\Facades\DB;
                             <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     {{-- Megyeválasztó --}}
                     <div>
                         <label for="" class="form-validation mt-3">Megye</label>

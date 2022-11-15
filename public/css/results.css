@@ -53,6 +53,14 @@
 .description{
   font-size: 14px;
 }
+.valami{
+  width: 75%;
+  height: 100%;
+}
+.rotated{
+  margin-bottom: 350%;
+  transform: rotate(90deg);
+}
 
 
 
