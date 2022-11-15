@@ -153,8 +153,30 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'search' => [
+            'min' => 'A :attribute mezőbe legalább :min karakternek kell lennie.',
+            'max' => 'A :attribute mezőbe nem lehet több mint :max karakter.',
+        ],
+        'name' => [
+            'required' => 'A :attribute mező nincs kitöltve.',
+        ],
+        'email' => [
+            'required' => 'Az :attribute mező nincs kitöltve.',
+            'unique' => 'Ez az :attribute már létezik.',
+        ],
+        'password' => [
+            'required' => 'A :attribute mező nincs kitöltve.',
+            'min' => 'A jelszónak legalább :min karakterből kell állnia.',
+            'confirmed' => 'A :attribute megerősítése nem egyezik.',
+        ],
+        'phone' => [
+            'required' => 'A :attribute mező nincs kitöltve.',
+            'numeric' => 'A :attribute mezőnek számokból kell állnia',
+            'unique' => 'Ez a :attribute már létezik.',
+        ],
+        'description' => [
+            'required' => 'A :attribute mező nincs kitöltve.',
+            'max' => 'A :attribute mezőbe nem lehet több mint :max karakter.',
         ],
     ],
 
@@ -169,6 +191,16 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'search' => 'kereső',
+        'field' => 'szakma',
+        'city' => 'város',
+        'county' => 'megye',
+        'name' => 'név',
+        'email' => 'e-mail cím',
+        'password' => 'jelszó',
+        'phone' => 'telefonszám',
+        'description' => 'leírás',
+    ],
 
 ];

@@ -98,6 +98,16 @@ class MainController extends Controller
         return $results;
     }
 
+    public function getOldFields()
+    {
+
+        $results = DB::table('fields')
+            ->select('id', 'field')
+            ->get();
+
+        return $results;
+    }
+
     public function getFields()
     {
 
@@ -119,7 +129,8 @@ class MainController extends Controller
             'home',
             [
                 'counties' => $this->getCounties(),
-                'fields' => $this->getFields()
+                'fields' => $this->getFields(),
+                'oldFields' => $this->getOldFields()
             ]
         );
     }
