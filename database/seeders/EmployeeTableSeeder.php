@@ -37,6 +37,21 @@ class EmployeeTableSeeder extends Seeder
             $employees->description = fake()->text(200);
             $employees->save();
         }
+            $employees = new employee;
+            $employees->name = 'Bata Krisztián';
+            $employees->city_id = City::where('city','like','Aszód')->first()->id;
+            $employees->email = 'bata.krisztian97@gmail.com';
+            $employees->phone = '06206107956';
+            $employees->description = 'Egy a Weboldal készítői közül.';
+            $employees->save();
+
+            $employees = new employee;
+            $employees->name = 'Csikós Zsolt Csaba';
+            $employees->city_id = City::where('city','like','Jászárokszállás')->first()->id;
+            $employees->email = 'csikoszs21@gmail.com';
+            $employees->phone = '06202825192';
+            $employees->description = 'Egy a Weboldal készítői közül.';
+            $employees->save();
     }
     //Telefonszam 20 30 70
 

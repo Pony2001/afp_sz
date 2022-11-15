@@ -25,17 +25,11 @@ use Illuminate\Support\Facades\DB;
             @foreach ($results as $employee)
                 <div class="col-md-2">
                 </div>
-                <div class="col-md-8 shadow bg-white rounded-5 listss">
+                <div class="col-md-8 shadow bg-orange rounded-5 listss">
                     <form action="/profile/{{ $employee->id }}" class="profile">
-                        <style>
-                            table,
-                            tr,
-                            td,
-                            th {
-                                border: solid 0px;
-                            }
-                        </style>
-                        <table>
+                        <div class="row">
+                            <div class="col-md-10">
+<table>
                             <tr>
                                 <td rowspan="4">
                                     <img src="https://picsum.photos/id/{{ $employee->id }}/200"
@@ -56,15 +50,16 @@ use Illuminate\Support\Facades\DB;
                                         @endforeach
 
                                     </td>
-                                    <td rowspan="4"><button class="btn btn-warning shadow rounded-5"
-                                            type="submit">Megtekint</button>
+                                    <td rowspan="4">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="ps-2">
                                         @foreach (\App\Models\Field_Employee::where('employee_id', '=', '' . $employee->id)->distinct()->get() as $fieldsId)
                                             @foreach (\App\Models\Field::where('id', '=', '' . $fieldsId->field_id)->get() as $fields)
-                                                <span class="field shadow bg-white">{{ $fields->field }}</span>
+                                                <div class="mb-2 me-1 float-left">
+                                                    <span class="field shadow bg-white">{{ $fields->field }}</span>
+                                                </div>
                                             @endforeach
                                         @endforeach
                                     </td>
@@ -76,6 +71,16 @@ use Illuminate\Support\Facades\DB;
                                 </tr>
                             </div>
                         </table>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="ms-5">
+                                    <button class="btn btn-warning shadow rounded-5 float-left"
+                                    type="submit">Megtekint</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
                     </form>
                 </div>
 

@@ -56,8 +56,8 @@ class InsertController extends Controller
             'name' => ['required'],
             'field' => ['required'],
             'city' => ['required'],
-            'phone' => ['required', 'unique:employees'],
-            'email' => ['required', 'email', 'unique:employees'],
+            'phone' => ['required', 'numeric'],
+            'email' => ['required', 'email'],
             'description' => ['required']
         ]);
 

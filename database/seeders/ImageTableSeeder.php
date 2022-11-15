@@ -16,7 +16,7 @@ class ImageTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 1000) as $index) {
+        foreach (range(1, 1002) as $index) {
             $rnd1 = random_int(1, 1083);
             $rnd2 = random_int(1, 1083);
             $rnd3 = random_int(1, 1083);
