@@ -23,26 +23,13 @@ use Illuminate\Http\Request;
                     <h1>1. lépés</h1>
                 </div>
                 <div>
-                    {{--
-                        Create:
-
-                        Ha a validate sikeres töltse fel az adatokat az adatbázisba,
-                        majd irányítsa át a szakma választó oldalra.
-
-                        Kérdezzük meg a felhasználótól hány szakmája van,
-                        majd ez alapján generáljunk annyi legürdülő menüt.
-                        (?maximum 3 szakmája lehet?)
-
-                        Végül töltse fel a kiválasztott szakmákat az adatbázisba,
-                        majd irányítsa át a főmenübe.
-                     --}}
                     <form action="{{ route('employee.create') }}" method="POST" class="form-validation">
                         @csrf
 
                         {{-- Név --}}
                         <div><br />
                             <label for="name" class="form-validation">Név: </label>
-                            <input type="text" id="name" name="name"
+                            <input type="text" id="name" name="name" value="{{ old('name') }}"
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" />
                             @error('name')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
@@ -52,7 +39,7 @@ use Illuminate\Http\Request;
                         {{-- Város --}}
                         <div><br />
                             <label for="city2" class="form-validation">Város: </label>
-                            <select name="city" id="city2"
+                            <select name="city" id="city2" value="{{ old('city') }}"
                                 class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" />
                             <option value="">Válasszon várost</option>
                             @foreach (\App\Models\City::select('*')->get() as $cities)
@@ -67,7 +54,7 @@ use Illuminate\Http\Request;
                         {{-- Telefon --}}
                         <div><br />
                             <label for="phone" class="form-validation">Telefonszám: </label>
-                            <input type="text" id="phone" name="phone"
+                            <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
                                 class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" />
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
@@ -77,7 +64,7 @@ use Illuminate\Http\Request;
                         {{-- E-mail --}}
                         <div><br />
                             <label for="email" class="form-validation">E-mail: </label>
-                            <input type="text" id="email" name="email"
+                            <input type="text" id="email" name="email" value="{{ old('email') }}"
                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" />
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
@@ -88,7 +75,7 @@ use Illuminate\Http\Request;
                         <div><br />
                             <label for="description" class="form-validation">Leírás: </label>
                             <textarea rows="7" cols="75%" id="description" name="description"
-                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"></textarea>
+                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                             @enderror

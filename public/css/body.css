@@ -1,0 +1,12 @@
+#page-container {
+   position: relative;
+   min-height: 84.5vh;
+ }
+
+ #footer {
+   position: absolute;
+   bottom: 0;  
+   margin-left: -15px;
+   height: 1rem;         /* Footer height */
+   width: 100%;   
+ }

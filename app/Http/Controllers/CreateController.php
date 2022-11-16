@@ -20,9 +20,10 @@ class CreateController extends Controller
         request()->validate([
             'name' => ['required'],
             'city' => ['required'],
+            'description' => ['required'],
             'phone' => ['required', 'unique:employees'],
             'email' => ['required', 'unique:employees'],
-            'description' => ['required']
+
         ]);
 
 

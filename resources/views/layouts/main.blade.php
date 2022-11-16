@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/body.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/results.css">
     <link rel="stylesheet" href="/css/home.css">
@@ -32,7 +33,7 @@
 </head>
 
 <body style="background-color: gray">
-    <div class='container shadow'>
+    <div class='container shadow' id="page-container">
         <header>
             @include('layouts.header')
 
@@ -40,7 +41,8 @@
         <content>
             @yield('content')
         </content>
-        <footer class="py-3 my-4">
+
+        <footer id="footer">
             @include('layouts.footer')
         </footer>
     </div>

@@ -167,11 +167,12 @@ use Illuminate\Support\Facades\DB;
 
             <div class="col-md-3"></div>
         </div>
-        <script>
-            var msg = '{{ Session::get('alert') }}';
-            var exist = '{{ Session::has('alert') }}';
-            if (exist) {
-                alert(msg);
-            }
-        </script>
-    @endsection
+    </div>
+    <script>
+        var msg = '{{ Session::get('alert') }}';
+        var exist = '{{ Session::has('alert') }}';
+        if (exist) {
+            alert(msg);
+        }
+    </script>
+@endsection
