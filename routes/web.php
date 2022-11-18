@@ -49,7 +49,9 @@ Route::get('/profile/{id}', [Controllers\ProfileController::class, 'edit_functio
 Route::middleware('auth')->group(function () {
     // for users:
     Route::post('/profile/success', [Controllers\ProfileController::class, 'create_comment'])->name('comment.create');
+});
 
+Route::middleware('auth', 'admin')->group(function () {
     // for admins: 
     Route::get('/admin', [Controllers\AdminController::class, 'admin'])->name('admin');
     Route::get('/admin/{id}', [Controllers\AdminController::class, 'delete'])->name('employee.delete');
