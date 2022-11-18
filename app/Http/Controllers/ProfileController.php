@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use App\Models\Employee;
+use App\Http\Controllers\Auth;
 
 class ProfileController extends Controller
 {
@@ -38,33 +39,33 @@ class ProfileController extends Controller
             ->orderBy('employees.id')
             ->get();
 
-         $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();   
-          
-       
-            $ref = explode( ';', (string)$image);
-         
-
-               
-          //var_dump( explode( ',', $input1 ) ); splittelés
+        $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();
 
 
-        $comment = DB::table('comments')->select('value', 'comment')
+        $ref = explode(';', (string)$image);
+
+
+
+        //var_dump( explode( ',', $input1 ) ); splittelés
+
+
+        $comment = DB::table('comments')->select('value', 'comment', 'name')
             ->orderByDesc('value')
             ->where('employee_id', '=', $id)
             ->get();
         // $emp_id = DB::table('employees')->select('id')->where('id','=',$id)->get();
         return view('profile', ['employee' => $employee, 'comment' => $comment, 'emp_id' => $id, 'ref' => $ref]);
-
-     
     }
 
 
     public function create_comment()
     {
+        $name= Auth()->user();
         $created = DB::table('comments')
             ->insert([
                 'created_at' => date(now()),
                 'updated_at' => date(now()),
+                'name' => $name->name,
                 'employee_id' => request('id'),
                 'value' => request('value'),
                 'comment' => request('comment')

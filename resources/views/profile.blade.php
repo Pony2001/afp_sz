@@ -156,6 +156,7 @@ use Illuminate\Support\Facades\DB;
 
             @foreach ($comment as $item)
                 <div class="col-md-12 shadow bg-white rounded-5 mt-3 mb-3 pt-3 pb-3">
+                    <p>Név: {{$item->name}}</p>
                     <p>Értékelés: {{ $item->value }}</p>
                     <p>Vélemény: {{ $item->comment }}</p>
                 </div>

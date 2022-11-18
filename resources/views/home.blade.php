@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\DB;
                     szakember az adatbázisunkban.
                     Mind emellett Magyarország megyéi alapján is szűrhet, pontosabb szűréshez lehetősege van használni a
                     <strong>megyék</strong>hez
-                    hozzá rendelt <strong>városok</strong>at/<strong>faluk</strong>at, természetesen ebben az esetben is
+                    hozzá rendelt <strong>városok</strong>at/<strong>falvak</strong>at, természetesen ebben az esetben is
                     csak olyan megyék és városok <strong>jelennek meg</strong>
                     Önnek, <strong>amelyhez társul szakember</strong> az adatbázisunkban.
                 </p>
