@@ -38,9 +38,7 @@ use Illuminate\Support\Facades\DB;
 
 
                     <h6>Szakma: </h6>
-                    @foreach ($employee as $employees)
-                        {{ $employees->field }},
-                    @endforeach
+                    {{ $field }}
                     <p></p>
                     <h6>Telefonszám: </h6>
                     <p><a href="tel:{{ $employee[0]->phone }}">{{ $employee[0]->phone }}</a></p>
