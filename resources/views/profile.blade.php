@@ -143,9 +143,15 @@ use Illuminate\Support\Facades\DB;
                                 </p>
                             </div>
 
+                            <div class="mb-5">
+                                <button id="add" name="add" type="submit" class="btn btn-warning float-left"
+                                    title="hello">Új
+                                    vélemény
+                                    hozzáadása</button>
+                                <p class="float-left ms-1 mt-2 text-danger" id="tooltip-text">Adjon értékelést.</p>
+                                <p class="float-left ms-1 mt-2 text-danger" id="tooltip-text2">Adjon véleményt.</p>
+                            </div>
 
-                            <button id="add" name="add" type="submit" class="btn btn-warning">Új vélemény
-                                hozzáadása</button>
                         @endauth
                     </form>
                 </div>
@@ -156,7 +162,7 @@ use Illuminate\Support\Facades\DB;
 
             @foreach ($comment as $item)
                 <div class="col-md-12 shadow bg-white rounded-5 mt-3 mb-3 pt-3 pb-3">
-                    <p>Név: {{$item->name}}</p>
+                    <p>Név: {{ $item->name }}</p>
                     <p>Értékelés: {{ $item->value }}</p>
                     <p>Vélemény: {{ $item->comment }}</p>
                 </div>

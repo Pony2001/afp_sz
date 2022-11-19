@@ -17,6 +17,12 @@ $(document).ready(function() {
      inputRadio4.addEventListener("change", inputEmpty2);
      inputRadio5.addEventListener("change", inputEmpty2);
 
+     const tooltip = document.getElementById("tooltip-text");
+         const tooltip2 = document.getElementById("tooltip-text2");
+
+         tooltip.hidden = true;
+         tooltip2.hidden = true;
+
      function inputEmpty2() {
         const radio1 = document.getElementById('star1').checked;
         const radio2 = document.getElementById('star2').checked;;
@@ -35,10 +41,25 @@ $(document).ready(function() {
              valueComment,
              valueAdd
          });
+         
+
+
+         
          if ((radio1 === true || radio2 === true  || radio3 === true || radio4 === true || radio5 === true ) && valueComment !== '') {
              btnSubmit2.disabled = false;
+             tooltip2.hidden = true;
+             tooltip2.hidden = true;
          } else {
              btnSubmit2.disabled = true;
+             if (valueComment !== ''){
+                //Adjon értékelést.
+                tooltip.hidden = false;
+                tooltip2.hidden = true;
+             } else {
+                //Adjon véleményt.
+                tooltip.hidden = true;
+                tooltip2.hidden = false;
+             }
          }
      }
 
