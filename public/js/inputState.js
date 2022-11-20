@@ -112,38 +112,39 @@
                 cityId.disabled = true;
             }
         }
-        
-        $('#county').on('change', function() {
-            get_city_by_county();
-            cityState();
-        });
 
-        function get_city_by_county() {
-            var county_id = $('#county').val();
-            var token = $('[name="_token"]').val();
+        inputCounty.addEventListener("change", getCitiesByCounty);
 
-            // const inputToken = document.getElementById('token').value;
-            // console.log(inputToken);
+        function getCitiesByCounty(){
+            const METHOD = 'GET';
+            const DATA = document.getElementById('county').value;
+            const TOKEN = document.getElementById('token').value;
+            const URL = '/getCities?county_id=' + DATA;
+            
 
-
-
-            $.ajax({
-                "type": 'GET',
-                "url": '/getCities',
-                "data": {
-                    "county_id": county_id
-                },
-                success: function(response) {
-                    $('#city').html(null);
-                    $('#city').append($('<option value="">Válassz várost</option>', {}));
-                    //$('#city').attr("disabled", true);
-                    for (var i = 0; i < response.length; i++) {
-                        $('#city').append($('<option>', {
-                            value: response[i].id,
-                            text: response[i].city
-                        }));
-                    }
+            fetch(URL, {
+                method: METHOD,
+                headers: { 
+                    'Authorization': 'Bearer ' + TOKEN 
                 }
-            });
+              }).then((response) => {
+                if(response.status !== 200){
+                  throw new Error('A kérés végrehajtása sikertelen, kód: ' + response.status)  
+                }
+                return response.json();
+              }).then((data) => {
+
+                var option = '<option value="">Válassz várost</option>';
+
+                for (let i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].id + '">' + data[i].city + '</option>';
+                }
+
+                document.getElementById('city').innerHTML = option;
+
+              }).then(cityState());
+            
         }
+
+
     });
