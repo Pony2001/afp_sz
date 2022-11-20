@@ -9,11 +9,15 @@
 
 
         if(inputSearch.value !== ""){
-            inputField.disabled = true; // return disabled as true whenever the input field is not empty
-            inputField.value = "";      // return value as empty whenever the input field is not empty
+
+            // return disabled as true whenever the input field is not empty
+            inputField.disabled = true; 
             inputCounty.disabled = true; 
-            inputCounty.value = "";
             inputCity.disabled = true;
+
+            // return value as empty whenever the input field is not empty
+            inputField.value = "";      
+            inputCounty.value = "";
             inputCity.value = "";
         }else{
             inputField.disabled = false;
@@ -23,54 +27,42 @@
 
         // the default state is disabled
         inputCity.disabled = true;
-        // alternative is to use "change" - explained below
+
+        // call the inputState function on "keyup"
         inputSearch.addEventListener("keyup", inputState);
 
 
         function inputState() {
             if (document.querySelector("#search").value === "") {
-                inputField.disabled = false; // enable the inputs once the inputSearch field has not content
-                
+
+                // enable the inputs once the inputSearch field has not content, but set the inputCity to disabled
+                inputField.disabled = false;
                 inputCounty.disabled = false;
+
                 inputCity.disabled = true;
+
             } else {
                 var option = '<option value="">Előbb válassz megyét</option>';
                 document.getElementById('city').innerHTML = option;
-                inputField.disabled = true; // return disabled as true whenever the input field is not empty
-                inputField.value = "";      // return value as empty whenever the input field is not empty
+
+                // return disabled as true whenever the input field is not empty
+                inputField.disabled = true; 
                 inputCounty.disabled = true; 
-                inputCounty.value = "";
                 inputCity.disabled = true;
+
+                // return value as empty whenever the input field is not empty
+                inputField.value = "";      
+                inputCounty.value = "";
                 inputCity.value = "";
             }
         }
-
-
-
-        /*
-        inputField.addEventListener("change", clearSearch);
-        inputCounty.addEventListener("change", clearSearch);
-        inputCity.addEventListener("change", clearSearch);
-
-        function clearSearch(){
-            const clearSearch2 = document.querySelector("#search");
-            const valueField2 = document.querySelector("#field").value;
-            const valueCounty2 = document.querySelector("#county").value;
-            const valueCity2 = document.querySelector('#city').value;
-
-            if (valueField2 !== '' || valueCounty2 !== '' || valueCity2 !== '') {
-                clearSearch.value = "";
-                console.log({clearSearch});
-            }
-        }
-        */
 
         
 
         // if all inputs value is empty then disable the submit button 
         const btnSubmit = document.getElementById('submit');
 
-        // set the default state for submit button is dasbled
+        // set the default state for submit button: disabled
         btnSubmit.disabled = true;
         
         inputSearch.addEventListener("keyup", inputEmpty);
@@ -85,15 +77,11 @@
             const valueCounty = document.querySelector("#county").value;
             const valueCity = document.querySelector('#city').value;
 
-            // console.log({
-            //     valueSearch,
-            //     valueField,
-            //     valueCounty,
-            //     valueCity
-            // });
             if (valueSearch !== ''|| valueField !== '' || valueCounty !== '' || valueCity !== '') {
+                // enable the submit button once an input is not empty
                 btnSubmit.disabled = false;
             } else {
+                // return disabled as true whenever an input is empty
                 btnSubmit.disabled = true;
             }
         }
@@ -105,31 +93,40 @@
 
         async function cityState() {
 
-            const countyId = document.getElementById('county').value;
-            const cityId = document.getElementById('city');
+            const countySelect = document.getElementById('county').value;
+            const citySelect = document.getElementById('city');
 
-            if (countyId !== '') {
+            if (countySelect !== '') {
+                // enable the citySelect once the getCitiesByCounty asynchronous function succsessfully completed
                 await getCitiesByCounty();
-                cityId.disabled = false;
+                citySelect.disabled = false;
             } else {
+                // return disabled as true whenever the countySelect is empty
                 var option = '<option value="">Előbb válassz megyét</option>';
-                document.getElementById('city').innerHTML = option;
-                cityId.disabled = true;
+                citySelect.innerHTML = option;
+                citySelect.disabled = true;
             }
         }
 
         async function getCitiesByCounty(){
+
             const URL = '/getCities?county_id=' + document.getElementById('county').value;
 
-            const response = await fetch(URL);
+            // request to call the getCities function from CityController.php
+            const response = await fetch(URL); // waits until the request completes
+
+            // return a promise
             const data = await response.json();
 
+            // set a default text with null of value
             var option = '<option value="">Válassz várost</option>';
 
+            // fill the text and value with data
             for (let i = 0; i < data.length; i++) {
                 option += '<option value="' + data[i].id + '">' + data[i].city + '</option>';
             }
 
+            // insert between the <select id="city"></select> tags
             document.getElementById('city').innerHTML = option;   
         }
 
