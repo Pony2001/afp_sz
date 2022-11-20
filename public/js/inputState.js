@@ -34,6 +34,8 @@
                 inputCounty.disabled = false;
                 inputCity.disabled = true;
             } else {
+                var option = '<option value="">Előbb válassz megyét</option>';
+                document.getElementById('city').innerHTML = option;
                 inputField.disabled = true; // return disabled as true whenever the input field is not empty
                 inputField.value = "";      // return value as empty whenever the input field is not empty
                 inputCounty.disabled = true; 
@@ -99,52 +101,36 @@
 
         // if county input not empty call the getCities function from CityController.php
         
-        function cityState() {
+        inputCounty.addEventListener("change", cityState);
+
+        async function cityState() {
 
             const countyId = document.getElementById('county').value;
             const cityId = document.getElementById('city');
-            //console.log({countyId});
-
 
             if (countyId !== '') {
+                await getCitiesByCounty();
                 cityId.disabled = false;
             } else {
+                var option = '<option value="">Előbb válassz megyét</option>';
+                document.getElementById('city').innerHTML = option;
                 cityId.disabled = true;
             }
         }
 
-        inputCounty.addEventListener("change", getCitiesByCounty);
+        async function getCitiesByCounty(){
+            const URL = '/getCities?county_id=' + document.getElementById('county').value;
 
-        function getCitiesByCounty(){
-            const METHOD = 'GET';
-            const DATA = document.getElementById('county').value;
-            const TOKEN = document.getElementById('token').value;
-            const URL = '/getCities?county_id=' + DATA;
-            
+            const response = await fetch(URL);
+            const data = await response.json();
 
-            fetch(URL, {
-                method: METHOD,
-                headers: { 
-                    'Authorization': 'Bearer ' + TOKEN 
-                }
-              }).then((response) => {
-                if(response.status !== 200){
-                  throw new Error('A kérés végrehajtása sikertelen, kód: ' + response.status)  
-                }
-                return response.json();
-              }).then((data) => {
+            var option = '<option value="">Válassz várost</option>';
 
-                var option = '<option value="">Válassz várost</option>';
+            for (let i = 0; i < data.length; i++) {
+                option += '<option value="' + data[i].id + '">' + data[i].city + '</option>';
+            }
 
-                for (let i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].id + '">' + data[i].city + '</option>';
-                }
-
-                document.getElementById('city').innerHTML = option;
-
-              }).then(cityState());
-            
+            document.getElementById('city').innerHTML = option;   
         }
-
 
     });
