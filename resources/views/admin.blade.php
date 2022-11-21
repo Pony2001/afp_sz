@@ -140,8 +140,9 @@ use Illuminate\Support\Facades\DB;
     --}}
     <div style="display: block; margin:0 auto">
         <h2 align="center">Zsoltinak speciálba</h2>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..." title="Type in a name">
         <div align="right"><a href="create"><button class="btn btn-warning">Új szaki hozzáadása</button></a></div>
-        <table class="table table-striped table-dark ">
+        <table class="table table-striped table-dark " id="myTable">
             <tr>
                 <th>ID</th>
 
@@ -182,4 +183,24 @@ use Illuminate\Support\Facades\DB;
             alert(msg);
         }
     </script>
+    <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1] ;
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
 @endsection

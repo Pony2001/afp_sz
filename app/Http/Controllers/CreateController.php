@@ -21,7 +21,7 @@ class CreateController extends Controller
             'name' => ['required'],
             'city' => ['required'],
             'description' => ['required'],
-            'phone' => ['required', 'unique:employees'],
+            'phone' => ['required', 'unique:employees','regex:/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g','not_regex:/[a-z]/|min:9'],
             'email' => ['required', 'unique:employees'],
 
         ]);

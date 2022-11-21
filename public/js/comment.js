@@ -47,7 +47,7 @@ $(document).ready(function() {
          
          if ((radio1 === true || radio2 === true  || radio3 === true || radio4 === true || radio5 === true ) && valueComment !== '') {
              btnSubmit2.disabled = false;
-             tooltip2.hidden = true;
+             tooltip.hidden = true;
              tooltip2.hidden = true;
          } else {
              btnSubmit2.disabled = true;
@@ -60,6 +60,7 @@ $(document).ready(function() {
                 tooltip.hidden = true;
                 tooltip2.hidden = false;
              }
+             
          }
      }
 
