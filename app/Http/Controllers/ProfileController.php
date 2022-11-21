@@ -96,6 +96,6 @@ class ProfileController extends Controller
                 'value' => request('value'),
                 'comment' => request('comment')
             ]);
-        return redirect()->back()->with('alert', 'Új vélemény hozzádva!');
+        return redirect()->back()->with('alert', 'Új vélemény hozzáadva!');
     }
 }

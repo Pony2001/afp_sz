@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
             </div>
             <div class="col-md-8 alert alert-danger">
                 <h1 align="center">Nincs találat.</h1>
-                <h5 align="center"><a href="{{ url()->previous() }}" class="btn btn-danger">Vissza a szűrükhöz</a></h5>
+                <h5 align="center"><a href="{{ url()->previous() }}" class="btn btn-danger">Vissza a szűrőkhöz</a></h5>
             </div>
         @else
             @foreach ($results as $employee)
