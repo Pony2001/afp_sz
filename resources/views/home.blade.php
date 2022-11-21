@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <div class="col-md-6" align="center">
-                <h1 class="welcome">Üdvözöllek az oldalon!</h1>
+                @auth
+                    <h1 class="welcome">Üdv {{ Auth::user()->name }}!</h1>
+                @else
+                    <h1 class="welcome">Üdvözöllek az oldalon!</h1>
+                @endauth
                 <hr>
                 <p>
                     Ez az oldal azért jött létre, hogy szakembereket tudj keresni, szűrők segítségével. Így a

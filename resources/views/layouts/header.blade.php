@@ -5,15 +5,16 @@
         </a>
     </div>
     <div>
+
+        @if (Auth::check() && Auth::user()->is_admin == 1)
+            <form action="{{ route('admin') }}" method="GET" style="float: left">
+                @csrf
+                <button type="submit" class="btn btn-outline-warning ms-2">
+                    Irányítópult
+                </button>
+            </form>
+        @endif
         @auth
-            @if (Auth::user()->email == "admin@admin.adm")
-                <form action="{{ route('admin') }}" method="GET" style="float: left">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-warning ms-2">
-                        Irányítópult
-                    </button>
-                </form>
-            @endif
             <form action="{{ route('logout') }}" method="POST" style="float: left">
                 @csrf
                 <button type="submit" class="btn btn-outline-light ms-2">
