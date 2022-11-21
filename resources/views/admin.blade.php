@@ -183,7 +183,9 @@ use Illuminate\Support\Facades\DB;
             Swal.fire({
                 icon: 'success',
                 title: 'Sikeres!',
-                text: '{{ Session::get('alert') }}'
+                text: '{{ Session::get('alert') }}',
+                showConfirmButton: false,
+                timer: 2000
             })
         }
     </script>
