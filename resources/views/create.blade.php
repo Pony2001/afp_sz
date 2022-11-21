@@ -91,10 +91,13 @@ use Illuminate\Http\Request;
         <div class="col-md-3"></div>
     </div>
     <script>
-        var msg = '{{ Session::get('alert') }}';
         var exist = '{{ Session::has('alert') }}';
         if (exist) {
-            alert(msg);
+            Swal.fire({
+                icon: 'success',
+                title: 'Sikeres!',
+                text: '{{ Session::get('alert') }}'
+            })
         }
     </script>
 @endsection

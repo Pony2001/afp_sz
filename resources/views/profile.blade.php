@@ -163,7 +163,7 @@ use Illuminate\Support\Facades\DB;
                     <p>Név: {{ $item->name }}</p>
                     <p>Értékelés: {{ $item->value }}</p>
                     <p>Vélemény: {{ $item->comment }}</p>
-                    <p>Létrehozva: {{ $item->created_at}}</p>
+                    <p>Létrehozva: {{ $item->created_at }}</p>
                 </div>
             @endforeach
 
@@ -175,10 +175,13 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
     <script>
-        var msg = '{{ Session::get('alert') }}';
         var exist = '{{ Session::has('alert') }}';
         if (exist) {
-            alert(msg);
+            Swal.fire({
+                icon: 'success',
+                title: 'Sikeres!',
+                text: '{{ Session::get('alert') }}'
+            })
         }
     </script>
 @endsection
