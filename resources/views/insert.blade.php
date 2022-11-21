@@ -20,9 +20,11 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
-                                        class="profileview profile-picture shadow bg-white" alt="" width="100"
+                                    <input id="upload" type="file" name="img" hidden>
+                                    <label for="upload"><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
+                                        class=" profile-picture shadow bg-white" alt="" width="100"
                                         class="shadow bg-white rounded-5">
+                                    </label>
                                 </div>
                                 <div class="col-md-9 mt-4">
                                     <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"
@@ -103,16 +105,16 @@ use Illuminate\Support\Facades\DB;
                     <p align="center">
                         <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="view rounded-1 shadow bg-white" name="ref" />
+                            class="rounded-1 shadow bg-white" name="ref" />
                         <img src="https://picsum.photos/id/{{ $ref[2] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="view rounded-1 shadow bg-white" name="ref" />
+                            class="rounded-1 shadow bg-white" name="ref" />
                         <img src="https://picsum.photos/id/{{ $ref[3] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="view rounded-1 shadow bg-white" name="ref" />
+                            class="rounded-1 shadow bg-white" name="ref" />
                         <img src="https://picsum.photos/id/{{ $ref[4] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="view rounded-1 shadow bg-white" name="ref" />
+                            class="rounded-1 shadow bg-white" name="ref" />
                     </p>
                 </div>
                 <br>
