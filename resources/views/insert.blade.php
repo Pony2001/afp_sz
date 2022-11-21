@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <input id="upload" type="file" hidden>
+                                    <input id="upload" type="file" name="img" hidden>
                                     <label for="upload"><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
                                         class=" profile-picture shadow bg-white" alt="" width="100"
                                         class="shadow bg-white rounded-5">

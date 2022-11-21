@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
             <div class="col-md-12 shadow bg-white rounded-5">
                 <hr />
                 <div>
-
                     <h3><img class="profileview profile-picture shadow bg-white"
                             src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
