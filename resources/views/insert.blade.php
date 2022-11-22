@@ -106,7 +106,7 @@ use Illuminate\Support\Facades\DB;
                         {{-- Telefon --}}
                         <div><br />
                             <label for="phone" class="form-validation">Telefonszám: </label>
-                            <input type="number" value="{{ $employee[0]->phone }}" id="phone" name="phone"
+                            <input type="text" value="{{ $employee[0]->phone }}" id="phone" name="phone"
                                 class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" />
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>

@@ -54,7 +54,7 @@ class PaginationController extends Controller
 
                 $result = DB::table('employees')
                     ->select('*')
-                    ->where('city_id', 'LIKE', '' . $search_city . '')->paginate(3);
+                    ->where('city_id', 'LIKE', '' . $search_city . '')->paginate(5);
                 $result->appends($request->all());
 
                 return view(

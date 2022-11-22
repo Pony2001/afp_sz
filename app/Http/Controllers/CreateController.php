@@ -25,7 +25,7 @@ class CreateController extends Controller
             'name' => ['required'],
             'city' => ['required'],
             'description' => ['required'],
-            'phone' => ['required', 'unique:employees', 'not_regex:/[a-z]/', 'min:9'],
+            'phone' => ['required', 'unique:employees', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
             'email' => ['required', 'unique:employees'],
 
         ]);
@@ -72,13 +72,13 @@ class CreateController extends Controller
             ]);
         //dd($employeeId[0]->id);
         for ($i = 0; $i < request('total_chq'); $i++) {
-        $created2 = DB::table('field__employees')
-            ->insert([
-                'created_at' => date(now()),
-                'updated_at' => date(now()),
-                'employee_id' => $employeeId[0]->id,
-                'field_id' => request('new_'. $i + 1 )
-            ]);
+            $created2 = DB::table('field__employees')
+                ->insert([
+                    'created_at' => date(now()),
+                    'updated_at' => date(now()),
+                    'employee_id' => $employeeId[0]->id,
+                    'field_id' => request('new_' . $i + 1)
+                ]);
         }
 
         return redirect('admin')->with('alert', 'Létrehozva!');
