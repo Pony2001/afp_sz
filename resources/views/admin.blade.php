@@ -141,8 +141,10 @@ use Illuminate\Support\Facades\DB;
     --}}
     <div style="display: block; margin:0 auto">
         <h2 align="center">Zsoltinak speciálba</h2>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..." title="Type in a name">
-        <div align="right"><a href="create"><button class="btn btn-warning">Új szaki hozzáadása</button></a></div>
+        <div class="col-md-3 float-left">
+        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..." title="Type in a name">
+    </div>
+        <div class="float-right"><a href="create"><button class="btn btn-success mb-3">+ Új szaki hozzáadása</button></a></div>
         <table class="table table-striped table-dark " id="myTable">
             <tr>
                 <th>ID</th>
