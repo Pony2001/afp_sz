@@ -10,7 +10,11 @@ class CreateController extends Controller
 {
     public function create()
     {
-        return view('create');
+
+        $field = DB::table('fields')->select('*')->get();
+        return view('create', [
+            'fields' => $field
+        ]);
     }
 
     public function created(Request $request)
@@ -25,6 +29,13 @@ class CreateController extends Controller
             'email' => ['required', 'unique:employees'],
 
         ]);
+
+        for ($i = 0; $i < request('total_chq'); $i++) {
+
+            request()->validate([
+                'new_' . $i + 1 => ['required']
+            ]);
+        }
 
 
 
@@ -60,14 +71,16 @@ class CreateController extends Controller
                 'ref' => $rnd1 . ";" . $rnd2 . ";" . $rnd3 . ";" . $rnd4 . ";" . $rnd5 . ";" . $rnd6
             ]);
         //dd($employeeId[0]->id);
-        // $created2 = DB::table('field__employees')
-        //     ->insert([
-        //         'created_at' => date(now()),
-        //         'updated_at' => date(now()),
-        //         'employee_id' => $employeeId[0]->id,
-        //         'field_id' => request('field')
-        //     ]);
+        for ($i = 0; $i < request('total_chq'); $i++) {
+        $created2 = DB::table('field__employees')
+            ->insert([
+                'created_at' => date(now()),
+                'updated_at' => date(now()),
+                'employee_id' => $employeeId[0]->id,
+                'field_id' => request('new_'. $i + 1 )
+            ]);
+        }
 
-        return redirect('create2/' . $employeeId[0]->id);
+        return redirect('admin')->with('alert', 'Létrehozva!');
     }
 }

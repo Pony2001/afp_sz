@@ -63,7 +63,4 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/create', [Controllers\CreateController::class, 'create']);
     Route::post('/create', [Controllers\CreateController::class, 'create']);
     Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');
-
-    Route::get('/create2/{id}', [Controllers\Create2Controller::class, 'create2']);
-    Route::get('/create2/{id}/submit', [Controllers\Create2Controller::class, 'create2Submit'])->name('create2.submit');
 });
