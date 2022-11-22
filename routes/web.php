@@ -66,4 +66,9 @@ Route::middleware('auth', 'admin')->group(function () {
 
     Route::get('/create2/{id}', [Controllers\Create2Controller::class, 'create2']);
     Route::get('/create2/{id}/submit', [Controllers\Create2Controller::class, 'create2Submit'])->name('create2.submit');
+
+    Route::controller(Controllers\ImageController::class)->group(function(){
+        Route::get('/image-upload', 'index')->name('image.form');
+        Route::post('/upload-image', 'storeImage')->name('image.store');
+    });
 });

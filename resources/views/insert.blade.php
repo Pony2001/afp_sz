@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\DB;
         <div class="col-md-6 mt-5">
             <div>
                 <div>
+                    
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container" width="30%">
+       
+        <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
+            @csrf
+            <input type="file" class="form-control" name="image" />
+
+            <button type="submit" class="btn btn-sm">Upload</button>
+        </form>
+
+    </div>  
+
                     <form action="{{ $employee[0]->other }}/edit" method="POST" class="form-validation">
                         @csrf
 
@@ -21,9 +34,9 @@ use Illuminate\Support\Facades\DB;
                             <div class="row">
                                 <div class="col-md-3">
                                     <input id="upload" type="file" name="img" hidden>
-                                    <label for="upload"><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
+                                    <label for="upload"><img src="{{ asset('images/'.Session::get('image')) }}" 
                                         class=" profile-picture shadow bg-white" alt="" width="100"
-                                        class="shadow bg-white rounded-5">
+                                        class="shadow bg-white rounded-circle">
                                     </label>
                                 </div>
                                 <div class="col-md-9 mt-4">
