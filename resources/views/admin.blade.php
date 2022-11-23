@@ -140,7 +140,7 @@ use Illuminate\Support\Facades\DB;
     <hr>
     --}}
     <div style="display: block; margin:0 auto">
-        <h2 align="center">Zsoltinak speciálba</h2>
+        <h2 align="center">Irányítópult</h2>
         <div class="col-md-3 float-left">
             <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..."
                 title="Type in a name">
