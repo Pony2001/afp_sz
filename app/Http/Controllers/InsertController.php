@@ -36,7 +36,7 @@ class InsertController extends Controller
             //->where('field__employees.id', '=', $other)
             ->get();
 
-            $employeeLength = count($employee);
+        $employeeLength = count($employee);
 
         //dd($field_id);
       
@@ -73,7 +73,7 @@ class InsertController extends Controller
         request()->validate([
             'name' => ['required'],
             'city' => ['required'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'numeric', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
             'email' => ['required', 'email'],
             'description' => ['required']
         ]);
@@ -94,28 +94,28 @@ class InsertController extends Controller
             ]);
         //dd($other, $id);
 
-            for ($i = 0; $i < request('total_chq'); $i++) {
+        for ($i = 0; $i < request('total_chq'); $i++) {
 
-                request()->validate([
-                    'new_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
-                ]);
-            }
+            request()->validate([
+                'A_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
+            ]);
+        }
 
-            DB::table('field__employees')
-            ->join('employees','field__employees.employee_id','=','employees.id')
+        DB::table('field__employees')
+            ->join('employees', 'field__employees.employee_id', '=', 'employees.id')
             ->where('employees.id', '=', $id)
             ->delete();
-    
-            for ($i = 0; $i < request('total_chq'); $i++) {
-    
-                DB::table('field__employees')
-                    ->insert([
-                        'created_at' => date(now()),
-                        'updated_at' => date(now()),
-                        'employee_id' => $id,
-                        'field_id' => request('new_' . $i + 1)
-                    ]);
-            }
+
+        for ($i = 0; $i < request('total_chq'); $i++) {
+
+            DB::table('field__employees')
+                ->insert([
+                    'created_at' => date(now()),
+                    'updated_at' => date(now()),
+                    'employee_id' => $id,
+                    'field_id' => request('A_' . $i + 1)
+                ]);
+        }
 
 
             $image =  DB::table('images')

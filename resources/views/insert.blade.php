@@ -62,38 +62,63 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
                         </div>
-
-
+                        
                         {{-- Szakma --}}
-                        <div><br />
-                            
-                        </div>
-                        {{-- Új szakma --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <p align="center">Valamely mezőt üresen hagyta.</p>
-                                @endforeach
-                            </div>
-                        @endif
+                        <div><br />                       
                             <div id="new_chq">
+
                                 <label for="fieldinsert" class="form-validation">Szakma: </label>
-                            @for ($i = 0; $i < $employeeLength; $i++)
-                                
-                            
-                            <select name="new_{{$i+1}}" id="new_{{$i+1}}"
-                                class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
-                                <option value="{{ $employee[$i]->field_id }}">{{ $employee[$i]->field }}</option>
-                                @foreach (\App\Models\Field::select('*')->get() as $fieldss)
-                                    <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
-                                @endforeach
-                            </select>
-                            @endfor
-                            @error('field')
-                                <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
-                            @enderror
+
+                                @if ($errors->any())
+                                    @for ($i = 0; $i < intval(old('total_chq')); $i++)
+                                        @error('A_'.$i+1)
+                                            <div class="alert alert-danger">
+                                                <span class="text-red-500 text-xs mt-1" style="color: red">Valamely mező nincs kitöltve.</span>
+                                            </div>
+                                        @enderror
+                                    @endfor
+                                @endif
+
+
+                                @for ($i = 0; $i < $employeeLength; $i++)
+
+                                    <select name="A_{{ $i + 1 }}" id="new_{{ $i + 1 }}"
+                                        class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
+
+                                        <option value="{{ $employee[$i]->field_id }}">{{ $employee[$i]->field }}</option>
+
+                                        @foreach (\App\Models\Field::select('*')->get() as $fieldss)
+                                            <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                @endfor
+
+                                @if (old('total_chq'))
+                                    @for ($j = $employeeLength; $j < intval(old('total_chq')); $j++)
+                                        <select name="A_{{ $j + 1 }}" id="new_{{ $j + 1 }}"
+                                        class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
+                                            <option value="{{ old('A_' . $j + 1) }}">
+                                                {{
+                                                    0 < intval(old('A_' . $j+1)) ? 
+                                                    $fields[intval(old('A_' .$j+1))-1]->field : "Válasszon szakmát"
+                                                }}
+                                            </option>
+                                            
+                                            @foreach (\App\Models\Field::select('*')->get() as $fieldss)
+                                                <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    @endfor
+                                @endif
+
                             </div>
-                            <input type="hidden" value="{{$employeeLength}}" id="total_chq" name="total_chq" />
+                            @if (old('total_chq'))
+                                <input type="hidden" value="{{old('total_chq')}}" id="total_chq" name="total_chq" />
+                            @else
+                                <input type="hidden" value="{{$employeeLength}}" id="total_chq" name="total_chq" />
+                            @endif
 
                             <div>
                                 <div class="float-left me-2 mt-1">
@@ -103,12 +128,7 @@ use Illuminate\Support\Facades\DB;
                                     <input type="button" class="btn btn-danger" onclick="remove()" value="- Szakma" />
                                 </div>
                             </div>
-                            {{--
-                            <div class="float-left m-1">
-                                <button type="submit" class="btn btn-warning">Véglegesít</button>
-                            </div>
-                            --}}
-                            <br>
+                        </div><br />
                         
                         {{-- Város --}}
                         <div><br />
@@ -128,7 +148,7 @@ use Illuminate\Support\Facades\DB;
                         {{-- Telefon --}}
                         <div><br />
                             <label for="phone" class="form-validation">Telefonszám: </label>
-                            <input type="number" value="{{ $employee[0]->phone }}" id="phone" name="phone"
+                            <input type="text" value="{{ $employee[0]->phone }}" id="phone" name="phone"
                                 class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" />
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
@@ -188,13 +208,17 @@ use Illuminate\Support\Facades\DB;
     </div>
     {{-- Ha teljesen kész akkor külön js-be lehet rakni --}}
     <script>
+
+
+
         $('.add').on('click', add);
         $('.remove').on('click', remove);
   
         function add() {
-              var new_chq_no = parseInt($('#total_chq').val()) + 1;
+            const selects = document.getElementsByTagName('select').length - 1;
+              var new_chq_no = selects + 1;
               var new_input = ""+
-              "<select name = 'new_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
+              "<select name = 'A_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
                  "<option value=''>Válasszon szakmát</option>" +
   
                  "@foreach ($fields as $field)<option value='{{ $field->id }}' >{{ $field->field }}</option>@endforeach" +

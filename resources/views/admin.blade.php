@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 @section('content')
-<script src="/js/adminsearch.js"></script>
+    <script src="/js/adminsearch.js"></script>
     <hr>
     {{-- 
     <div>
@@ -140,46 +140,52 @@ use Illuminate\Support\Facades\DB;
     <hr>
     --}}
     <div style="display: block; margin:0 auto">
-        <h2 align="center">Zsoltinak speciálba</h2>
+        <h2 align="center">Irányítópult</h2>
         <div class="col-md-3 float-left">
-        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..." title="Type in a name">
-    </div>
-        <div class="float-right"><a href="create"><button class="btn btn-success me-3 mb-3">+ Új szaki hozzáadása</button></a></div>
-        <table class="table table-striped table-dark " id="myTable">
-            <tr>
-                <th>ID</th>
-                <th>Név</th>
-                <th>Megye</th>
-                <th>Város</th>
-                {{--<th>Szakma</th>--}}
-                <th>E-mail</th>
-                <th>Telefon</th>
-                <th style="min-width: 125px">Műveletek</th>
-                {{--<th>|Sorok|</th>--}}
-            </tr>
-            @foreach ($newview as $item)
+            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Keresés név alapján..."
+                title="Type in a name">
+        </div>
+        <div class="float-right"><a href="create"><button class="btn btn-success me-3 mb-3">+ Új szaki
+                    hozzáadása</button></a></div>
+        <table class="table table-striped" id="myTable">
+            <thead>
                 <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->county }}</td>
-                    <td>{{ $item->city }}</td>
-                    <td>{{ $item->email }}</td>
-                    <td>{{ $item->phone }}</td>
-                    {{--<td>{{ $item->field }}</td>--}}
-                    <td>
-                        <a href="/profile/{{ $item->id }}" class="mr-3" title="Megtekint" data-toggle="tooltip"><span
-                                class="fa fa-eye"></span></a>
-                        <a href="/insert/{{ $item->id }}/{{ $item->other }}" class="mr-3" title="Módosít"
-                            data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
-                        <a href="{{ route('employee.delete', $item->id) }}" title="Törlés" data-toggle="tooltip"><span
-                                class="fa fa-trash"></span></a>
-                    </td>
-                    {{--
+                    <th>ID</th>
+                    <th>Név</th>
+                    <th>Megye</th>
+                    <th>Város</th>
+                    {{-- <th>Szakma</th> --}}
+                    <th>E-mail</th>
+                    <th>Telefon</th>
+                    <th style="min-width: 125px">Műveletek</th>
+                    {{-- <th>|Sorok|</th> --}}
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($newview as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->county }}</td>
+                        <td>{{ $item->city }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->phone }}</td>
+                        {{-- <td>{{ $item->field }}</td> --}}
+                        <td>
+                            <a href="/profile/{{ $item->id }}" class="mr-3" title="Megtekint"
+                                data-toggle="tooltip"><span class="fa fa-eye"></span></a>
+                            <a href="/insert/{{ $item->id }}/{{ $item->other }}" class="mr-3" title="Módosít"
+                                data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+                            <a href="{{ route('employee.delete', $item->id) }}" title="Törlés" data-toggle="tooltip"><span
+                                    class="fa fa-trash"></span></a>
+                        </td>
+                        {{--
                         <td>{{ $item->other }} <a href="/admin/{{ $item->id }}/{{ $item->other }}/delete"
                             title="Sor törlése" data-toggle="tooltip"><span class="fa fa-trash"></span></a></td>
                     --}}
-                </tr>
-            @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
     <script>
