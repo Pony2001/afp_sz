@@ -37,28 +37,73 @@ use Illuminate\Http\Request;
 
                         {{-- Szakma --}}
                         <div><br />
-                        <label for="fieldinsert" class="form-validation">Szakma: </label>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <p align="center">Valamely mezőt üresen hagyta.</p>
-                                @endforeach
-                            </div>
-                        @endif
+                        
+                            <label for="fieldinsert" class="form-validation">Szakma: </label>
+
+                                @if ($errors->any())
+                                    @for ($i = 0; $i < intval(old('total_chq')); $i++)
+                                        @error('A_'.$i+1)
+                                            <div class="alert alert-danger">
+                                                <span class="text-red-500 text-xs mt-1" style="color: red">Valamely mező nincs kitöltve.</span>
+                                            </div>
+                                        @enderror
+                                    @endfor
+                                @endif
                             <div id="new_chq">
-                                <select name="new_1" id="new_1" class='form-control mt-1'>
-                                    <option value="">Válasszon szakmát</option>
-                                    @foreach ($fields as $field)
-                                        <option value='{{ $field->id }}'>
-                                            {{ $field->field }}
+                                @if (old('A_1'))
+                                    <select name="A_1" id="new_1" class='form-control mt-1'>
+                                        <option value='{{ old('A_1') }}'>
+                                            {{
+                                                $fields[intval(old('A_1'))-1]->field
+                                            }}
                                         </option>
-                                    @endforeach
-                                </select>
+                                        @foreach ($fields as $field)
+                                            <option value='{{ $field->id }}'>
+                                                {{ $field->field }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <select name="A_1" id="new_1" class='form-control mt-1'>
+                                        <option value="">Válasszon szakmát</option>
+                                        @foreach ($fields as $field)
+                                            <option value='{{ $field->id }}'>
+                                                {{ $field->field }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                                
+
+
+                                @if (old('total_chq'))
+                                    @for ($j = 1; $j < intval(old('total_chq')); $j++)
+                                        <select name="A_{{ $j + 1 }}" id="new_{{ $j + 1 }}"
+                                        class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
+                                            <option value="{{ old('A_' . $j + 1) }}">
+                                                {{
+                                                    0 < intval(old('A_' . $j+1)) ? 
+                                                    $fields[intval(old('A_' .$j+1))-1]->field : "Válasszon szakmát"
+                                                }}
+                                            </option>
+                                            
+                                            @foreach (\App\Models\Field::select('*')->get() as $fieldss)
+                                                <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    @endfor
+                                @endif
+
                             </div>
-                            <input type="hidden" value="1" id="total_chq" name="total_chq" />
+                            @if (old('total_chq'))
+                                <input type="hidden" value="{{old('total_chq')}}" id="total_chq" name="total_chq" />
+                            @else
+                                <input type="hidden" value="1" id="total_chq" name="total_chq" />
+                            @endif
 
                             <div>
-                                <div class="float-left mt-1 me-2">
+                                <div class="float-left me-2 mt-1">
                                     <input type="button" class="btn btn-success" onclick="add()" value="+ Szakma" />
                                 </div>
                                 <div class="float-left mt-1">
@@ -127,14 +172,13 @@ use Illuminate\Http\Request;
         $('.remove').on('click', remove);
   
         function add() {
-              var new_chq_no = parseInt($('#total_chq').val()) + 1;
+            const selects = document.getElementsByTagName('select').length - 1;
+              var new_chq_no = selects + 1;
               var new_input = ""+
-              "<select name = 'new_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
+              "<select name = 'A_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
                  "<option value=''>Válasszon szakmát</option>" +
   
-                 "@foreach ($fields as $field)" +
-                    "<option value='{{ $field->id }}' >{{ $field->field }}</option>" +
-                 "@endforeach" +
+                 "@foreach ($fields as $field)<option value='{{ $field->id }}' >{{ $field->field }}</option>@endforeach" +
               "</select>";
   
               $('#new_chq').append(new_input);
