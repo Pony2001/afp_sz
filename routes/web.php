@@ -63,4 +63,9 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/create', [Controllers\CreateController::class, 'create']);
     Route::post('/create', [Controllers\CreateController::class, 'create']);
     Route::post('/create/success', [Controllers\CreateController::class, 'created'])->name('employee.create');
+
+    Route::controller(Controllers\ImageController::class)->group(function(){
+        Route::get('/image-upload', 'index')->name('image.form');
+        Route::post('/upload-image', 'storeImage')->name('image.store');
+    });
 });

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\DB;
                     <h3><img class="profileview profile-picture shadow bg-white"
                             src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="shadow bg-white rounded-5">
+                            class="shadow bg-white rounded-circle">
                         {{ $employee[0]->name }}</h3>
                 </div>
                 <hr />
