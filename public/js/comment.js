@@ -31,19 +31,7 @@ $(document).ready(function() {
         const radio5 = document.getElementById('star5').checked;;
          const valueComment = document.querySelector("#comment").value;
          const valueAdd = document.querySelector("#add").value;
-
-         console.log({
-            radio1,
-            radio2,
-            radio3,
-            radio4,
-            radio5,
-             valueComment,
-             valueAdd
-         });
          
-
-
          
          if ((radio1 === true || radio2 === true  || radio3 === true || radio4 === true || radio5 === true ) && valueComment !== '') {
              btnSubmit2.disabled = false;

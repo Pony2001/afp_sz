@@ -20,7 +20,6 @@ use Illuminate\Http\Request;
                 <hr />
                 <div>
                     <h2>Új szaki hozzáadása</h2>
-                    <h1>1. lépés</h1>
                 </div>
                 <div>
                     <form action="{{ route('employee.create') }}" method="POST" class="form-validation">
@@ -35,6 +34,38 @@ use Illuminate\Http\Request;
                                 <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        {{-- Szakma --}}
+                        <div><br />
+                        <label for="fieldinsert" class="form-validation">Szakma: </label>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <p align="center">Valamely mezőt üresen hagyta.</p>
+                                @endforeach
+                            </div>
+                        @endif
+                            <div id="new_chq">
+                                <select name="new_1" id="new_1" class='form-control mt-1'>
+                                    <option value="">Válasszon szakmát</option>
+                                    @foreach ($fields as $field)
+                                        <option value='{{ $field->id }}'>
+                                            {{ $field->field }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="hidden" value="1" id="total_chq" name="total_chq" />
+
+                            <div>
+                                <div class="float-left mt-1 me-2">
+                                    <input type="button" class="btn btn-success" onclick="add()" value="+ Szakma" />
+                                </div>
+                                <div class="float-left mt-1">
+                                    <input type="button" class="btn btn-danger" onclick="remove()" value="- Szakma" />
+                                </div>
+                            </div>
+                        </div><br /><br />
 
                         {{-- Város --}}
                         <div><br />
@@ -90,14 +121,34 @@ use Illuminate\Http\Request;
         </div>
         <div class="col-md-3"></div>
     </div>
+    {{-- Ha teljesen kész akkor külön js-be lehet rakni --}}
     <script>
-        var exist = '{{ Session::has('alert') }}';
-        if (exist) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sikeres!',
-                text: '{{ Session::get('alert') }}'
-            })
+        $('.add').on('click', add);
+        $('.remove').on('click', remove);
+  
+        function add() {
+              var new_chq_no = parseInt($('#total_chq').val()) + 1;
+              var new_input = ""+
+              "<select name = 'new_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
+                 "<option value=''>Válasszon szakmát</option>" +
+  
+                 "@foreach ($fields as $field)" +
+                    "<option value='{{ $field->id }}' >{{ $field->field }}</option>" +
+                 "@endforeach" +
+              "</select>";
+  
+              $('#new_chq').append(new_input);
+  
+              $('#total_chq').val(new_chq_no);
         }
-    </script>
+  
+        function remove() {
+              var last_chq_no = $('#total_chq').val();
+  
+              if (last_chq_no > 1) {
+                 $('#new_' + last_chq_no).remove();
+                 $('#total_chq').val(last_chq_no - 1);
+              }
+        }
+     </script>
 @endsection
