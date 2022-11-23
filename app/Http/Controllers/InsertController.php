@@ -91,7 +91,7 @@ class InsertController extends Controller
         for ($i = 0; $i < request('total_chq'); $i++) {
 
             request()->validate([
-                'new_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
+                'A_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
             ]);
         }
 
@@ -107,7 +107,7 @@ class InsertController extends Controller
                     'created_at' => date(now()),
                     'updated_at' => date(now()),
                     'employee_id' => $id,
-                    'field_id' => request('new_' . $i + 1)
+                    'field_id' => request('A_' . $i + 1)
                 ]);
         }
 
