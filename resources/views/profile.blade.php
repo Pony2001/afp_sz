@@ -14,14 +14,11 @@ use Illuminate\Support\Facades\DB;
         <div class="col-md-3"></div>
         <div class="col-md-6 mt-5">
 
-
-
-
             <div class="col-md-12 shadow bg-white rounded-5">
                 <hr />
                 <div>
                     <h3><img class="profileview profile-picture shadow bg-white"
-                            src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
+                            src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="shadow bg-white rounded-circle">
                         {{ $employee[0]->name }}</h3>

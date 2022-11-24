@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 @extends('layouts.main')
 
 @section('content')
-<script src="/js/uploadimg.js"></script>
 {{--
 @foreach ($fields as $field)
 {{dd($field->id)}}
@@ -19,25 +18,6 @@ use Illuminate\Support\Facades\DB;
         <div class="col-md-6 mt-5">
             <div>
                 <div>
-   
-                    
-        <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
-            @csrf
-            <p>Profilkép</p>
-                 <div>
-                    <input type="file" class="form-control" name="image" id="updloadProfilePic"/>
-                    <br>
-                </div>
-                <p>Referenciák</p>
-                <div>
-                    <input type="file" class="form-control" name="image2" id="updloadPic1"/>
-                    <input type="file" class="form-control" name="image3" id="updloadPic2"/>
-                    <input type="file" class="form-control" name="image4" id="updloadPic3"/>
-                    <input type="file" class="form-control" name="image5" id="updloadPic4"/>
-                    <br>
-                    <button type="submit" class="btn btn-secondary" align="center" id="myFuncBtn">Képek feltöltése</button>
-                </div>
-        </form>
 
                     <form action="{{ $employee[0]->other }}/edit" method="POST" class="form-validation">
                         @csrf
@@ -46,16 +26,16 @@ use Illuminate\Support\Facades\DB;
                         <div>
                             <div class="row">
                                 <div class="col-md-3">
-                                  <img src="{{ asset('profil_img/'.Session::get('image')) }}"
+                                  <img src="https://www.gravatar.com/avatar/{{md5($employee[0] -> email)}}?s=32&d=identicon&r=PG"
                                         class=" profile-picture shadow bg-white" alt="" width="100"
                                         class="shadow bg-white rounded-circle">
                                   
                                 </div>
                                 <div class="col-md-9 mt-4">
-                                    Név:
-                                    <br>
+                                    {{-- Név: --}}
+                                    
                                     <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"
-                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" />
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} mt-2" />
                                     @error('name')
                                         <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                                     @enderror
@@ -68,16 +48,11 @@ use Illuminate\Support\Facades\DB;
                             <div id="new_chq">
 
                                 <label for="fieldinsert" class="form-validation">Szakma: </label>
-
-                                @if ($errors->any())
-                                    @for ($i = 0; $i < intval(old('total_chq')); $i++)
-                                        @error('A_'.$i+1)
+                                        @error('fields')
                                             <div class="alert alert-danger">
-                                                <span class="text-red-500 text-xs mt-1" style="color: red">Valamely mező nincs kitöltve.</span>
+                                                <span class="text-red-500 text-xs mt-1" style="color: red">{{$message}}</span>
                                             </div>
                                         @enderror
-                                    @endfor
-                                @endif
 
 
                                 @for ($i = 0; $i < $employeeLength; $i++)
@@ -183,16 +158,16 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     <p align="center">
                        
-                        <img src="{{ asset('ref_img/'.Session::get('image2')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref" />
-                        <img src="{{ asset('ref_img2/'.Session::get('image3')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[2] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref2" />
-                        <img src="{{ asset('ref_img3/'.Session::get('image4')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[3] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref3" />
-                        <img src="{{ asset('ref_img4/'.Session::get('image5')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[4] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref4" />
                     </p>
@@ -208,25 +183,23 @@ use Illuminate\Support\Facades\DB;
     </div>
     {{-- Ha teljesen kész akkor külön js-be lehet rakni --}}
     <script>
+        const fieldOptions = {!!$fields->toJson()!!}
+        console.log(fieldOptions);
+        let optionHtml = fieldOptions.reduce((html,field) => html + `<option value="${field.id}" >${field.field}</option>`); 
+        const newInput = `<select name = 'fields[]' class='form-control mt-1'>
+                                 <option value=''>Válasszon szakmát</option>
+                                 ${optionHtml}
+                                 </select> `
 
-
-
+                                
         $('.add').on('click', add);
         $('.remove').on('click', remove);
   
         function add() {
-            const selects = document.getElementsByTagName('select').length - 1;
-              var new_chq_no = selects + 1;
-              var new_input = ""+
-              "<select name = 'A_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
-                 "<option value=''>Válasszon szakmát</option>" +
+            
+              $('#new_chq').append(newInput);
   
-                 "@foreach ($fields as $field)<option value='{{ $field->id }}' >{{ $field->field }}</option>@endforeach" +
-              "</select>";
-  
-              $('#new_chq').append(new_input);
-  
-              $('#total_chq').val(new_chq_no);
+            //   $('#total_chq').val(new_chq_no);
         }
   
         function remove() {
@@ -238,11 +211,4 @@ use Illuminate\Support\Facades\DB;
               }
         }
      </script>
-    <script>
-        var msg = '{{ Session::get('alert') }}';
-        var exist = '{{ Session::has('alert') }}';
-        if (exist) {
-            alert(msg);
-        }
-    </script>
 @endsection
