@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\FieldRules;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -24,18 +25,11 @@ class CreateController extends Controller
         request()->validate([
             'name' => ['required'],
             'city' => ['required'],
-            'description' => ['required'],
-            'phone' => ['required', 'unique:employees', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-            'email' => ['required', 'unique:employees'],
-
+            'fields' => ['required', new FieldRules],
+            'phone' => ['required', 'numeric', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
+            'email' => ['required', 'email'],
+            'description' => ['required']
         ]);
-
-        for ($i = 0; $i < request('total_chq'); $i++) {
-
-            request()->validate([
-                'new_' . $i + 1 => ['required']
-            ]);
-        }
 
 
 
@@ -77,7 +71,7 @@ class CreateController extends Controller
                     'created_at' => date(now()),
                     'updated_at' => date(now()),
                     'employee_id' => $employeeId[0]->id,
-                    'field_id' => request('new_' . $i + 1)
+                    'field_id' => $request->fields[$i]
                 ]);
         }
 

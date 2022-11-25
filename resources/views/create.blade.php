@@ -37,25 +37,48 @@ use Illuminate\Http\Request;
 
                         {{-- Szakma --}}
                         <div><br />
-                        <label for="fieldinsert" class="form-validation">Szakma: </label>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <p align="center">Valamely mezőt üresen hagyta.</p>
-                                @endforeach
-                            </div>
-                        @endif
+                            <label for="fieldinsert" class="form-validation">Szakma: </label>
+                            @error('fields')
+                                <div class="alert alert-danger">
+                                    <span class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</span>
+                                </div>
+                            @enderror
                             <div id="new_chq">
-                                <select name="new_1" id="new_1" class='form-control mt-1'>
-                                    <option value="">Válasszon szakmát</option>
-                                    @foreach ($fields as $field)
-                                        <option value='{{ $field->id }}'>
-                                            {{ $field->field }}
-                                        </option>
-                                    @endforeach
-                                </select>
+
+
+                                @if (old('total_chq'))
+                                    @for ($j = 0; $j < intval(old('total_chq')); $j++)
+                                        <select name="fields[]" id="new_{{ $j + 1 }}"
+                                            class="form-control{{ $errors->has('fields.' . $j) ? ' is-invalid' : '' }} mt-1">
+                                            <option
+                                                value="
+                                                {{ 0 >= intval(old('fields.' . $j)) ? '' : intval(old('fields.' . $j)) }}">
+                                                {{ 0 < intval(old('fields.' . $j)) ? $fields[intval(old('fields.' . $j)) - 1]->field : 'Válasszon szakmát' }}
+                                            </option>
+
+                                            @foreach (\App\Models\Field::select('*')->get() as $fieldss)
+                                                <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    @endfor
+                                @else
+                                    <select name="fields[]" id="new_1" class="form-control mt-1">
+
+                                        <option value="">Válasszon szakmát</option>
+
+                                        @foreach (\App\Models\Field::select('*')->get() as $fieldss)
+                                            <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
+                                        @endforeach
+
+                                    </select>
+                                @endif
                             </div>
-                            <input type="hidden" value="1" id="total_chq" name="total_chq" />
+                            @if (old('total_chq'))
+                                <input type="hidden" value="{{ old('total_chq') }}" id="total_chq" name="total_chq" />
+                            @else
+                                <input type="hidden" value="1" id="total_chq" name="total_chq" />
+                            @endif
 
                             <div>
                                 <div class="float-left mt-1 me-2">
@@ -125,30 +148,33 @@ use Illuminate\Http\Request;
     <script>
         $('.add').on('click', add);
         $('.remove').on('click', remove);
-  
+
         function add() {
-              var new_chq_no = parseInt($('#total_chq').val()) + 1;
-              var new_input = ""+
-              "<select name = 'new_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
-                 "<option value=''>Válasszon szakmát</option>" +
-  
-                 "@foreach ($fields as $field)" +
-                    "<option value='{{ $field->id }}' >{{ $field->field }}</option>" +
-                 "@endforeach" +
-              "</select>";
-  
-              $('#new_chq').append(new_input);
-  
-              $('#total_chq').val(new_chq_no);
+
+            const selects = document.getElementsByTagName('select').length;
+            var new_chq_no = selects;
+            const fieldOptions = {!! $fields->toJson() !!}
+            console.log(fieldOptions)
+            let optionHtml = fieldOptions.reduce((html, field) => html +
+                `<option value="${field.id}" >${field.field}</option>`);
+            const newInput = `<select name="fields[]" id="new_${new_chq_no}" class='form-control mt-1'>
+                                 <option value=''>Válasszon szakmát</option>
+                                 <option value='1'>Titkár(nő)</option>
+                                 ${optionHtml}
+                                 </select>`
+
+            $('#new_chq').append(newInput);
+
+            $('#total_chq').val(new_chq_no);
         }
-  
+
         function remove() {
-              var last_chq_no = $('#total_chq').val();
-  
-              if (last_chq_no > 1) {
-                 $('#new_' + last_chq_no).remove();
-                 $('#total_chq').val(last_chq_no - 1);
-              }
+            var last_chq_no = $('#total_chq').val();
+
+            if (last_chq_no > 1) {
+                $('#new_' + last_chq_no).remove();
+                $('#total_chq').val(last_chq_no - 1);
+            }
         }
-     </script>
+    </script>
 @endsection
