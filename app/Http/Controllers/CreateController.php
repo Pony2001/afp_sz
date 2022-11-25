@@ -21,13 +21,6 @@ class CreateController extends Controller
     public function created(Request $request)
     {
 
-        for ($i = 0; $i < request('total_chq'); $i++) {
-
-            request()->validate([
-                'A_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
-            ]);
-        }
-
         request()->validate([
             'name' => ['required'],
             'city' => ['required'],
