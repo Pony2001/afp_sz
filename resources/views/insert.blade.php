@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
             <div>
                 <div>
 
-
+                    {{--
                     <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
                         @csrf
                         <p>Profilkép</p>
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\DB;
                                 feltöltése</button>
                         </div>
                     </form>
-
+                    --}}
                     <form action="{{ $employee[0]->other }}/edit" method="POST" class="form-validation">
                         @csrf
 
@@ -59,10 +59,8 @@ use Illuminate\Support\Facades\DB;
 
                                 </div>
                                 <div class="col-md-9 mt-4">
-                                    Név:
-                                    <br>
                                     <input type="text" value="{{ $employee[0]->name }}" id="name" name="name"
-                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" />
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} mt-2" />
                                     @error('name')
                                         <p class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</p>
                                     @enderror
