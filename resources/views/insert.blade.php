@@ -181,18 +181,18 @@ use Illuminate\Support\Facades\DB;
                     <br>
                     <p align="center">
 
-                        <img src="{{ asset('ref_img/' . Session::get('image2')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref" />
-                        <img src="{{ asset('ref_img2/' . Session::get('image3')) }}"
+                        <img src="https://picsum.photos/id/{{ $ref[2] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="rounded-1 shadow bg-white" name="ref2" />
-                        <img src="{{ asset('ref_img3/' . Session::get('image4')) }}"
+                            class="rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[3] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="rounded-1 shadow bg-white" name="ref3" />
-                        <img src="{{ asset('ref_img4/' . Session::get('image5')) }}"
+                            class="rounded-1 shadow bg-white" name="ref" />
+                        <img src="https://picsum.photos/id/{{ $ref[4] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
-                            class="rounded-1 shadow bg-white" name="ref4" />
+                            class="rounded-1 shadow bg-white" name="ref" />
                     </p>
                 </div>
                 <br>

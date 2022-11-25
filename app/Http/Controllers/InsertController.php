@@ -40,12 +40,12 @@ class InsertController extends Controller
         $employeeLength = count($employee);
 
         //dd($field_id);
+        $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();
+        $ref = explode(';', (string)$image);
 
 
 
 
-
-        //  $ref = explode(';', (string)$image);
 
         $employeeId = DB::table('employees')
             ->select('*')
@@ -54,7 +54,7 @@ class InsertController extends Controller
 
         return view('insert', [
             'employee' => $employee,
-            //  'ref' => $ref,
+            'ref' => $ref,
             'fields' => $field,
             'employeeLength' => $employeeLength
         ]);
@@ -115,17 +115,17 @@ class InsertController extends Controller
         }
 
 
-        $image =  DB::table('images')
-            ->where('employee.id', '=', $id)
-            ->insert([
-                'created_at' => date(now()),
-                'updated_at' => date(now()),
-                'profile' => $request->profilePic,
-                'ref' => $request->img1,
-                'ref2' => $request->img2,
-                'ref3' => $request->img3,
-                'ref4' => $request->img4,
-            ]);
+        // $image =  DB::table('images')
+        //     ->where('employee.id', '=', $id)
+        //     ->insert([
+        //         'created_at' => date(now()),
+        //         'updated_at' => date(now()),
+        //         'profile' => $request->profilePic,
+        //         'ref' => $request->img1,
+        //         'ref2' => $request->img2,
+        //         'ref3' => $request->img3,
+        //         'ref4' => $request->img4,
+        //     ]);
 
         return redirect('admin')->with('alert', 'Frissítve!');
     }
