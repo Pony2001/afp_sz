@@ -81,7 +81,7 @@ use Illuminate\Http\Request;
                             @endif
 
                             <div>
-                                <div class="float-left mt-1 me-2">
+                                <div class="float-left me-2 mt-1">
                                     <input type="button" class="btn btn-success" onclick="add()" value="+ Szakma" />
                                 </div>
                                 <div class="float-left mt-1">

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreignId('employee_id');
             $table->string('profile');
             $table->string('ref');
-           // $table->integer('ref2');
-          //  $table->integer('ref3');
-          //  $table->integer('ref4');
+            $table->string('ref2');
+            $table->string('ref3');
+            $table->string('ref4');
         });
     }
 
