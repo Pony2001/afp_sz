@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 @extends('layouts.main')
 
 @section('content')
-{{--
+    {{--
 @foreach ($fields as $field)
 {{dd($field->id)}}
 @endforeach
@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\DB;
                                 <div class="col-md-3">
                                     <input id="upload" type="file" name="img" hidden>
                                     <label for="upload"><img src="https://picsum.photos/id/{{ $employee[0]->id }}/200"
-                                        class=" profile-picture shadow bg-white" alt="" width="100"
-                                        class="shadow bg-white rounded-5">
+                                            class=" profile-picture shadow bg-white" alt="" width="100"
+                                            class="shadow bg-white rounded-5">
                                     </label>
                                 </div>
                                 <div class="col-md-9 mt-4">
@@ -40,49 +40,42 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
                         </div>
-                        
+
                         {{-- Szakma --}}
-                        <div><br />                       
+                        <div><br />
                             <div id="new_chq">
 
                                 <label for="fieldinsert" class="form-validation">Szakma: </label>
-
-                                @if ($errors->any())
-                                    @for ($i = 0; $i < intval(old('total_chq')); $i++)
-                                        @error('A_'.$i+1)
-                                            <div class="alert alert-danger">
-                                                <span class="text-red-500 text-xs mt-1" style="color: red">Valamely mező nincs kitöltve.</span>
-                                            </div>
-                                        @enderror
-                                    @endfor
-                                @endif
+                                @error('fields')
+                                    <div class="alert alert-danger">
+                                        <span class="text-red-500 text-xs mt-1" style="color: red">{{ $message }}</span>
+                                    </div>
+                                @enderror
 
 
                                 @for ($i = 0; $i < $employeeLength; $i++)
-
-                                    <select name="A_{{ $i + 1 }}" id="new_{{ $i + 1 }}"
-                                        class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
+                                    <select name="fields[]" id="new_{{ $i + 1 }}"
+                                        class="form-control{{ $errors->has('fields.' . $i) ? ' is-invalid' : '' }} mt-1">
 
                                         <option value="{{ $employee[$i]->field_id }}">{{ $employee[$i]->field }}</option>
 
                                         @foreach (\App\Models\Field::select('*')->get() as $fieldss)
                                             <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
                                         @endforeach
-                                        
+
                                     </select>
                                 @endfor
 
                                 @if (old('total_chq'))
                                     @for ($j = $employeeLength; $j < intval(old('total_chq')); $j++)
-                                        <select name="A_{{ $j + 1 }}" id="new_{{ $j + 1 }}"
-                                        class="form-control{{ $errors->has('field') ? ' is-invalid' : '' }} mt-1">
-                                            <option value="{{ old('A_' . $j + 1) }}">
-                                                {{
-                                                    0 < intval(old('A_' . $j+1)) ? 
-                                                    $fields[intval(old('A_' .$j+1))-1]->field : "Válasszon szakmát"
-                                                }}
+                                        <select name="fields[]" id="new_{{ $j + 1 }}"
+                                            class="form-control{{ $errors->has('fields.' . $j) ? ' is-invalid' : '' }} mt-1">
+                                            <option
+                                                value="
+                                                {{ 0 >= intval(old('fields.' . $j)) ? '' : intval(old('fields.' . $j)) }}">
+                                                {{ 0 < intval(old('fields.' . $j)) ? $fields[intval(old('fields.' . $j)) - 1]->field : 'Válasszon szakmát' }}
                                             </option>
-                                            
+
                                             @foreach (\App\Models\Field::select('*')->get() as $fieldss)
                                                 <option value="{{ $fieldss->id }}">{{ $fieldss->field }}</option>
                                             @endforeach
@@ -93,9 +86,9 @@ use Illuminate\Support\Facades\DB;
 
                             </div>
                             @if (old('total_chq'))
-                                <input type="hidden" value="{{old('total_chq')}}" id="total_chq" name="total_chq" />
+                                <input type="hidden" value="{{ old('total_chq') }}" id="total_chq" name="total_chq" />
                             @else
-                                <input type="hidden" value="{{$employeeLength}}" id="total_chq" name="total_chq" />
+                                <input type="hidden" value="{{ $employeeLength }}" id="total_chq" name="total_chq" />
                             @endif
 
                             <div>
@@ -107,7 +100,7 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
                         </div><br />
-                        
+
                         {{-- Város --}}
                         <div><br />
                             <label for="cityinsert" class="form-validation">Város: </label>
@@ -154,11 +147,13 @@ use Illuminate\Support\Facades\DB;
                         </div>
                 </div>
                 <hr />
+                <p align="center"><button type="submit" class="btn btn-warning" id="uploadBtn">Módosít</button></p>
+                </form>
                 <div>
                     <h2>Referenciák</h2>
                     <br>
-
                     <p align="center">
+
                         <img src="https://picsum.photos/id/{{ $ref[1] }}/200"
                             onerror="this.onerror=null; this.src='/images/unknown.png'" alt="" width="100"
                             class="rounded-1 shadow bg-white" name="ref" />
@@ -175,50 +170,40 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <br>
                 <br>
-                <p align="center"><button type="submit" class="btn btn-warning">Módosít</button></p>
-                </form>
+
+
             </div>
         </div>
         <div class="col-md-3"></div>
-        
+
     </div>
     {{-- Ha teljesen kész akkor külön js-be lehet rakni --}}
     <script>
-
-
-
         $('.add').on('click', add);
         $('.remove').on('click', remove);
-  
+
         function add() {
-            const selects = document.getElementsByTagName('select').length - 1;
-              var new_chq_no = selects + 1;
-              var new_input = ""+
-              "<select name = 'A_"+ new_chq_no +"'  id = 'new_" + new_chq_no +"' class='form-control mt-1'>"+
-                 "<option value=''>Válasszon szakmát</option>" +
-  
-                 "@foreach ($fields as $field)<option value='{{ $field->id }}' >{{ $field->field }}</option>@endforeach" +
-              "</select>";
-  
-              $('#new_chq').append(new_input);
-  
-              $('#total_chq').val(new_chq_no);
+            const selects = document.getElementsByTagName('select').length;
+            var new_chq_no = selects;
+            const fieldOptions = {!! $fields->toJson() !!}
+            console.log(fieldOptions)
+            let optionHtml = fieldOptions.reduce((html, field) => html +
+                `<option value="${field.id}" >${field.field}</option>`);
+            const newInput = `<select name="fields[]" id="new_${new_chq_no}" class='form-control mt-1'>
+                                 <option value=''>Válasszon szakmát</option>
+                                 <option value='1'>Titkár(nő)</option>
+                                 ${optionHtml}
+                                 </select>`
+            $('#new_chq').append(newInput);
+            $('#total_chq').val(new_chq_no);
         }
-  
+
         function remove() {
-              var last_chq_no = $('#total_chq').val();
-  
-              if (last_chq_no > 1) {
-                 $('#new_' + last_chq_no).remove();
-                 $('#total_chq').val(last_chq_no - 1);
-              }
-        }
-     </script>
-    <script>
-        var msg = '{{ Session::get('alert') }}';
-        var exist = '{{ Session::has('alert') }}';
-        if (exist) {
-            alert(msg);
+            var last_chq_no = $('#total_chq').val();
+            if (last_chq_no > 1) {
+                $('#new_' + last_chq_no).remove();
+                $('#total_chq').val(last_chq_no - 1);
+            }
         }
     </script>
 @endsection

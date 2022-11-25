@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\FieldRules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,9 +41,11 @@ class InsertController extends Controller
 
         //dd($field_id);
         $image = DB::table('images')->select('ref')->where('employee_id', '=', $id)->get();
-
-
         $ref = explode(';', (string)$image);
+
+
+
+
 
         $employeeId = DB::table('employees')
             ->select('*')
@@ -56,17 +59,22 @@ class InsertController extends Controller
             'employeeLength' => $employeeLength
         ]);
     }
-    public function update_button($id, $other)
+    public function update_button($id, Request $request)
     {
         // $employee = DB::select('select * from employees where id = ?', [$id]);
         // $employee = DB::table('employees')->update('name','cities.city','phone','email','description')
         // ->join('cities','employees.city_id', '=', 'cities.id')
         // ->where('employees.id','=',$id);
 
+        //dd($request);
+
+
+
 
         request()->validate([
             'name' => ['required'],
             'city' => ['required'],
+            'fields' => ['required', new FieldRules],
             'phone' => ['required', 'numeric', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
             'email' => ['required', 'email'],
             'description' => ['required']
@@ -88,12 +96,6 @@ class InsertController extends Controller
             ]);
         //dd($other, $id);
 
-        for ($i = 0; $i < request('total_chq'); $i++) {
-
-            request()->validate([
-                'A_' . $i + 1 => ['required'] // TODO unique: where employee_id = $id
-            ]);
-        }
 
         DB::table('field__employees')
             ->join('employees', 'field__employees.employee_id', '=', 'employees.id')
@@ -102,15 +104,28 @@ class InsertController extends Controller
 
         for ($i = 0; $i < request('total_chq'); $i++) {
 
+
             DB::table('field__employees')
                 ->insert([
                     'created_at' => date(now()),
                     'updated_at' => date(now()),
                     'employee_id' => $id,
-                    'field_id' => request('A_' . $i + 1)
+                    'field_id' => $request->fields[$i]
                 ]);
         }
 
+
+        $image =  DB::table('images')
+            ->where('employee.id', '=', $id)
+            ->insert([
+                'created_at' => date(now()),
+                'updated_at' => date(now()),
+                'profile' => $request->profilePic,
+                'ref' => $request->img1,
+                'ref2' => $request->img2,
+                'ref3' => $request->img3,
+                'ref4' => $request->img4,
+            ]);
 
         return redirect('admin')->with('alert', 'Frissítve!');
     }
