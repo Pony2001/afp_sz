@@ -157,6 +157,9 @@ return [
             'min' => 'A :attribute mezőbe legalább :min karakternek kell lennie.',
             'max' => 'A :attribute mezőbe nem lehet több mint :max karakter.',
         ],
+        'city' => [
+            'required' => 'A :attribute mező nincs kitöltve.',
+        ],
         'name' => [
             'required' => 'A :attribute mező nincs kitöltve.',
         ],

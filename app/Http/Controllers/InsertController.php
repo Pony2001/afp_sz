@@ -76,7 +76,7 @@ class InsertController extends Controller
             'city' => ['required'],
             'fields' => ['required', new FieldRules],
             'phone' => ['required', 'numeric', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-            'email' => ['required', 'email'],
+            'email' => ['required'],
             'description' => ['required']
         ]);
 

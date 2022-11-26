@@ -139,6 +139,7 @@ use Illuminate\Http\Request;
                         <br />
                         <button type="submit" class="btn btn-warning">Tovább</button>
                     </form>
+                    <br>
                 </div>
             </div>
         </div>
