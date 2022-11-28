@@ -159,7 +159,8 @@ use Illuminate\Support\Facades\DB;
                     <p>Név: {{ $item->name }}</p>
                     <p>Értékelés: {{ $item->value }}</p>
                     <p>Vélemény: {{ $item->comment }}</p>
-                    <p>Létrehozva: {{ $item->created_at }}</p>
+                    <p>Létrehozva: {{ $item->created_at->diffForHumans() }}</p>
+                    
                 </div>
             @endforeach
 
