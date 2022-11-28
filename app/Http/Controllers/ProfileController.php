@@ -49,10 +49,10 @@ class ProfileController extends Controller
         //var_dump( explode( ',', $input1 ) ); splittelés
 
 
-        $comment = DB::table('comments')->select('value', 'comment', 'name','created_at')
-            ->orderByDesc('value')
-            ->where('employee_id', '=', $id)
-            ->get();
+        $comment = Comment::select('value', 'comment', 'name','created_at')
+        ->orderByDesc('value')
+        ->where('employee_id', '=', $id)
+        ->get();
         // $emp_id = DB::table('employees')->select('id')->where('id','=',$id)->get();
 
 
